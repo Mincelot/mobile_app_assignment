@@ -42,7 +42,7 @@
 * Task #6: Choose and decide on a platform as well as development tool that we will be using for the product.
 
 #### Artifacts
-* In order to help develop our product, we planned to make the following two artifacts:
+* In order to help develop our product, we plann to make the following two artifacts:
 * Create a persona for determining what features are important for the final products; by coming up with a story about a particular end user, we are able to develop our product based on the perspective viewer of the user and we can think about what do we need to implement that is the most useful to the user. 
 * Create some product point notes for any features and functions details that we plan to implement to our product, this is an important step because it acts as a rough structure for our project, and with these functions we can further design the overall components based on these features (such as how we will develop UML diagrams).
 
