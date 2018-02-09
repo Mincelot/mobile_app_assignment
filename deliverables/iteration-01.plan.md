@@ -23,12 +23,12 @@
 
 We believe that distributing some of the harder tasks to members who are not as experienced in the particular field compared to others can be beneficial in the long run by enhancing their skill set and facilitating harder implementation in the future. When the time comes where we are working towards a goal of parallel development with team members, we would be avoiding chain development circumstances later in the development cycle. 
 
-Conclusively it is scrum master’s role to make sure that deadlines are met for each sprint and to keep track of the status of the team members. While none of the members have previous knowledge in the environment that we will be working in, note that similarly to the software world, the scrum master is not always the CTO (Lead Technician), yet it iss the scrum master’s role to seek the CTO's guidance when needed and hence in our case for our scrum master to make sure a technical plan of best practices and routes is taken to achieve the goals necessary.
+Conclusively it is scrum master’s role to make sure that deadlines are met for each sprint and to keep track of the status of the team members. While none of the members have previous knowledge in the environment that we will be working in, note that similarly to the software world, the scrum master is not always the CTO (Lead Technician), yet it is the scrum master’s role to seek the CTO's guidance when needed and hence in our case for our scrum master to make sure a technical plan of best practices and routes is taken to achieve the goals necessary.
 
 
 #### Events
 
-* We plan to host a face to face meeting every Friday at around 4 pm in Bahen Building, we will also be having regular online meetings during weekdays and weekends using Skype call to discuss about the project.For each in-person meeting, we will also be hosting code review sessions so that everybody has a chance to see each other’s code and discuss the difficulties encountered during implementation and try to come up with a solution of each problem. In addition, each session has tasks that we must complete, for example, during the first session, our task is to come up at least 4 ideas for the project.
+* We plan to host a face to face meeting every Friday at around 4 pm in Bahen Building, we will also be having regular online meetings during weekdays and weekends using Skype call to discuss about the project. For each in-person meeting, we will also be hosting code review sessions so that everybody has a chance to see each other’s code and discuss the difficulties encountered during implementation and try to come up with a solution of each problem as well as making sure that all members of team are comfortable with all concepts. In addition, each session has tasks that we must complete, for example, during the first session, our task is to come up at least 4 ideas for the project.
 * The purpose of each meeting is to report each other's progress and concerns, and discuss as a group to come up with a solution / alternative. We would also meet up to work together online for writing documentations.
 
 
@@ -42,13 +42,15 @@ Conclusively it is scrum master’s role to make sure that deadlines are met for
 ## Product
 
 #### Goals and tasks
+* Use Github as our main coolaboration platform, push continuosly while the documents evolve.
 * The goals for this iteration is to come up and finalize the design stage with an idea for an innovative product and decide the core features as well as the target users. In addition, we need to figure out what programming language/interface we will be using and potentially learn any new skills required for this project. As the guideline, we listed the following tasks to be completed by the end of this iteration.
 * Task #1: Start by brainstorming for different random ideas that solve different real world problems. 
 * Task #2: Identify the problems we are solving and the target users, come up with varieties of personas that describes the problems that a potential users might face in his/ her daily life. 
-* Task #3: Search online for useful resources / APIs and any potential obstacle for implementation.
-* Task #4: Chose some top listed ideas that seems reasonable to implement, finalize each idea with core features and present them to the TA for further suggestions
-* Task #5: Picks the ultimate idea to continue with and start deciding on the tools and resources that are useful / necessary
+* Task #3: Search online for useful resources / APIs and any potential obstacles for implementation.
+* Task #4: Chose some top listed ideas that seems reasonable to implement, finalize each idea with core features and present them to the TA for further discussion.
+* Task #5: Pick the ultimate idea to continue with and start deciding on the tools and resources that are useful / necessary
 * Task #6: Choose and decide on a platform as well as development tool that we will be using for the product.
+* Task #7: Assign roles/positions for team members.
 
 #### Artifacts
 * In order to help develop our product, we plann to make the following two artifacts:
