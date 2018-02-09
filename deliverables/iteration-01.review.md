@@ -10,14 +10,14 @@
 
 #### Decisions that turned out well
 
-1. We consider that the weekly meetings have been quite successful for the past few weeks since the semester started despite not having fixed criteria, all the while being productive in the way we spent our time and efficient in using the limited amount of hours that were available at our disposal to accomplish key decisions. As an example, of our first meeting, it involved brainstorming many ideas about what our product might be. The listing of these possible concepts gave us the confidence to proceed to the next steps once we decided on an idea knowing its value in comparison to our listed alternatives. The screenshot below is from our Skype call, which became our preferred method of communication after encountering problems when using facebook voice chat, as it failed to detection some of the group member's microphones: <br /> ![Imgur](https://i.imgur.com/AzWfTgr.png) <br />
+1. We consider that the weekly meetings have been quite successful for the past few weeks since the semester started despite not having fixed criteria, all the while being productive in the way we spent our time and efficient in using the limited amount of hours that were available at our disposal to accomplish key decisions. As an example, of our first meeting, it involved brainstorming many ideas about what our product might be. The listing of these possible concepts gave us the confidence to proceed to the next steps once we decided on an idea knowing its value in comparison to our listed alternatives. The screenshot below is from our Skype call, which became our preferred method of communication after encountering problems when using facebook voice chat, as it failed to detect some of the group member's microphones: <br /> ![Imgur](https://i.imgur.com/AzWfTgr.png) <br />
 2. The Anasa(website/mobile application) task board turned out to be a useful and effective tool in its array of multiple layouts and possible ways to organize tasks. We used it often to record our ideas about the project as well as recording resources that we think would become useful to building towards the product. Below is a screenshot of our task board from the website: ![Imgur](https://i.imgur.com/RxB1oYD.png)<br />
 
 
 #### Decisions that did not turn out as well as we hoped
 
 1. Even though we have decided what roles and responsibilities should be fulfilled, we haven't decided on which members will be given what positions, as this requires further knowledge of how our group member’s interact with one another in order to understand who would be better suited for the roles given their personality inclinations. We have not decided who will be the scrum master or the scrum project owner for this project as of the time being. <br />
-2. In terms of calculating the time we have not been keeping track of what time each member has been spending every week devoted to the project, and the possible potential of possible work hours on a per week basis by our team. We can infer this is probably due to the fact that we are not in the coding phase as of currently, and hence are attributing time without an iron fist mentality. Once all the members have started working on coding the product, we will include exact specifications of hours related to tasks that need to be solved.
+2. In terms of calculating the time we have not been keeping track of what time each member has been spending every week devoted to the project, and the potential of possible work hours on a per week basis by our team. We can infer this is probably due to the fact that we are not in the coding phase as of currently, and hence are attributing time without an iron fist mentality. Once all the members have started working on coding the product, we will include exact specifications of hours related to tasks that need to be solved.
 
 
 #### Planned changes
@@ -37,11 +37,24 @@ _This entire section is mandatory._
  * Refer/link to artifact(s) that show that a goal/task was met/completed.
  * If a goal/task was not part of the original iteration plan, please mention it.
 
+1.  In the first iteration, the most important task that we completed is to identify a problem that 
+exists in current society and the associated target population for that problem.
+2.  Afterwards, we searched online for any possible competitor applications that solves the same 
+problem.
+3.  We then came up with the project idea and determined its major functionalities and features.  
+Furthermore, we completed the point notes of functions and features on Asana (refer to screenshot below) in order to organise our thoughts more efficiently. 
+4.  We decided that we would focus developing our app on the IOS platform. Lastly we have decided to use “React Native” as the developing tool. 
+
+
 #### Goals and/or tasks that were planned but not met/completed:
 
  * From most to least important.
  * For each goal/task, explain why it was not met/completed.      
    e.g. Did you change your mind, or did you just not get to it yet?
+
+1. While we've been able to shortlist a few design patterns like MVVP/MVVM/MVC etc. we have yet to decide on any one. The pattern we use will be decided after further researching React Native.
+2. We haven't completed decided on which member would be performing which duties. This is because we need more insight into what the coding part of the project will involve in more detail. Once the coding deliverables start, we will be able to assign roles.  
+
 
 ## Meeting Highlights
 
@@ -52,3 +65,8 @@ Going into the next iteration, our main insights are:
  * High-level concepts that should guide your work for the next iteration.
  * These concepts should help you decide on where to focus your efforts.
  * Can be related to product and/or process.
+
+1. Build a basic ios phone setup in xcode using swift, and share it on the group github page so everyone can start interacting and working with the platform(one person). When we changed the implementation to use React-Native to code instead, the premise is the same, except it won’t be in xcode. This step is important so that everyone has the same build and to avoid confusion later on when time comes to merge code, the base platform needs to be same for all members.
+2. For windows users find a way to run ios xcode, to test ios devices(emulator), which as of the moment, there are two vm’s to help facilitate with this task, VirtualBox(free) and VMware(paid), which gets picked won’t affect other members, and depends on each member’s preference.
+3. UML or any other architectural diagrams to show the structural design for our application. This needs to be done and is important to the team because a fixed structure can prevent many incompatibilities between the implementation among group members.
+4. Sketches for the UI design for the application, it is important and useful to the team because any front end design would be difficult without visualizing the result. 
