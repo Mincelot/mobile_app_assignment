@@ -25,10 +25,10 @@
 
 #### Events
 
-* We plan to host face to face meetings every Friday at around 4 pm in Bahen. These will be code review sessions ensuring that everybody understands each other’s code and team memebers will have a chance to discuss the difficulties they encountered during implementation. We will try to come up with a solution of each problem. In addition, each session will have tasks that must be completed, for example, during the first session, our task was to come up with at least 4 ideas for the project.
+* We plan to host face to face meetings every Friday at around 4 pm in Bahen. These will be code review sessions ensuring that everybody understands each other’s code and team members will have a chance to discuss the difficulties they encountered during implementation. We will try to come up with a solution for each problem. In addition, each session will have tasks that must be completed, for example, during the first session, our task was to come up with at least 4 ideas for the project.
 
 
-* We will also be having regular online meetings during weekdays and weekends using Skype calls to discuss the project, answer quick questions and stay up to date with each member's progress. 
+* We will also be having regular online meetings during weekdays and weekends using Skype calls to discuss the project, answer quick questions and stay up to date on each member's progress.
 
 #### Artifacts
 
