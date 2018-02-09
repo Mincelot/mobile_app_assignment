@@ -8,7 +8,7 @@ We are building an IOS/Android app that provides a peer-to-peer platform for mat
 #### Q2: Who are your target users?
 
 We classified our target users in two categories: 
-* Diners -  people with special needs who have difficulty to fully provide for themselves, such as elderly and people with disabilities. Another group in this category are people with time shortage due to busy daily schedule, who usually order-in or eat out for lack of time or energy. Diners, also include people who are hosting parties, events, and they can have high quality dining/beverage service at place of their choosing.
+* Diners - people with special needs who have difficulty to fully provide for themselves, such as elderly and people with disabilities. Another group in this category are people with time shortage due to busy daily schedule, who usually order-in or eat out for lack of time or energy. Diners, also include people who are hosting parties, events, and they can have high-quality dining/beverage service at a place of their choosing.
 * Service Providers(bartenders, chefs, pastry chefs) - food enthusiasts, new grads that have little-to-no experience in service sector and big ambitions. Chefs who are always looking for room for improvement, expanding their horizon by making specialized meals for special needs of our customers.  
 
 A chef that just finish his/her degree and is excited to start his/her career yet continuously hitting walls because most of the dream restaurant requires porfilio.
