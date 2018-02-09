@@ -31,12 +31,6 @@ So far we are not making any changes to our original process plan.
 
 #### Goals and/or tasks that were met/completed:
 
- For task 2, see the link in product.md for the link to persona.
-
- * From most to least important.
- * Refer/link to artifact(s) that show that a goal/task was met/completed.
- * If a goal/task was not part of the original iteration plan, please mention it.
-
 1.  In the first iteration, the most important task that we completed is to identify a problem that 
 exists in current society and the associated target population for that problem.
 2.  Afterwards, we searched online for any possible competitor applications that solves the same 
@@ -61,7 +55,7 @@ should be postponed for next deliverable when we begin developing the app.
 
 Going into the next iteration, our main insights are:
 
-1. Build a basic build of the project(starter code) and share it on the group GitHub page so everyone can start interacting and working with the platform(one person). We originally planned to make the setup in Xcode using swift language for ios mobile phones only. We later changed the implementation to use React-Native as our coding language, the premise of this step remained the same, except it won’t be in written in swift. This step is vital to continuing so that everyone has the same build and in order to avoid confusion later on when the time comes to merge code the base platform needs to be same for all members.
-2. For windows users find a way to run IOS Xcode, even after changing the language to be React-Native, we still need a way to run the emulator, which comes with Xcode. As of the moment, there are two VM's to help facilitate with this task, VirtualBox(free) and VMware(paid), which one gets picked won’t affect other members, and depends on each member’s preference.
-3. UML or any other architectural diagrams to show the structural design for our application. This needs to be done and is important to the team because a fixed structure can prevent many incompatibilities between the implementation among group members.
+1. Build a basic build of the project(starter code) and share it on the group GitHub page so everyone can start interacting and working with the platform. We originally planned to make the setup in Xcode using Swift language for IOS mobile devices. Since Windows users have to use VM for IOS development, we later changed the implementation to use React-Native as our coding language, so that our progress is not be limited by platforms.
+2. UML or any other architectural diagrams/patterns to show the structural design for our application. This needs to be done and is important to the team because a fixed structure can prevent many incompatibilities between the implementation among group members.
+3.We will focuse on UX, because it is important fulfill the user's needs. Good UX aims to provide positive experiences that keep users loyal to the product/brand.
 4. Sketches of the UI design for our application. This is important and useful to the team because any front-end design would be difficult without visualizing the result.
