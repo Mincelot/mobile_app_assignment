@@ -1,32 +1,31 @@
-# YOUR PRODUCT/TEAM NAME
-
- > _Note:_ This document is meant to evolve throughout the planning phase of your project.    
- > That is, it makes sense for you commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section).
+# Ratatouille - Team 23
 
 #### Q1: What are you planning to build?
 
-YOUR ANSWER GOES HERE ...
+Mobile app (iOS/Android) 
+Peer-to-peer platform for aspiring chefs matched with food enthusiasts for a unique and personal experience. 
+Saving time, energy and resources for people with inability to cook, people who have time-consuming work life.
+It provides opportunities to build a portfolio for chefs.
+It provides a community platform that connects clients (single or group) to chefs based on the type of cooking services, price range, number of people, distance, etc by filtering and tags. All clients and chefs will need to register an account for profile / portfolio records. It also allow chefs / services providers to advertise themselves to the public through hosting online contests. This product will also have profile records and ratings to avoid unnecessary conflicts.   
+ 
+Features:
+chef/mixologist profile (rating, cuisine specialty, previous work, profile picture, tags [i.e. vegan], available hours)
+eaters profile (rating, phone number, address, payment option)  
+Provides advance bookings and when-needed request/lookups.
+Allows filters to select specific category of needs (cuisine style, price range, background, size, travel distance, whether ingredients will be provided or not, etc)
 
- * Short (1 - 2 min' read)
- * Start with a single sentence, high-level description of the product.
- * Be clear - Describe the problem you are solving in simple terms.
- * Be concrete. For example:
-    * What are you planning to build? Is it a website, mobile app,
-   browser extension, command-line app, etc.?      
-    * When describing the problem/need, give concrete examples of common use cases.
- * Focus on *what* your product does, and avoid discussing *how* you're going to implement it.      
-   For example: This is not the time or the place to talk about which programming language and/or framework you are planning to use.
- * **Feel free (and very much encouraged) to include useful diagrams, mock-ups and/or links**.
 
 
 #### Q2: Who are your target users?
 
-YOUR ANSWER GOES HERE ...
+We basically have two types of target users, one is "eaters" - basically people that want to eat food cook by the chefs because they have little time to cook or they are unable to cook due to physical disabilities, and "chefs" - people that are willing to cook for other people because they are looking to build a portfolio for their career. Here are some examples of who they might be:
+An engineering student who has no time or energy to cook, or elderly people with accessibility needs.
+A chef that just finish his/her degree and is excited to start his/her career yet continuously hitting walls because most of the dream restaurant requires porfilio.
+A person with disability is forced to eat fast foods everyday due to the inability to cook and needs healthy food.
+Parties for a group of people, gathering including food and drink serving.
+Here is a persona for a potential user for our application:
+https://personagenerator.com/6dbd043a-0d31-11e8-b990-df37dd2b81c3/6dbd043b-0d31-11e8-b990-5bf594b72181
 
- * Short (1 - 2 min' read max)
- * Be specific (e.g. )
- * Feel free (but not obligated) to use personas.        
-   You can create your personas as part of this Markdown file, or add a link to an external site (for example, [Xtensio](https://xtensio.com/user-persona/)).
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
