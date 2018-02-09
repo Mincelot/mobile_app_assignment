@@ -32,9 +32,9 @@
 
 #### Artifacts
 
-* We use Asana (project task board) to log our ideas, discuss notes, tasks and any resources or other project related messages. This is an important step for the project as it helped guide us through the begining steps and research of our project. In addition, we also used the Facebook group chat application for instant checking-in/responses.
+* We use Asana (project task board) to log our ideas, discuss notes, tasks, and any resources or other project related messages. This is an important step for the project as it helped guide us through the beginning steps and research of our project. In addition, we also used the Facebook group chat application for instant checking-in/responses.
 
-* To prioritize and organize each task, we will calculate how much hours we have each week and based on how much time each tasks takes we will aloocate tasks based on time availability. For example, if we only have 3 hours on Monday we will work on tasks that can be done within 3 hours, while leaving the more difficult and time consuming tasks until the weekend when we have more time. We would also leave an extra 25% of time for testing purposes. 
+* To prioritize and organize each task, we will calculate how much hours we have each week and based on how much time each task takes we will allocate tasks based on our time availability. For example, if we only have 3 hours on Monday we will work on tasks that can be done within 3 hours while leaving the more difficult and time-consuming tasks until the weekend when we have more time. We would also leave an extra 25% of the time for testing purposes.
 
 * To be able to make task assignments to team members, we first need to understand each team member’s preference/skillset to assign who will bring the most value to each responsibility, afterwards we assign jobs to each member based on his/her preferred option/time availability, in case of a tie, we will decide using random functions.
 
