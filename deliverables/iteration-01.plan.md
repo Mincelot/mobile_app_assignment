@@ -32,8 +32,6 @@
 
 ## Product
 
-_This entire section is mandatory._
-
 #### Goals and tasks
 * The goals for this iteration is to come up and finalize the design stage with an idea for an innovative product and decide the core features as well as the target users. In addition, we need to figure out what programming language/interface we will be using and potentially learn any new skills required for this project.
 * Task #1: Start by brainstorming for different random ideas that solve different real world problems. 
