@@ -29,8 +29,6 @@ So far we are not making any changes to our original process plan.
 
 ## Product - Review
 
-_This entire section is mandatory._
-
 #### Goals and/or tasks that were met/completed:
 
  For task 2, see the link in product.md for the link to persona.
@@ -62,12 +60,6 @@ should be postponed for next deliverable when we begin developing the architecht
 ## Meeting Highlights
 
 Going into the next iteration, our main insights are:
-
- * 2 - 4 items
- * Short (no more than one short paragraph per item)
- * High-level concepts that should guide your work for the next iteration.
- * These concepts should help you decide on where to focus your efforts.
- * Can be related to product and/or process.
 
 1. Build a basic build of the project(starter code) and share it on the group GitHub page so everyone can start interacting and working with the platform(one person). We originally planned to make the setup in Xcode using swift language for ios mobile phones only. We later changed the implementation to use React-Native as our coding language, the premise of this step remained the same, except it won’t be in written in swift. This step is vital to continuing so that everyone has the same build and in order to avoid confusion later on when the time comes to merge code the base platform needs to be same for all members.
 2. For windows users find a way to run IOS Xcode, even after changing the language to be React-Native, we still need a way to run the emulator, which comes with Xcode. As of the moment, there are two VM's to help facilitate with this task, VirtualBox(free) and VMware(paid), which one gets picked won’t affect other members, and depends on each member’s preference.
