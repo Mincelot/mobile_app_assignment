@@ -15,7 +15,10 @@ A chef that just finish his/her degree and is excited to start his/her career ye
 A person with disability is forced to eat fast foods everyday due to the inability to cook and needs healthy food.
 Parties for a group of people, gathering including food and drink serving.
 Here is a persona for a potential user for our application:
-https://imgur.com/a/25v9s
+![Imgur](https://i.imgur.com/KRupR4f.jpg)
+![Imgur](https://i.imgur.com/aYYwZCE.jpg)
+![Imgur](https://i.imgur.com/T33I3LE.jpg)
+![Imgur](https://i.imgur.com/nY53FhN.jpg)
 
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
