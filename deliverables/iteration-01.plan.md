@@ -1,13 +1,11 @@
 # Ratatouille - Team 23
 
-## Iteration XX
+## Iteration 01
 
  * Start date: Jan 18, 2018
  * End date: Feb 8, 2018
 
 ## Process
-
-_This entire section is optional. Note that you will have to fill it out and more for the next 3 deliverables so it's good to start soon and get feedback._ 
 
 #### Roles & responsibilities
 
