@@ -25,15 +25,6 @@ https://personagenerator.com/6dbd043a-0d31-11e8-b990-df37dd2b81c3/6dbd043b-0d31-
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
-YOUR ANSWER GOES HERE ...
-
- * Short (1 - 2 min' read max)
- * We want you to "connect the dots" for us - Why does your product (as described in your answer to Q1) fits the needs of your users (as described in your answer to Q2)?
- * Explain the benefits of your product explicitly & clearly. For example:
-    * Save users time (how much?)
-    * Allow users to discover new information (which information? And, why couldn't they discover it before?)
-    * Provide users with more accurate and/or informative data (what kind of data? Why is it useful to them?)
-
 Our competitors include https://www.hireachef.com/. They have a similar goal, however, they require chefs to have professional licenses. One of their advantages is an insurance policy for their services. One of their disadvantages is that they are only accessible through a website and hence they lack engagement with the mobile user base. Additionally, the act of picking chefs does not showcase enough modern clarity (like using reviews from a client base, such as a star based rating system, to enable quickly picking between chefs). 
 
 Our service would also be an alternative to ordering pre-cooked food from restaurants. Ordering food from these services (such as Foodora) can lead to food arriving cold. Additionally clients never know what to expect until they have received the food (after ordering and paying for it). Our system would also allow the clients to specify their preferred ingredients based on health issues, dietary restrictions or nutrient content. Clients would also be able to watch the chefs and learn from them for future reference making this a much more informative process than simply ordering food from a restaurant. 
@@ -43,18 +34,6 @@ Another one of our competitors is blueapron.com/chefsplate. Where clients can ge
 ----
 
 ### Highlights
-
-YOUR ANSWER GOES HERE ...
-
-Specify 3 - 5 key decisions and/or insights that came up during your meetings
-and/or collaborative process.
-
- * Short (5 min' read max)
- * Decisions can be related to the product and/or the team process.
-    * Mention which alternatives you were considering.
-    * Present the arguments for each alternative.
-    * Explain why the option you decided on makes the most sense for your team/product/users.
- * Essentially, we want to understand how (and why) you ended up with your current product plan.
  
 As a team we had difficulty finding ideas that were not previously implemented.
 The followin are alternatives we considered. 
