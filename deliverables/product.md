@@ -38,6 +38,8 @@ Our competitors include https://www.hireachef.com/. They have a similar goal, ho
 
 Our service would also be an alternative to ordering pre-cooked food from restaurants. Ordering food from these services (such as Foodora) can lead to food arriving cold. Additionally clients never know what to expect until they have received the food (after ordering and paying for it). Our system would also allow the clients to specify their preferred ingredients based on health issues, dietary restrictions or nutrient content. Clients would also be able to watch the chefs and learn from them for future reference making this a much more informative process than simply ordering food from a restaurant. 
 
+Another one of our competitors is blueapron.com/chefsplate. Where clients can get weekly and daily recipes with fresh ingredients delivered to their doors. They then use these components to cook for themselves at home. Similarily our clients will benefit from the fresh ingredients however they save a lot of cooking time. The Blue Apron web application forces clients to take part in a plan. We would not be constricting our clients to a monthly price and our application would be completely free of commitment. 
+
 ----
 
 ### Highlights
