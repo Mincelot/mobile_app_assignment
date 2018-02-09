@@ -31,6 +31,8 @@ Our service would also be an alternative to ordering pre-cooked food from restau
 
 Another one of our competitors is blueapron.com/chefsplate. Where clients can get weekly and daily recipes with fresh ingredients delivered to their doors. They then use these components to cook for themselves at home. Similarily our clients will benefit from the fresh ingredients however they save a lot of cooking time. The Blue Apron web application forces clients to take part in a plan. We would not be constricting our clients to a monthly price and our application would be completely free of commitment. 
 
+Our product takes into account both the user's desires as well as the chef's. If a chef/drink mixer wanted to make a living cooking/mixing the type of food/drinks that they think their audience will enjoy, in the current world their alternative would usually be to start their own restaurant or catering company, the premise of the popular movie 'Chef'(2014). Unlike the cheap alternative that we offer as a solution to the chef's problem(that is to cook to his heart's desire), starting a restaurant is easily one of the most failed startup business ventures out there in the entrepreneurial world, with 60% failure rate within the first year(unlike the positive outlook of success that the movie Chef paints) according to an article by CNBC(https://www.cnbc.com/2016/01/20/heres-the-real-reason-why-most-restaurants-fail.html).
+
 ----
 
 ### Highlights
