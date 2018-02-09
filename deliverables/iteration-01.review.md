@@ -48,9 +48,9 @@ Furthermore, we completed the point notes of functions and features on Asana (re
 
 #### Goals and/or tasks that were planned but not met/completed:
 
- * Decision on architechture design patterns and APIs that we are going to use: Even though we have
-researched pros/cons of each tool, we came to conclusion that finalizing the tools we are gonna use 
-should be postponed for next deliverable when we begin developing the architechture.
+ * Architechture software design patterns and APIs that we are going to use: Even though we have
+researched pros/cons of each, we came to conclusion that finalizing the tools we are gonna use 
+should be postponed for next deliverable when we begin developing the app.
  * Distribution of roles/positions among team members: not completed, since we are still learning the dynamics of the team, we have a vague idea what each member is bringing to team. We will capitalize on that for next iteration.
 
 1. While we've been able to shortlist a few design patterns like MVP/MVVM/MVC/Flow/Redux etc. we have yet to decide on any one. The pattern we use will be decided after further researching React Native.
