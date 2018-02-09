@@ -53,7 +53,7 @@ researched pros/cons of each tool, we came to conclusion that finalizing the too
 should be postponed for next deliverable when we begin developing the architechture.
  * Distribution of roles/positions among team members: not completed, since we are still learning the dynamics of the team, we have a vague idea what each member is bringing to team. We will capitalize on that for next iteration.
 
-1. While we've been able to shortlist a few design patterns like MVVP/MVVM/MVC etc. we have yet to decide on any one. The pattern we use will be decided after further researching React Native.
+1. While we've been able to shortlist a few design patterns like MVP/MVVM/MVC/Flow/Redux etc. we have yet to decide on any one. The pattern we use will be decided after further researching React Native.
 2. We haven't completed decided on which member would be performing which duties. This is because we need more insight into what the coding part of the project will involve in more detail. Once the coding deliverables start, we will be able to assign roles.  
 
 
