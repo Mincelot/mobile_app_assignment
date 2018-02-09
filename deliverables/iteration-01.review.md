@@ -14,10 +14,12 @@
 2. The Anasa(website/mobile application) task board turned out to be a useful and effective tool in its array of multiple layouts and possible ways to organize tasks. We used it often to record our ideas about the project as well as recording resources that we think would become useful to building towards the product. Below is a screenshot of our task board from the website: ![Imgur](https://i.imgur.com/RxB1oYD.png)<br />
 
 
+
 #### Decisions that did not turn out as well as we hoped
 
 1. Even though we have decided what roles and responsibilities should be fulfilled, we haven't decided on which members will be given what positions, as this requires further knowledge of how our group member’s interact with one another in order to understand who would be better suited for the roles given their personality inclinations. We have not decided who will be the scrum master or the scrum project owner for this project as of the time being. <br />
 2. In terms of calculating the time we have not been keeping track of what time each member has been spending every week devoted to the project, and the potential of possible work hours on a per week basis by our team. We can infer this is probably due to the fact that we are not in the coding phase as of currently, and hence are attributing time without an iron fist mentality. Once all the members have started working on coding the product, we will include exact specifications of hours related to tasks that need to be solved.
+
 
 
 #### Planned changes
@@ -48,9 +50,10 @@ Furthermore, we completed the point notes of functions and features on Asana (re
 
 #### Goals and/or tasks that were planned but not met/completed:
 
- * From most to least important.
- * For each goal/task, explain why it was not met/completed.      
-   e.g. Did you change your mind, or did you just not get to it yet?
+ * Decision on architechture design patterns and APIs that we are going to use: Even though we have
+researched pros/cons of each tool, we came to conclusion that finalizing the tools we are gonna use 
+should be postponed for next deliverable when we begin developing the architechture.
+ * Distribution of roles/positions among team members: not completed, since we are still learning the dynamics of the team, we have a vague idea what each member is bringing to team. We will capitalize on that for next iteration.
 
 1. While we've been able to shortlist a few design patterns like MVVP/MVVM/MVC etc. we have yet to decide on any one. The pattern we use will be decided after further researching React Native.
 2. We haven't completed decided on which member would be performing which duties. This is because we need more insight into what the coding part of the project will involve in more detail. Once the coding deliverables start, we will be able to assign roles.  

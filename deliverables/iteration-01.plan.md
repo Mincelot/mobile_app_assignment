@@ -22,9 +22,11 @@
 * The scrum master is the middleman between the product owner and the development team. The scrum master can manage the  team members with knowledge of their strengths and weaknesses. For example, if some members are more adept with back end development, the scrum master will take that into consideration when allocating tasks to capitalize efficiency. The scrum master has knowledge of how code should be implement, which is something the product owner does not typically need to be aware. We believe that distributing some of the harder tasks to members who are not as experienced in the particular field compared to others can be beneficial in the long run by enhancing their skill set and facilitating harder implementation in the future. When the time comes and we are working through parallel development, we would be avoiding chain development circumstances later in the cycle. Conclusively it is scrum master’s role to make sure that deadlines are met for each sprint and to keep track of the status of the team members. Similarly to the software world, the scrum master is not always the CTO (Lead Technician), yet it is the scrum master’s role to seek the CTO's guidance when needed and in our case to make sure a technical plan of best practices and routes is taken to achieve the necessary goals.
 
 
+
 #### Events
 
 * We plan to host face to face meetings every Friday at around 4 pm in Bahen. These will be code review sessions ensuring that everybody understands each other’s code and team memebers will have a chance to discuss the difficulties they encountered during implementation. We will try to come up with a solution of each problem. In addition, each session will have tasks that must be completed, for example, during the first session, our task was to come up with at least 4 ideas for the project.
+
 
 * We will also be having regular online meetings during weekdays and weekends using Skype calls to discuss the project, answer quick questions and stay up to date with each member's progress. 
 
@@ -40,13 +42,15 @@
 ## Product
 
 #### Goals and tasks
+* Use Github as our main coolaboration platform, push continuosly while the documents evolve.
 * The goals for this iteration is to come up and finalize the design stage with an idea for an innovative product and decide the core features as well as the target users. In addition, we need to figure out what programming language/interface we will be using and potentially learn any new skills required for this project. As the guideline, we listed the following tasks to be completed by the end of this iteration.
 * Task #1: Start by brainstorming for different random ideas that solve different real world problems. 
 * Task #2: Identify the problems we are solving and the target users, come up with varieties of personas that describes the problems that a potential users might face in his/ her daily life. 
-* Task #3: Search online for useful resources / APIs and any potential obstacle for implementation.
-* Task #4: Chose some top listed ideas that seems reasonable to implement, finalize each idea with core features and present them to the TA for further suggestions
-* Task #5: Picks the ultimate idea to continue with and start deciding on the tools and resources that are useful / necessary
+* Task #3: Search online for useful resources / APIs and any potential obstacles for implementation.
+* Task #4: Chose some top listed ideas that seems reasonable to implement, finalize each idea with core features and present them to the TA for further discussion.
+* Task #5: Pick the ultimate idea to continue with and start deciding on the tools and resources that are useful / necessary
 * Task #6: Choose and decide on a platform as well as development tool that we will be using for the product.
+* Task #7: Assign roles/positions for team members.
 
 #### Artifacts
 * In order to help develop our product, we plann to make the following two artifacts:
