@@ -1,6 +1,6 @@
 # Ratatouille - Team 23
 
-## Iteration XX - Review & Retrospect
+## Iteration 01 - Review & Retrospect
 
  * When: Feb 8 2018
  * Where: GB 303
