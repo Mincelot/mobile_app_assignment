@@ -57,5 +57,5 @@ Going into the next iteration, our main insights are:
 
 1. Build a basic build of the project(starter code) and share it on the group GitHub page so everyone can start interacting and working with the platform. We originally planned to make the setup in Xcode using Swift language for IOS mobile devices. Since Windows users have to use VM for IOS development, we later changed the implementation to use React-Native as our coding language, so that our progress is not be limited by platforms.
 2. UML or any other architectural diagrams/patterns to show the structural design for our application. This needs to be done and is important to the team because a fixed structure can prevent many incompatibilities between the implementation among group members.
-3. We will focuse on UX, because it is important fulfill the user's needs. Good UX aims to provide positive experiences that keep users loyal to the product/brand.
+3. We will focuse on UX, because it is important fulfill the user's needs. UX aims to provide positive experiences, intuitions that keep users loyal to the product/brand.
 4. Sketches of the UI design for our application. This is important and useful to the team because any front-end design would be difficult without visualizing the result.
