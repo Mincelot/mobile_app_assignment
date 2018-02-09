@@ -9,11 +9,11 @@
 
 #### Roles & responsibilities
 
-* We plan to use agile software development, specifically scrum. This will give us a running platform every iteration cycle so that we can make appropriate amends. This will allow us to add modifications beyond the basic scope of the project idea. Since we do not have previous experience with this type of development we cannot predict the exact nature of the final product.
+* We plan to use agile software development, specifically Scrum. This will give us a running platform every iteration cycle so that we can make appropriate amends. This will allow us to add modifications beyond the basic scope of the project idea. Since we do not have previous experience with this type of development we cannot predict the exact nature of the final product.
 
 * Each Sprint will last 3 weeks. 
 
-* Within scrum development, there are 3 roles, product owner, scrum master, and the development team.
+* Within scrum development, there are 3 roles, product owner, Scrum master, and the development team.
 
 * Our development team is comprised of 7 members with access to github. Each member will continually push and pull updates.
 
