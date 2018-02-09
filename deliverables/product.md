@@ -14,7 +14,7 @@ Allows filters to select specific category of needs (cuisine style, price range,
 
 #### Q2: Who are your target users?
 
-We basically have two types of target users, one is "eaters" - basically people that want to eat food cook by the chefs because they have little time to cook or they are unable to cook due to physical disabilities, and "chefs" - people that are willing to cook for other people because they are looking to build a portfolio for their career. Here are some examples of who they might be:
+We basically have two types of target users, one is "eaters" - basically people that want to eat food cooked by chefs because they have little time to cook or they are unable to cook due to physical disabilities, and "chefs" - people that are willing to cook for other people because they are looking to build a portfolio for their career. Here are some examples of who they might be:
 An engineering student who has no time or energy to cook, or elderly people with accessibility needs.<br />
 A chef that just finish his/her degree and is excited to start his/her career yet continuously hitting walls because most of the dream restaurant requires porfilio.<br />
 A person with disability is forced to eat fast foods everyday due to the inability to cook and needs healthy food.
@@ -34,6 +34,9 @@ YOUR ANSWER GOES HERE ...
     * Allow users to discover new information (which information? And, why couldn't they discover it before?)
     * Provide users with more accurate and/or informative data (what kind of data? Why is it useful to them?)
 
+Our competitors include https://www.hireachef.com/. They have a similar goal, however, they require chefs to have professional licenses. One of their advantages is an insurance policy for their services. One of their disadvantages is that they are only accessible through a website and hence they lack engagement with the mobile user base. Additionally, the act of picking chefs does not showcase enough modern clarity (using reviews from a client base, such as a star based rating system, to enable quickly picking between chefs). 
+
+Our service would also be an alternative to ordering pre-cooked food from restaurants. Ordering food from these services (such as Foodora) can lead to food arriving cold. Additionally clients never know what to expect until they have received the food (after ordering and paying for it). Our system would also allow the clients to specify their preferred ingredients based on health issues, dietary restrictions or nutrient content. Clients would also be able to watch the chefs and learn from them for future reference making this a much more informative process than simply ordering food from a restaurant. 
 
 ----
 
