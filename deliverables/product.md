@@ -30,24 +30,21 @@ Our product takes into account both the user's desires as well as the chef's. It
 ----
 
 ### Highlights
- 
-As a team we had difficulty finding ideas that were not previously implemented.
-The following are alternatives we considered. 
 
-An app that picked wine based on the user's meal. We did not pursue this idea because it did not convincingly solve a real world problem.  
+As a team we had difficulty finding ideas that were not previously implemented. The following are alternatives we considered.
+An app that picked wine based on the user's meal. We did not pursue this idea because it did not convincingly solve a real world problem.
 
-An allergy avoidance checker. We did not expand on this idea because most people know their allergies and how to avoid the (i.e. can check ingredients in products before use or purchase). Additionally, it is very difficult to find a database that contains the ingredients for almost all of the product on the market. We also lack required medical information as we are not medical professionals. 
+An allergy avoidance checker. We did not expand on this idea because most people know their allergies and how to avoid the (i.e. can check ingredients in products before use or purchase). Additionally, it is very difficult to find a database that contains the ingredients for almost all of the product on the market. We also lack required medical information as we are not medical professionals.
 
-An schedule combinning application. We did not follow through with this idea due to the excessive number of competitors. We had difficulty finding features that uniquely enhanced such an interface. We were not able to find a solution to a problem that had not already been solved by the other competitors.
+An schedule combining application. We did not follow through with this idea due to the excessive number of competitors. We had difficulty finding features that uniquely enhanced such an interface. We were not able to find a solution to a problem that had not already been solved by the other competitors.
 
-A fitness/diet helper application. Myfitnesspal is a very already a strong competitor on both web and mobile platforms with complete features and already hueg user databases.
+A fitness/diet helper application. MyFitnessPal is a very already a strong competitor on both web and mobile platforms with complete features and already huge user databases.
 
-A application that scans/analyzes receipts/cheques and makes report for the IRS or other financial services for contractors. A big variety of companies are already doing this, there is heavy competition and a heavily occupied market.
+An application that scans/analyzes receipts/cheques and makes report for the IRS or other financial services for contractors. A big variety of companies are already doing this, there is heavy competition and a heavily occupied market.
 
-We reached our current idea after being inspired by the convenience of using uber and our needs as students to eat healthy while saving money and time (this is a healthier alternative to foodora and its other competitors). Our product would allow its users to control their ingredients, by either choosing to specify them to the chefs or providing them based on what is already have available to them at the moment.
+We reached our current idea after being inspired by the convenience of using Uber and our needs as students to eat healthy while saving money and time (this is a healthier alternative to Foodora and its other competitors). Our product would allow its users to control their ingredients, by either choosing to specify them to the chefs or providing them based on what is already have available to them at the moment.
 
-We choose to develop our application on IOS platform because:
-Web application are not as easy to use as a phone application, in addition, a web application would need access to a PC whereas mobile applications can be used anywhere any time due to how extensively cell phones are used nowadays. Mobile applications provide a more instant approach compared to other catering options that are currently only available on web applications. 
+We choose to develop our application on IOS platform because: Web application are not as easy to use as a phone application, in addition, a web application would need access to a PC whereas mobile applications can be used anywhere any time due to how extensively cell phones are used nowadays. Mobile applications provide a more instant approach compared to other catering options that are currently only available on web applications.
 
-When comparing android and IOS, the user base is dominantly using IOS platform in US, and Canada, which is the area that we will be targeting. Secondly from a monetary perspective, IOS statistically has a higher revenue stream from advertisements and users who are willing to pay when compared to users on the Android platform, which is vital to have users that will be engaging with the services we intend to provide. 
+When comparing android and IOS, the user base is dominantly using IOS platform in US, and Canada, which is the area that we will be targeting. Secondly from a monetary perspective, IOS statistically has a higher revenue stream from advertisements and users who are willing to pay when compared to users on the Android platform, which is vital to have users that will be engaging with the services we intend to provide.
 
