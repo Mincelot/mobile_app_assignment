@@ -2,15 +2,11 @@
 
 #### Q1: What are you planning to build?
 
-Mobile app (iOS/Android) <br />
-Peer-to-peer platform for aspiring chefs matched with food enthusiasts for a unique and personal experience. <br />
-Saving time, energy and resources for people with inability to cook, people who have time-consuming work life.<br />
-It provides opportunities to build a portfolio for chefs.<br />
-It provides a community platform that connects clients (single or group) to chefs based on the type of cooking services, price range, number of people, distance, etc by filtering and tags. All clients and chefs will need to register an account for profile / portfolio records. It also allow chefs / services providers to advertise themselves to the public through hosting online contests. This product will also have profile records and ratings to avoid unnecessary conflicts.   
- 
+We want to build a mobile app (iOS/Android)  that provides a peer-to-peer platform for aspiring chefs matched with food enthusiasts for a unique and personal experience. Its main goal is to save time, energy and resources for people with inability to cook and people who have time-consuming work life. It also provides opportunities to build a portfolio for chefs.In addition, it creates a community platform that connects clients (single or group) to chefs based on the type of cooking services, price range, number of people, distance, etc by filtering and tags. All clients and chefs will need to register an account for profile / portfolio records. It also allow chefs / services providers to advertise themselves to the public through hosting online contests. This product will also have profile records and ratings to avoid unnecessary conflicts.  <br /> 
+ <br />
 Features:<br />
 chef/mixologist profile (rating, cuisine specialty, previous work, profile picture, tags [i.e. vegan], available hours)<br />
-eaters profile (rating, phone number, address, payment option)  <br />
+Eaters profile (rating, phone number, address, payment option)  <br />
 Provides advance bookings and when-needed request/lookups.<br />
 Allows filters to select specific category of needs (cuisine style, price range, background, size, travel distance, whether ingredients will be provided or not, etc)
 
