@@ -1,5 +1,5 @@
 import React from 'react';
-import { Root } from '../routing/router';
+import { LogIn } from '../routing/router';
 import { StyleSheet, View, Platform, StatusBar, StatusBarIOS } from 'react-native';
 
 // Styles
@@ -10,7 +10,7 @@ class Main extends React.Component {
   render() {
     return (
         <View style={[styles.container, {backgroundColor: colors.background}]}>
-            <Root />
+            <LogIn />
         </View> 
     );
   }

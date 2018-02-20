@@ -5,10 +5,7 @@ import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import Header from '../components/Header';
 
-
 const mockData1 = require('../data/data1');
-
-
 
 class Tab3 extends React.Component {
   buttonPress() {

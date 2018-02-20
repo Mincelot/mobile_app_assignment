@@ -1,1 +1,1 @@
-export const APP_NAME = 'ChefTings';
+export const APP_NAME = 'CatorCity';
