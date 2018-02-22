@@ -38,6 +38,19 @@ class LogInPage extends React.Component {
         this.setState({ status: error.message, loading: false });
       })
   }
+  onPass() {
+    // this.props.navigation.navigate('TabIndexPage');
+    firebase
+      .auth()
+      .signInWithEmailAndPassword("Example@gmail.com", "Password1")
+      .then(user => {
+        this.setState({ status: "Success. Welcome!", loading: false });
+        this.props.navigation.navigate("TabIndexPage");
+    })
+    .catch(error => {
+        this.setState({ status: error.message, loading: false });
+    });
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -67,6 +80,14 @@ class LogInPage extends React.Component {
               title="Log In"
               onPress={this.onSignIn.bind(this)}
               />
+          </View>
+        </View>
+        <View style={styles.buttonContainer}>
+          <View>
+            <Button
+              title="By-pass login. Button for test purposes Only."
+              onPress={this.onPass.bind(this)}
+            />
           </View>
         </View>
       </View>
