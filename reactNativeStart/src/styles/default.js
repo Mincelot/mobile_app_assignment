@@ -21,6 +21,14 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10
     },
+    marginSidesFormInput: {
+        marginLeft: 15,
+        marginRight: 10
+    },
+    marginSidesIndent: { 
+        marginLeft: 25,
+        marginRight: 15
+    },
     buttonFace: {
         backgroundColor: colors.cloud,
     },

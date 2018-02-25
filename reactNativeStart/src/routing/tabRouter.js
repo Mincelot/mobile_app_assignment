@@ -6,6 +6,7 @@ import colors from '../styles/color';
 import Tab1 from '../screens/Tab1';
 import Tab2 from '../screens/Tab2';
 import Tab3 from '../screens/Tab3';
+import ProfileTab from '../screens/ProfileTab';
 
 export const Root = TabNavigator(
     {
@@ -17,6 +18,9 @@ export const Root = TabNavigator(
         },
         Tab3: {
             screen: Tab3
+        },
+        ProfileTab: {
+            screen: ProfileTab
         }
     },{
         navigationOptions: ({ navigation }) => ({
@@ -29,8 +33,9 @@ export const Root = TabNavigator(
                     iconName = 'rowing';
                 } else if (routeName === 'Tab3') {
                     iconName = 'rss-feed';
+                } else if (routeName === 'ProfileTab') {
+                    iconName = 'rowing';
                 }
-        
                 // You can return any component that you like here! We usually use an
                 // icon component from react-native-vector-icons
                 return <Icon name={iconName} size={25} color={tintColor} />;
@@ -43,7 +48,9 @@ export const Root = TabNavigator(
                 } else if (routeName === 'Tab2') {
                     iconLabel = 'Test2';
                 } else if (routeName === 'Tab3') {
-                    iconLabel = 'List';
+                    iconLabel = 'ListTest';
+                } else if (routeName === 'ProfileTab') {
+                    iconLabel = 'Profile';
                 }
                 return iconLabel;
             }
@@ -56,7 +63,7 @@ export const Root = TabNavigator(
                 backgroundColor: colors.tabNavBorderBottom,
             },
             showIcon: true,
-            showLabel: false,
+            showLabel: true,
         },
         tabBarPosition: 'bottom',
         animationEnabled: true,
