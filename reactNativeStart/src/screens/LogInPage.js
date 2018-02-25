@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../components/Header';
 import { Text, StyleSheet, View } from 'react-native';
-import { StackNavigator } from "react-navigation"
-import { FormLabel, FormInput, Button } from 'react-native-elements'; 
+import { StackNavigator } from "react-navigation";
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 
 import firebase from 'firebase';
 const firebaseConstant = require('../constants/firebase');
@@ -94,6 +94,7 @@ class LogInPage extends React.Component {
     ); 
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {

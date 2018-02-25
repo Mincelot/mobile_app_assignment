@@ -1,6 +1,7 @@
 import React from 'react';
 import { LogIn } from '../routing/router';
 import { StyleSheet, View, Platform, StatusBar, StatusBarIOS } from 'react-native';
+import NavigatorService from '../services/navigator';
 
 // Styles
 import defaultStyles from '../styles/default';
@@ -10,7 +11,9 @@ class Main extends React.Component {
   render() {
     return (
         <View style={[styles.container, {backgroundColor: colors.background}]}>
-            <LogIn />
+            <LogIn ref={navigatorRef => {
+                    NavigatorService.setContainer(navigatorRef); 
+                    }} />
         </View> 
     );
   }
