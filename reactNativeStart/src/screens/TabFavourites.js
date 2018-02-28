@@ -3,12 +3,11 @@ import { Text, StyleSheet, View } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 
-class Tab2 extends React.Component {
+class TabFavourites extends React.Component {
   render() {
     return (
         <View style={[styles.container, {backgroundColor: colors.backgroundSecondary}]}>
-          <Text style={defaultStyles.text}>Open up App.js to start working on your app!</Text>
-          <Text style={defaultStyles.text}>Changes you make will automatically reload!!</Text>
+          <Text style={defaultStyles.text}>TabFavourites Page!</Text>
         </View>
     ); 
   }
@@ -23,4 +22,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Tab2;
+export default TabFavourites;

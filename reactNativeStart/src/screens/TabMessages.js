@@ -7,7 +7,7 @@ import Header from '../components/Header';
 
 const mockData1 = require('../data/data1');
 
-class Tab3 extends React.Component {
+class TabMessages extends React.Component {
   buttonPress() {
     
   }
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Tab3;
+export default TabMessages;
