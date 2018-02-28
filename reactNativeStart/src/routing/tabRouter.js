@@ -2,38 +2,45 @@ import React from 'react';
 import { TabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import colors from '../styles/color';
+import { Text } from 'react-native';
 
-import Tab1 from '../screens/Tab1';
-import Tab2 from '../screens/Tab2';
-import Tab3 from '../screens/Tab3';
-import ProfileTab from '../screens/ProfileTab';
+import TabSearch from '../screens/TabSearch';
+import TabMessages from '../screens/TabMessages';
+import TabPortfolio from '../screens/TabPortfolio';
+import TabFavourites from '../screens/TabFavourites';
+import TabAccount from '../screens/TabAccount';
 
 export const Root = TabNavigator(
     {
-        Tab1: {
-            screen: Tab1
+        TabSearch: {
+            screen: TabSearch
         },
-        Tab2: {
-            screen: Tab2
+        TabPortfolio: {
+            screen: TabPortfolio
         },
-        Tab3: {
-            screen: Tab3
+        TabMessages: {
+            screen: TabMessages
         },
-        ProfileTab: {
-            screen: ProfileTab
+        TabFavourites: {
+            screen: TabFavourites
+        },
+        TabAccount: {
+            screen: TabAccount
         }
     },{
         navigationOptions: ({ navigation }) => ({
             tabBarIcon: ({ focused, tintColor }) => {
                 const { routeName } = navigation.state;
                 let iconName;
-                if (routeName === 'Tab1') {
+                if (routeName === 'TabSearch') {
                     iconName = 'list';
-                } else if (routeName === 'Tab2') {
+                } else if (routeName === 'TabPortfolio') {
                     iconName = 'rowing';
-                } else if (routeName === 'Tab3') {
+                } else if (routeName === 'TabMessages') {
+                    iconName = 'rowing';
+                } else if (routeName === 'TabFavourites') {
                     iconName = 'rss-feed';
-                } else if (routeName === 'ProfileTab') {
+                } else if (routeName === 'TabAccount') {
                     iconName = 'rowing';
                 }
                 // You can return any component that you like here! We usually use an
@@ -43,16 +50,18 @@ export const Root = TabNavigator(
             tabBarLabel: () => {
                 const { routeName } = navigation.state;
                 let iconLabel;
-                if (routeName === 'Tab1') {
-                    iconLabel = 'Welcome';
-                } else if (routeName === 'Tab2') {
-                    iconLabel = 'Test2';
-                } else if (routeName === 'Tab3') {
-                    iconLabel = 'ListTest';
-                } else if (routeName === 'ProfileTab') {
-                    iconLabel = 'Profile';
+                if (routeName === 'TabSearch') {
+                    iconLabel = 'Search';
+                } else if (routeName === 'TabPortfolio') {
+                    iconLabel = 'Portfolio';
+                } else if (routeName === 'TabMessages') {
+                    iconLabel = 'Messages';
+                } else if (routeName === 'TabFavourites') {
+                    iconLabel = 'Favourites';
+                } else if (routeName === 'TabAccount') {
+                    iconLabel = 'Account';
                 }
-                return iconLabel;
+                return <Text style={{fontSize: 10, color: colors.tabNavIconOn}}>{iconLabel}</Text>;
             }
         }),
         tabBarOptions: {

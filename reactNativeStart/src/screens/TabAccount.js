@@ -9,7 +9,7 @@ import TimerMixin from 'react-timer-mixin';
 import NavigatorService from '../services/navigator';
 
 
-class ProfileTab extends React.Component {
+class TabAccount extends React.Component {
   constructor(props) {
     super(props);
     this.state = {name: '', tempName: '', email: '', tempEmail: '',
@@ -23,13 +23,27 @@ class ProfileTab extends React.Component {
   onUpdateName() {
     if (this.state.isEditNameMode) {
       if (this.state.tempName != this.state.name) {
-        this.user.updateProfile({
-          displayName: this.state.tempName,
-        }).then((user) => {
-          this.setState({ status: 'Updated User Display Name!' });
+        // this.user.updateProfile({
+        //   displayName: this.state.tempName,
+        // }).then((user) => {
+        //   this.setState({ status: 'Updated User Display Name!' });
+        // })
+        // .catch((error) => {
+        //     this.setState({ status: error.message });
+        // })
+        const rootRef = firebase.database().ref().child("users");
+        const infoRef = rootRef.child('info');
+        const userRef = infoRef.child(this.user.uid);
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        // nameRef.push();
+        userRef.update({
+          name: this.state.tempName
+        })
+        .then((user) => {
+          this.setState({ status: 'Status: Updated User Name!' });
         })
         .catch((error) => {
-            this.setState({ status: error.message });
+          this.setState({ status: error.message });
         })
       }
     }
@@ -72,7 +86,7 @@ class ProfileTab extends React.Component {
         this.setState({ status: error.message });
     })
   }
-  emailVerification() {
+  passwordReset() {
     auth.sendPasswordResetEmail(this.state.email)
     .then((user) => {
       this.setState({ status: 'Email Sent.' });
@@ -83,30 +97,43 @@ class ProfileTab extends React.Component {
   }
   componentWillMount() {
     // firebase.database().ref()
-    // firebase.auth().onAuthStateChanged( user => {
-    //   if (user) {
-    //     this.setState({ email: user.email, userInfo: user });
-    //   }
-    // });
-    var user = firebase.auth().currentUser;
+    firebase.auth().onAuthStateChanged( user => {
+      if (user) {
+        // this.setState({ email: user.email, userInfo: user });
+        this.setState({ userUid: user.uid, email: user.email, tempEmail: user.email });
+        this.user = user;
 
-    if (user != null) {
-      this.setState({ userUid: user.uid, name: user.displayName,
-         tempName: user.displayName, email: user.email, tempEmail: user.email });
-      // uid = user.uid;
-      this.user = user;
+        const rootRef = firebase.database().ref().child("users");
+        const infoRef = rootRef.child('info');
+        const userRef = infoRef.child(user.uid);
+
+        userRef.once('value')
+        .then((snapshot) => {
+          if (snapshot.val() && snapshot.val().name) {
+            this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
+          }
+        })
+        .catch((error) => {
+          this.setState({ status: error.message });
+        })
+      }
+
+    });
+    // var user = firebase.auth().currentUser;
+
+    // if (user != null) {
+      // this.setState({ userUid: user.uid, email: user.email, tempEmail: user.email });
+      // this.user = user;
 
       // const rootRef = firebase.database().ref().child("users");
       // const infoRef = rootRef.child('info');
-      // const nameRef = infoRef.child(user.uid);
+      // const userRef = infoRef.child(user.uid);
 
-      // nameRef.once("value", function(data) {
-      //   // do some stuff once
-      //   // this.setState({ tempName: data.name, name: data.name }); 
+      // userRef.once('value').then(function(snapshot) {
+      //   if (snapshot.val() && snapshot.val().name) {
+      //     this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
+      //   }
       // });
-    } else {
-      navigateOut();
-    }
   }
   render() {
     return (
@@ -232,6 +259,14 @@ class ProfileTab extends React.Component {
                 backgroundColor='#517fa4'
                 title="Resend Email Verification" />
             </View>
+            <View style={{paddingTop: 10}}>
+              <Button
+                  medium
+                  icon={{name: 'envelope-square', type: 'font-awesome'}}
+                  onPress={this.passwordReset.bind(this)}
+                  backgroundColor='#517fa4'
+                  title="Password Reset to Email" />
+            </View>
             <View style={{paddingTop: 10, paddingBottom: 10}}>
               <Button
                   medium
@@ -277,7 +312,7 @@ const styles = StyleSheet.create({
 
 });
 
-export default ProfileTab;
+export default TabAccount;
 
 // <Button
 //   medium
