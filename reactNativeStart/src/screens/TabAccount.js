@@ -60,6 +60,18 @@ class TabAccount extends React.Component {
         .catch((error) => {
             this.setState({ status: error.message });
         })
+        const rootRef = firebase.database().ref().child("users");
+        const infoRef = rootRef.child('info');
+        const userRef = infoRef.child(this.user.uid);
+        userRef.update({
+          email: this.state.tempEmail
+        })
+        .then((user) => {
+          this.setState({ status: 'Status: Updated Email!' });
+        })
+        .catch((error) => {
+          this.setState({ status: error.message });
+        })
       }
     }
 
@@ -149,6 +161,38 @@ class TabAccount extends React.Component {
       //   }
       // });
   }
+
+  _renderNameConfirm() {
+    if (this.state.isEditNameMode) {
+      return (<View style={this.state.isEditNameMode ? styles.center : {}}>
+      <Icon
+      reverse
+      raised
+      name={!this.state.isEditNameMode ? 'edit' : 'check-square-o'}
+      type='font-awesome'
+      onPress={this.onUpdateName.bind(this)}
+      color='#f3753f' />
+      </View>);
+    } else {
+      return null;
+    }
+  }
+
+  _renderEmailConfirm() {
+    if (this.state.isEditEmailMode) {
+      return (<View style={this.state.isEditEmailMode ? styles.center : {}}>
+      <Icon
+      reverse
+      raised
+      name={!this.state.isEditEmailMode ? 'edit' : 'check-square-o'}
+      type='font-awesome'
+      onPress={this.onUpdateEmail.bind(this)}
+      color='#f3753f' />
+      </View>);
+    } else {
+      return null;
+    }
+  }
   render() {
     return (
         <View style={[styles.container, {backgroundColor: '#FDF3E7'}]}>
@@ -183,13 +227,17 @@ class TabAccount extends React.Component {
               <View>
                 {!this.state.isEditEmailMode &&
                 <View style={defaultStyles.marginSides}>
-                  <FormLabel labelStyle={styles.labelText}>{this.state.email}</FormLabel>
+                   <TouchableOpacity
+                      onPress={this.onUpdateEmail.bind(this)}
+                    >                       
+                    <FormLabel labelStyle={styles.labelText}>{this.state.email}</FormLabel>
+                    </TouchableOpacity>
                 </View>
                 }
                 {this.state.isEditEmailMode &&
-                  <View style={[defaultStyles.marginSidesFormInput]}>
+                  <View style={[styles.row, styles.center, {borderColor: "#f3753f", borderWidth: 2}]}>
                     <FormInput
-                      placeholder='Account Name'
+                      placeholder='Email'
                       value={this.state.tempEmail}
                       onChangeText={(tempEnter) => this.setState({ tempEmail: tempEnter })}
                     >
@@ -198,6 +246,7 @@ class TabAccount extends React.Component {
                 }
               </View>
 
+          {this._renderEmailConfirm.bind(this)()}
 			
           </View>
           {/* ------------------------------------------------Names components start here-------------------------------------------------*/}
@@ -207,30 +256,27 @@ class TabAccount extends React.Component {
               <View>
                 {!this.state.isEditNameMode &&
                   <View style={defaultStyles.marginSides}>
+                    <TouchableOpacity
+                      onPress={this.onUpdateName.bind(this)}
+                    >
+                                            
                     <FormLabel labelStyle={styles.labelText}>{this.state.name == '' ? 'No Name Given' : this.state.name}</FormLabel>
+                    </TouchableOpacity>
                   </View>
                 }
                 {this.state.isEditNameMode &&
-                  <View style={[defaultStyles.marginSidesFormInput]}>
+                  <View style={[styles.row, styles.center, {borderColor: "#f3753f", borderWidth: 2}]}>
                     <FormInput
                       placeholder='Account Name'
                       value={this.state.tempName}
                       onChangeText={(tempNameEnter) => this.setState({ tempName: tempNameEnter })}
                     >
                     </FormInput>
+                    
                   </View>
                 }
                 </View>
-                {/*
-              <View style={this.state.isEditNameMode ? defaultStyles.marginSidesIndent : styles.alignRight}>
-                <Icon
-                  reverse
-                  raised
-                  name={!this.state.isEditNameMode ? 'edit' : 'check-square-o'}
-                  type='font-awesome'
-                  onPress={this.onUpdateName.bind(this)}
-                color='#517fa4' />
-              </View>*/}
+                {this._renderNameConfirm.bind(this)()}
             </View>
           </View>
 
