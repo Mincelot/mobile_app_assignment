@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, InputField, StyleSheet, View, ScrollView } from 'react-native';
+import { Text, InputField, StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { FormLabel, FormInput, Button, Avatar, Icon } from 'react-native-elements';
@@ -87,7 +87,7 @@ class TabAccount extends React.Component {
     })
   }
   passwordReset() {
-    auth.sendPasswordResetEmail(this.state.email)
+    firebase.auth().sendPasswordResetEmail(this.state.email)
     .then((user) => {
       this.setState({ status: 'Email Sent.' });
     })
@@ -137,97 +137,10 @@ class TabAccount extends React.Component {
   }
   render() {
     return (
-        <View style={[styles.container, {backgroundColor: colors.backgroundSecondary}]}>
+        <View style={[styles.container, {backgroundColor: '#FDF3E7'}]}>
         <ScrollView>
-          {this.state.status != '' && 
-          <View style={styles.dividerView}>
-            <View style={[defaultStyles.marginSides, {alignItems: 'center', justifyContent: 'center'}]}>
-                <FormLabel labelStyle={{color: 'green', fontSize: 16 }}>
-                  {this.state.status}
-                </FormLabel>
-            </View>
-          </View>
-          }
-          <View style={styles.dividerView}>
-          <View style={this.state.isEditEmailMode ? {} : styles.row}>
-              <View>
-                <Text style={[defaultStyles.marginSidesIndent, defaultStyles.text]}>
-                  Email
-                </Text>
-                {!this.state.isEditEmailMode &&
-                <View style={defaultStyles.marginSides}>
-                  <FormLabel labelStyle={{color: 'white', fontSize: 15}}>{this.state.email}</FormLabel>
-                </View>
-                }
-                {this.state.isEditEmailMode &&
-                  <View style={[defaultStyles.marginSidesFormInput]}>
-                    <FormInput
-                      placeholder='Account Name'
-                      value={this.state.tempEmail}
-                      onChangeText={(tempEnter) => this.setState({ tempEmail: tempEnter })}
-                    >
-                    </FormInput>
-                  </View>
-                }
-              </View>
-              <View style={this.state.isEditEmailMode ? defaultStyles.marginSidesIndent : styles.alignRight}>
-                {/* <Button
-                  small
-                  icon={{name: !this.state.isEditEmailMode ? 'edit' : 'check-square-o', type: 'font-awesome'}}
-                  onPress={this.onUpdateName.bind(this)}
-                  backgroundColor='#517fa4'
-                  title={!this.state.isEditEmailMode ? 'Edit' : 'Save'} /> */}
-                <Icon
-                  reverse
-                  raised
-                  name={!this.state.isEditEmailMode ? 'edit' : 'check-square-o'}
-                  type='font-awesome'
-                  onPress={this.onUpdateEmail.bind(this)}
-                  color='#517fa4' />
-              </View>
-            </View>
-          </View>
-          <View style={styles.dividerView}>
-            <View style={this.state.isEditNameMode ? {} : styles.row}>
-              <View>
-                <Text style={[defaultStyles.marginSidesIndent, defaultStyles.text]}>
-                  Name
-                </Text>
-                {!this.state.isEditNameMode &&
-                  <View style={defaultStyles.marginSides}>
-                    <FormLabel labelStyle={{color: 'white', fontSize: 15}}>{this.state.name == '' ? 'No Name Given' : this.state.name}</FormLabel>
-                  </View>
-                }
-                {this.state.isEditNameMode &&
-                  <View style={[defaultStyles.marginSidesFormInput]}>
-                    <FormInput
-                      placeholder='Account Name'
-                      value={this.state.tempName}
-                      onChangeText={(tempNameEnter) => this.setState({ tempName: tempNameEnter })}
-                    >
-                    </FormInput>
-                  </View>
-                }
-                </View>
-              <View style={this.state.isEditNameMode ? defaultStyles.marginSidesIndent : styles.alignRight}>
-                {/* <Button
-                  small
-                  icon={{name: !this.state.isEditNameMode ? 'edit' : 'check-square-o', type: 'font-awesome'}}
-                  onPress={this.onUpdateName.bind(this)}
-                  backgroundColor='#517fa4'
-                  title={!this.state.isEditNameMode ? 'Edit' : 'Save'} /> */}
-                <Icon
-                  reverse
-                  raised
-                  name={!this.state.isEditNameMode ? 'edit' : 'check-square-o'}
-                  type='font-awesome'
-                  onPress={this.onUpdateName.bind(this)}
-                  color='#517fa4' />
-              </View>
-            </View>
-          </View>
-          <View style={styles.dividerView}>
-            <Text style={[defaultStyles.marginSidesIndent, defaultStyles.text]}>Portfolio Photo</Text>
+		  <View style={styles.dividerView}>
+            <Text style={[defaultStyles.marginSidesIndent, styles.labelText]}>Account Setting</Text>
             <View style={[styles.center, styles.paddingImage]}>
             {!this.state.isUserImage ?
               <Avatar
@@ -250,30 +163,85 @@ class TabAccount extends React.Component {
             }
             </View>
           </View>
-          <View style={styles.center}>
-            <View>
-              <Button
-                medium
-                icon={{name: 'envelope-square', type: 'font-awesome'}}
-                onPress={this.emailVerification.bind(this)}
-                backgroundColor='#517fa4'
-                title="Resend Email Verification" />
+          <View style={styles.dividerView}>
+          {/*--------------------------------------------Emails components starts here------------------------------------*/}
+          <View style={this.state.isEditEmailMode ? {} : [styles.row, styles.center]}>
+              <View>
+                {!this.state.isEditEmailMode &&
+                <View style={defaultStyles.marginSides}>
+                  <FormLabel labelStyle={styles.labelText}>{this.state.email}</FormLabel>
+                </View>
+                }
+                {this.state.isEditEmailMode &&
+                  <View style={[defaultStyles.marginSidesFormInput]}>
+                    <FormInput
+                      placeholder='Account Name'
+                      value={this.state.tempEmail}
+                      onChangeText={(tempEnter) => this.setState({ tempEmail: tempEnter })}
+                    >
+                    </FormInput>
+                  </View>
+                }
+              </View>
+
+			
+          </View>
+          {/* ------------------------------------------------Names components start here-------------------------------------------------*/}
+          </View>
+          <View style={styles.dividerView}>
+            <View style={this.state.isEditNameMode ? {} : [styles.row, styles.center]}>
+              <View>
+                {!this.state.isEditNameMode &&
+                  <View style={defaultStyles.marginSides}>
+                    <FormLabel labelStyle={styles.labelText}>{this.state.name == '' ? 'No Name Given' : this.state.name}</FormLabel>
+                  </View>
+                }
+                {this.state.isEditNameMode &&
+                  <View style={[defaultStyles.marginSidesFormInput]}>
+                    <FormInput
+                      placeholder='Account Name'
+                      value={this.state.tempName}
+                      onChangeText={(tempNameEnter) => this.setState({ tempName: tempNameEnter })}
+                    >
+                    </FormInput>
+                  </View>
+                }
+                </View>
+                {/*
+              <View style={this.state.isEditNameMode ? defaultStyles.marginSidesIndent : styles.alignRight}>
+                <Icon
+                  reverse
+                  raised
+                  name={!this.state.isEditNameMode ? 'edit' : 'check-square-o'}
+                  type='font-awesome'
+                  onPress={this.onUpdateName.bind(this)}
+                color='#517fa4' />
+              </View>*/}
             </View>
-            <View style={{paddingTop: 10}}>
-              <Button
-                  medium
-                  icon={{name: 'envelope-square', type: 'font-awesome'}}
-                  onPress={this.passwordReset.bind(this)}
-                  backgroundColor='#517fa4'
-                  title="Password Reset to Email" />
+          </View>
+
+
+
+
+
+          <View style={styles.center}>
+            
+            <View style={[{paddingTop: 10}]}>
+              <TouchableOpacity
+                style={styles.myButton}
+                onPress={this.passwordReset}
+              >
+                <Text> Password Reset to Email </Text>
+              </TouchableOpacity>
             </View>
             <View style={{paddingTop: 10, paddingBottom: 10}}>
-              <Button
-                  medium
-                  icon={{name: 'sign-out', type: 'font-awesome'}}
-                  onPress={this.logOut.bind(this)}
-                  backgroundColor='#517fa4'
-                  title="Log Out" />
+              <TouchableOpacity
+                style={styles.myButton}
+                onPress={this.logOut}
+              >
+                <Text> Log Out </Text>
+              </TouchableOpacity>
+
             </View>
           </View>
           </ScrollView>
@@ -287,10 +255,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 25,
   },
-  // containerRow: {
-  //   flex: 1,
-  //   flexDirection: 'row'
-  // },
   center: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -308,7 +272,21 @@ const styles = StyleSheet.create({
   },
   dividerView: {
     paddingBottom: 20
-  }
+  },
+  labelText: {
+    color: '#7E8F7C', 
+    fontSize: 20
+  },
+  myButton: {
+    alignItems: 'center',
+    padding: 10,
+    borderWidth:2,
+    backgroundColor:"#FDF3E7",
+    borderColor:"#C63D0F",
+    borderRadius: 20
+
+}
+
 
 });
 
