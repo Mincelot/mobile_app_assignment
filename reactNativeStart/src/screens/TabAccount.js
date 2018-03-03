@@ -121,7 +121,7 @@ class TabAccount extends React.Component {
         )
     })
   }
-  componentWillMount() {
+  componentDidMount() {
     // firebase.database().ref()
     firebase.auth().onAuthStateChanged( user => {
       if (user) {
@@ -195,9 +195,9 @@ class TabAccount extends React.Component {
   }
   render() {
     return (
-        <View style={[styles.container, {backgroundColor: '#FDF3E7'}]}>
+        <View style={[styles.container, {backgroundColor: colors.background}]}>
         <ScrollView>
-		  <View style={styles.dividerView}>
+          <View style={styles.dividerView}>
             <Text style={[defaultStyles.marginSidesIndent, styles.labelText]}>Account Setting</Text>
             <View style={[styles.center, styles.paddingImage]}>
             {!this.state.isUserImage ?

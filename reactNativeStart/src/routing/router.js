@@ -4,6 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import LogInPage from '../screens/LogInPage';
 import RegisterPage from '../screens/RegisterPage';
 import TabIndex from '../screens/TabIndex';
+import TabIndexServiceProvider from '../screens/TabIndexServiceProvider';
 
 export const LogIn = StackNavigator({
         LogInPage: {
@@ -12,7 +13,10 @@ export const LogIn = StackNavigator({
         RegisterPage:{
             screen: RegisterPage
         },
-        TabIndexPage: {
+        TabIndexServiceProvider: {
+            screen: TabIndexServiceProvider
+        },
+        TabIndexPageClient: {
             screen: TabIndex
         },
     }, {
