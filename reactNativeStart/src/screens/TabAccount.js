@@ -123,7 +123,7 @@ class TabAccount extends React.Component {
   }
   componentDidMount() {
     // firebase.database().ref()
-    firebase.auth().onAuthStateChanged( user => {
+    this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
       if (user) {
         // this.setState({ email: user.email, userInfo: user });
         this.setState({ userUid: user.uid, email: user.email, tempEmail: user.email });
@@ -160,6 +160,16 @@ class TabAccount extends React.Component {
       //     this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
       //   }
       // });
+  }
+
+  componentWillUnmount() {
+    // Warning: setState(...): Can only update a mounted or mounting component.
+    // This usually means you called setState() on an unmounted component.
+    // This is a no-op. Please check the code for the undefined component.
+
+    // Remember to unsubscribe/remove any active listeners and observers
+    // upon exit of component
+    this.unsubscribe();
   }
 
   _renderNameConfirm() {
