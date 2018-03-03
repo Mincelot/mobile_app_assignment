@@ -1,21 +1,31 @@
 import React from 'react';
-import { Text, StyleSheet, View, ScrollView } from 'react-native';
+import { Text, StyleSheet, View, ScrollView, TextInput } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
-import { FormLabel, FormInput, Button, CheckBox } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 
 class TabPortfolio extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { text: ''};
+  }
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
-            <Text style={defaultStyles.text}>Open up App.js to start working on your app!</Text>
-            <Text style={defaultStyles.text}>Changes you make will automatically reload!!</Text>
+        <Card
+          image={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Description.."
+            onChangeText={(text) => this.setState({text})}
+          />
+        </Card>
         </ScrollView>
       </View>
     ); 
   }
-}
+} 
 
 const styles = StyleSheet.create({
   container: {
