@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, InputField, StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, InputField, StyleSheet, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { FormLabel, FormInput, Button, Avatar, Icon } from 'react-native-elements';
@@ -90,9 +90,23 @@ class TabAccount extends React.Component {
     firebase.auth().sendPasswordResetEmail(this.state.email)
     .then((user) => {
       this.setState({ status: 'Email Sent.' });
+      Alert.alert(
+        'Notification',
+        'Password reset message has been sent!',
+        [
+          {text: 'OK', onPress: () => {}}
+        ]
+      )
     })
     .catch((error) => {
         this.setState({ status: error.message });
+        Alert.alert(
+          'Notification',
+          error.message,
+          [
+            {text: 'OK', onPress: () => {}}
+          ]
+        )
     })
   }
   componentWillMount() {
@@ -229,17 +243,17 @@ class TabAccount extends React.Component {
             <View style={[{paddingTop: 10}]}>
               <TouchableOpacity
                 style={styles.myButton}
-                onPress={this.passwordReset}
+                onPress={() => {this.passwordReset()}}
               >
-                <Text> Password Reset to Email </Text>
+                <Text style={{color: '#7E8F7C'}}> Password Reset to Email </Text>
               </TouchableOpacity>
             </View>
             <View style={{paddingTop: 10, paddingBottom: 10}}>
               <TouchableOpacity
                 style={styles.myButton}
-                onPress={this.logOut}
+                onPress={() => {this.logOut()}}
               >
-                <Text> Log Out </Text>
+                <Text style={{color: '#7E8F7C'}}> Log Out </Text>
               </TouchableOpacity>
 
             </View>
@@ -282,8 +296,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth:2,
     backgroundColor:"#FDF3E7",
-    borderColor:"#C63D0F",
-    borderRadius: 20
+    borderColor:"#f3753f",
+    borderRadius: 15
 
 }
 
