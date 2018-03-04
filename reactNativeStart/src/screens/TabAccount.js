@@ -1,12 +1,11 @@
 import React from 'react';
-import { Text, InputField, StyleSheet, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { Modal, Text, InputField, StyleSheet, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { FormLabel, FormInput, Button, Avatar, Icon } from 'react-native-elements';
 import firebase from 'firebase';
 import { StackNavigator, NavigationActions } from "react-navigation";
 import TimerMixin from 'react-timer-mixin';
-import { ImagePicker } from 'expo';
 import NavigatorService from '../services/navigator';
 
 
@@ -15,7 +14,7 @@ class TabAccount extends React.Component {
     super(props);
     this.state = {name: '', tempName: '', email: '', tempEmail: '',
       userUid: null, isEditNameMode: false, isEditEmailMode: false,
-      status: '', profilePic: null, progress: 1};
+      status: '', profilePic: null, tempprofilePic: null, modalVisible: false};
     this.user = null;
   }
   onUpdateName() {
@@ -74,6 +73,41 @@ class TabAccount extends React.Component {
     }
 
     this.setState({ email: this.state.tempEmail, isEditEmailMode: !this.state.isEditEmailMode });
+  }
+  onUpdateProfilePic() {
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const userRef = infoRef.child(this.user.uid);
+    if (this.state.tempprofilePic){
+      userRef.update({
+        profilePicLink: this.state.tempprofilePic
+      })
+      .then((user) => {
+        this.setState({ status: 'Status: Updated profile picture!' });
+
+      })
+      .catch((error) => {
+        this.setState({ status: error.message });
+      })
+      this.setModalVisible(!this.state.modalVisible);
+      this.setState({profilePic: this.state.tempprofilePic})
+      Alert.alert(
+        'Notification',
+        'Profile picture successfully set!',
+        [
+          {text: 'OK', onPress: () => {}}
+        ]
+      )
+    }
+    else{
+      Alert.alert(
+        'Notification',
+        'Please enter a link first!',
+        [
+          {text: 'OK', onPress: () => {}}
+        ]
+      )
+    }
   }
   logOut() {
     firebase.auth().signOut()
@@ -136,6 +170,9 @@ class TabAccount extends React.Component {
           if (snapshot.val() && snapshot.val().name) {
             this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
           }
+          if (snapshot.val() && snapshot.val().profilePicLink){
+            this.setState({ profilePic: snapshot.val().profilePicLink, profilePic: snapshot.val().profilePicLink });
+          }
         })
         .catch((error) => {
           this.setState({ status: error.message });
@@ -192,90 +229,10 @@ class TabAccount extends React.Component {
     }
   }
 
-  _pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
-      base64 : true
-    });
-
-    //console.log(result);
-
-    if (!result.cancelled) {
-      this.setState({ profilePic: result.uri });
-      //this._uploadAsByteArray(this.convertToByteArray(result.base64), (progress) => {
-        //console.log(progress)
-        //this.setState({progress})
-      //})
-      try{
-        //Uploads the base64 to firebase as a raw string, with the specified metadata
-        firebase.storage().ref().child('UserAccPic/Test.jpg').putString(result.base64).then( () => console.log("done")).catch( (err) => console.log(err) ) ;
-      }
-      catch(err){
-        console.log(err);
-      }
-    }
-  };
-
-  convertToByteArray = (input) => {
-    var binary_string = this.atob(input);
-    var len = binary_string.length;
-    var bytes = new Uint8Array(len);
-    for (var i = 0; i < len; i++) {
-      bytes[i] = binary_string.charCodeAt(i);
-    }
-    return bytes
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
-  
-  atob = (input) => {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-
-    let str = input.replace(/=+$/, '');
-    let output = '';
-
-    if (str.length % 4 == 1) {
-      throw new Error("'atob' failed: The string to be decoded is not correctly encoded.");
-    }
-    for (let bc = 0, bs = 0, buffer, i = 0;
-      buffer = str.charAt(i++);
-
-      ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer,
-        bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0
-    ) {
-      buffer = chars.indexOf(buffer);
-    }
-
-    return output;
-  }
-  _uploadAsByteArray = async (pickerResultAsByteArray, progressCallback) => {
-
-    try {
-
-      var metadata = {
-        contentType: 'image/jpeg',
-      };
-
-      var storageRef = firebase.storage().ref('/UserAccPic/test.jpg');
-      var uploadTask = storageRef.put(pickerResultAsByteArray, metadata);
-
-      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
-
-        progressCallback && progressCallback(snapshot.bytesTransferred / snapshot.totalBytes)
-
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-
-      }, function (error) {
-        console.log("in _uploadAsByteArray ", error)
-      }, function () {
-        var downloadURL = uploadTask.snapshot.downloadURL;
-        console.log("_uploadAsByteArray ", uploadTask.snapshot.downloadURL)
-      });
-
-    } catch (ee) {
-      console.log("when trying to load _uploadAsByteArray ", ee)
-    }
-  };
+ 
   render() {
     return (
         <View style={[styles.container, {backgroundColor: '#FDF3E7'}]}>
@@ -290,7 +247,7 @@ class TabAccount extends React.Component {
                 rounded
                 containerStyle={[styles.center, styles.paddingImage]}
                 icon={{name: 'user', type: 'font-awesome'}}
-                onPress={this._pickImage.bind(this)}
+                onPress={() => {this.setState({modalVisible: true});}}
                 activeOpacity={0.7}
               />
             :
@@ -299,12 +256,46 @@ class TabAccount extends React.Component {
                 rounded
                 containerStyle={[styles.center, styles.paddingImage]}
                 source={{uri: this.state.profilePic}}
-                onPress={this._pickImage.bind(this)}
+                onPress={() => {this.setState({modalVisible: true});}}
                 activeOpacity={0.7}
               />
             }
+
             </View>
           </View>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+              alert('Modal has been closed.');
+            }}>
+            <View style={{height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+              <View style={styles.centeredDialog}>
+                <Text style={[styles.labelText, {fontSize: 14}]}>Please enter the direct link of your desire profile picture:</Text>
+                <FormInput
+                  placeholder='Tap here to edit'
+                  value={this.state.tempprofilePic ? this.state.tempprofilePic : ''}
+                  onChangeText={(tempEnter) => this.setState({ tempprofilePic: tempEnter })}
+                >
+                </FormInput>
+                <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
+                <TouchableOpacity
+                    style={[styles.myButton]}
+                    onPress={this.onUpdateProfilePic.bind(this)}>
+                    <Text style={{color: '#7E8F7C'}}> Confirm </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.myButton}
+                    onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);
+                    }}>
+                    <Text style={{color: '#7E8F7C'}}> Cancel </Text>
+                </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
           <View style={styles.dividerView}>
           {/*--------------------------------------------Emails components starts here------------------------------------*/}
           <View style={this.state.isEditEmailMode ? {} : [styles.row, styles.center]}>
@@ -429,7 +420,17 @@ const styles = StyleSheet.create({
     borderColor:"#f3753f",
     borderRadius: 15
 
-}
+  },
+  centeredDialog: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: '30%',
+    backgroundColor: '#FDF3E7',
+    borderWidth:2,
+    borderColor:"#f3753f",
+    borderRadius: 10
+  }
 
 
 });
