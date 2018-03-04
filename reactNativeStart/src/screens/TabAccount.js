@@ -265,6 +265,7 @@ class TabAccount extends React.Component {
         console.log("_uploadAsByteArray ", uploadTask.snapshot.downloadURL)
       });
 
+      
     } catch (ee) {
       console.log("when trying to load _uploadAsByteArray ", ee)
     }
