@@ -119,9 +119,9 @@ class TabAccount extends React.Component {
         )
     })
   }
-  componentDidMount() {
+  componentWillMount() {
     // firebase.database().ref()
-    this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
+    firebase.auth().onAuthStateChanged( user => {
       if (user) {
         // this.setState({ email: user.email, userInfo: user });
         this.setState({ userUid: user.uid, email: user.email, tempEmail: user.email });
@@ -158,16 +158,6 @@ class TabAccount extends React.Component {
       //     this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
       //   }
       // });
-  }
-
-  componentWillUnmount() {
-    // Warning: setState(...): Can only update a mounted or mounting component.
-    // This usually means you called setState() on an unmounted component.
-    // This is a no-op. Please check the code for the undefined component.
-
-    // Remember to unsubscribe/remove any active listeners and observers
-    // upon exit of component
-    this.unsubscribe();
   }
 
   _renderNameConfirm() {
@@ -213,10 +203,17 @@ class TabAccount extends React.Component {
 
     if (!result.cancelled) {
       this.setState({ profilePic: result.uri });
-      this._uploadAsByteArray(this.convertToByteArray(result.base64), (progress) => {
-        console.log(progress)
-        this.setState({progress})
-      })
+      //this._uploadAsByteArray(this.convertToByteArray(result.base64), (progress) => {
+        //console.log(progress)
+        //this.setState({progress})
+      //})
+      try{
+        //Uploads the base64 to firebase as a raw string, with the specified metadata
+        firebase.storage().ref().child('UserAccPic/Test.jpg').putString(result.base64).then( () => console.log("done")).catch( (err) => console.log(err) ) ;
+      }
+      catch(err){
+        console.log(err);
+      }
     }
   };
 
@@ -275,16 +272,15 @@ class TabAccount extends React.Component {
         console.log("_uploadAsByteArray ", uploadTask.snapshot.downloadURL)
       });
 
-      
     } catch (ee) {
       console.log("when trying to load _uploadAsByteArray ", ee)
     }
   };
   render() {
     return (
-        <View style={[styles.container, {backgroundColor: colors.background}]}>
+        <View style={[styles.container, {backgroundColor: '#FDF3E7'}]}>
         <ScrollView>
-          <View style={styles.dividerView}>
+		  <View style={styles.dividerView}>
             <Text style={[defaultStyles.marginSidesIndent, styles.labelText]}>Account Setting</Text>
             {/*------------------------------------------Avatar settings starts here--------------------------------------*/}
             <View style={[styles.center, styles.paddingImage]}>
