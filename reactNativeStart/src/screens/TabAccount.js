@@ -6,6 +6,7 @@ import { FormLabel, FormInput, Button, Avatar, Icon } from 'react-native-element
 import firebase from 'firebase';
 import { StackNavigator, NavigationActions } from "react-navigation";
 import TimerMixin from 'react-timer-mixin';
+import { ImagePicker } from 'expo';
 import NavigatorService from '../services/navigator';
 
 
@@ -14,11 +15,8 @@ class TabAccount extends React.Component {
     super(props);
     this.state = {name: '', tempName: '', email: '', tempEmail: '',
       userUid: null, isEditNameMode: false, isEditEmailMode: false,
-      status: '', isUserImage: false};
+      status: '', profilePic: null, progress: 1};
     this.user = null;
-  }
-  onLaunchUploadPhoto() {
-    this.setState({ isUserImage: !this.state.isUserImage });
   }
   onUpdateName() {
     if (this.state.isEditNameMode) {
@@ -193,20 +191,99 @@ class TabAccount extends React.Component {
       return null;
     }
   }
+
+  _pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+      base64 : true
+    });
+
+    //console.log(result);
+
+    if (!result.cancelled) {
+      this.setState({ profilePic: result.uri });
+      this._uploadAsByteArray(this.convertToByteArray(result.base64), (progress) => {
+        console.log(progress)
+        this.setState({progress})
+      })
+    }
+  };
+
+  convertToByteArray = (input) => {
+    var binary_string = this.atob(input);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+      bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes
+  }
+  
+  atob = (input) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+    let str = input.replace(/=+$/, '');
+    let output = '';
+
+    if (str.length % 4 == 1) {
+      throw new Error("'atob' failed: The string to be decoded is not correctly encoded.");
+    }
+    for (let bc = 0, bs = 0, buffer, i = 0;
+      buffer = str.charAt(i++);
+
+      ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer,
+        bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0
+    ) {
+      buffer = chars.indexOf(buffer);
+    }
+
+    return output;
+  }
+  _uploadAsByteArray = async (pickerResultAsByteArray, progressCallback) => {
+
+    try {
+
+      var metadata = {
+        contentType: 'image/jpeg',
+      };
+
+      var storageRef = firebase.storage().ref('/UserAccPic/test.jpg');
+      var uploadTask = storageRef.put(pickerResultAsByteArray, metadata);
+
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
+
+        progressCallback && progressCallback(snapshot.bytesTransferred / snapshot.totalBytes)
+
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+
+      }, function (error) {
+        console.log("in _uploadAsByteArray ", error)
+      }, function () {
+        var downloadURL = uploadTask.snapshot.downloadURL;
+        console.log("_uploadAsByteArray ", uploadTask.snapshot.downloadURL)
+      });
+
+    } catch (ee) {
+      console.log("when trying to load _uploadAsByteArray ", ee)
+    }
+  };
   render() {
     return (
         <View style={[styles.container, {backgroundColor: '#FDF3E7'}]}>
         <ScrollView>
 		  <View style={styles.dividerView}>
             <Text style={[defaultStyles.marginSidesIndent, styles.labelText]}>Account Setting</Text>
+            {/*------------------------------------------Avatar settings starts here--------------------------------------*/}
             <View style={[styles.center, styles.paddingImage]}>
-            {!this.state.isUserImage ?
+            {!this.state.profilePic ?
               <Avatar
                 xlarge
                 rounded
                 containerStyle={[styles.center, styles.paddingImage]}
                 icon={{name: 'user', type: 'font-awesome'}}
-                onPress={this.onLaunchUploadPhoto.bind(this)}
+                onPress={this._pickImage.bind(this)}
                 activeOpacity={0.7}
               />
             :
@@ -214,8 +291,8 @@ class TabAccount extends React.Component {
                 xlarge
                 rounded
                 containerStyle={[styles.center, styles.paddingImage]}
-                source={{uri: "https://i.imgur.com/ubjTfy4.jpg"}}
-                onPress={this.onLaunchUploadPhoto.bind(this)}
+                source={{uri: this.state.profilePic}}
+                onPress={this._pickImage.bind(this)}
                 activeOpacity={0.7}
               />
             }
