@@ -15,6 +15,10 @@ class RegisterPage extends React.Component {
       status: '', selectedIndex: 0, loading: false, isAccountTypeClient: true };
   }
 
+  onGoBack(){
+    this.props.navigation.navigate('LogInPage');
+  }
+
   onSignUp() {
     this.setState({ status: '', loading: true });
     const { email, password } = this.state;
@@ -63,7 +67,9 @@ class RegisterPage extends React.Component {
     const { selectedIndex } = this.state
     return (
       <View style={styles.container}>
-        <View>
+        <View><Text style={{color:'red'}}>{this.state.status}</Text></View>
+    
+        <View style={{width:'95%'}}>
           <FormLabel>Email</FormLabel>
           <FormInput 
             value={this.state.email}
@@ -81,25 +87,34 @@ class RegisterPage extends React.Component {
             onChangeText={name => this.setState({ name })}
             />
         </View>
-        <View><Text>{this.state.status}</Text></View>
-        <View style={{ alignItems: 'center', marginBottom: 15 }}>
+
+        <View style={{ alignItems: 'center', marginBottom: 15,width:'95%' }}>
             <FormLabel>Are you a...</FormLabel>
             <ButtonGroup
                 onPress={this.onChangeAccountState.bind(this)}
                 selectedIndex={selectedIndex}
-                buttons={['Client', 'Chef']}
+                buttons={['Client', 'Server']}
                 disableSelected= {true}
                 containerStyle={{ height: 60, backgroundColor:'white' }}
                 selectedButtonStyle={{ backgroundColor: '#1E90FF' }}
                 selectedTextStyle={{ color: 'white' }}
             />
         </View>
+
         <View style={styles.buttonContainer}>
+          <View>
+            <Button
+              title="Back"
+              onPress={this.onGoBack.bind(this)}
+              borderRadius={5}
+            />
+          </View>
           <View>
             <Button 
               title="Sign Up"
               onPress={this.onSignUp.bind(this)}
-              />
+              borderRadius={5}
+            />
           </View>
         </View>
       </View>
@@ -113,14 +128,23 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
+      padding: 5,
+      backgroundColor:"#FDF3E7"
     },
     buttonContainer: {
       flex: 1,
-      flexDirection: 'row'
+      flexDirection: 'row',
     }, 
+    Button:{
+      borderRadius:10,
+      backgroundColor:'blue'
+    },
+    ButtonGroup:{
+      borderRadius:10
+    },
     accountContainer: {
       flex: 1
-    }
+    },
   
   });
   

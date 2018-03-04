@@ -92,7 +92,7 @@ class LogInPage extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View>
+        <View style={{width:'95%',marginTop:'20%'}}>
           <FormLabel>Email</FormLabel>
           <FormInput 
             value={this.state.email}
@@ -116,12 +116,14 @@ class LogInPage extends React.Component {
             <Button 
               title="Sign Up"
               onPress={this.onSignUp.bind(this)}
+              borderRadius={5}
               />
           </View>
           <View>
             <Button 
               title="Log In"
               onPress={this.onSignIn.bind(this)}
+              borderRadius={5}
               />
           </View>
         </View>
@@ -165,6 +167,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor:"#FDF3E7"
   },
   buttonContainer: {
     flex: 1,
