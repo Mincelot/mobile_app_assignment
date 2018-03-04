@@ -18,6 +18,6 @@ export const  FIREBASE_CONFIG = {
     authDomain: "caterpalacetest.firebaseapp.com",
     databaseURL: "https://caterpalacetest.firebaseio.com",
     projectId: "caterpalacetest",
-    storageBucket: "",
+    storageBucket: "gs://caterpalacetest.appspot.com",
     messagingSenderId: "536293245368"
 };
