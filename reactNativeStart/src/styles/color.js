@@ -1,7 +1,7 @@
 // Colors intially taken from ignite library color setup
 
 const colors = {
-    background: 'orange',
+    background: '#FDF3E7',
     backgroundTitle: '#9933ff',
     // background: '#1F0808',
     textWhite: 'white',

@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import { Text, StyleSheet, View } from 'react-native';
 import { StackNavigator } from "react-navigation";
 import { FormLabel, FormInput, Button, CheckBox, SocialIcon } from 'react-native-elements';
+import ReadyForNavigation from '../services/navigatingAccountType';
 
 import firebase from 'firebase';
 const firebaseConstant = require('../constants/firebase');
@@ -50,7 +51,7 @@ class LogInPage extends React.Component {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user) => {
         this.setState({ status: 'Success. Welcome back!', loading: false });
-        this.props.navigation.navigate('TabIndexPage');
+        ReadyForNavigation.readyForNavigation(user.uid, this.props.navigation);
       })
       .catch((error) => {
         this.setState({ status: error.message, loading: false });
@@ -63,11 +64,23 @@ class LogInPage extends React.Component {
       .signInWithEmailAndPassword("testSim@gmail.com", "Password1")
       .then(user => {
         this.setState({ status: "Success. Welcome!", loading: false });
-        this.props.navigation.navigate("TabIndexPage");
+        ReadyForNavigation.readyForNavigation(user.uid, this.props.navigation);
     })
     .catch(error => {
         this.setState({ status: error.message, loading: false });
     });
+  }
+  onPassServiceProvider() {
+    firebase
+    .auth()
+    .signInWithEmailAndPassword("Example1234@gmail.com", "Password1")
+    .then(user => {
+      this.setState({ status: "Success. Welcome!", loading: false });
+      ReadyForNavigation.readyForNavigation(user.uid, this.props.navigation);
+  })
+  .catch(error => {
+      this.setState({ status: error.message, loading: false });
+  });
   }
   onChangeAccountState() {
     this.setState({ isAccountTypeClient: !this.state.isAccountTypeClient });
@@ -132,8 +145,12 @@ class LogInPage extends React.Component {
         <View style={styles.accountContainer}>
           <View>
             <Button
-              title="By-pass login. Button for test purposes Only."
+              title="By-pass login. Button for test purposes Only. Client"
               onPress={this.onPass.bind(this)}
+            />
+             <Button
+              title="By-pass login. Button for test purposes Only. Service Provider"
+              onPress={this.onPassServiceProvider.bind(this)}
             />
           </View>
         </View>
