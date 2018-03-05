@@ -27,34 +27,89 @@ class TabPortfolio extends React.Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.conatiner}>
         <ScrollView>
-        <List>
+        <View style={[{backgroundColor: colors.backgroundSecondary}, styles.list]}>
+          <List containerStyle={{marginBottom: 300}}>
           {
             hypotheticalList.map((key, value) => (
-              <ListItem
+              <View style={[styles.border, styles.rowAlign]}>
+                    <View style={styles.avatar}>
+                      <Avatar
+                        large
+                        source={{uri:key.picture}}
+                        activeOpacity={0.7}
+                      />
+                    </View>
+                    <View style={{flex: 1, flexWrap: 'wrap'}}>
+                      <Text style={[styles.bigText]}>Name: {key.order}</Text>
+                      <Text style={[styles.bigText]}>Chef: {key.chef}</Text>
+                      <Text style={[styles.bigText]}>Price:</Text>
+                    </View>
+              </View>
+
+              /*<ListItem style={styles.avatar}
                 key={value}
-                large
-                roundAvatar
-                avatar={{uri:key.picture}}
+                  large
+                  avatar={{uri:key.picture}}
                 title={key.order}
-                subtitle={key.chef}
-              />
+                subtitle={
+                  <View style={styles.subtitleView}>
+                    <Text style={styles.font}>{key.chef}</Text>
+                  </View>
+                }        
+              />*/
             ))
           }
-        </List>
+          </List>
+        </View>
         </ScrollView>
       </View>
     ); 
   }
 } 
 
-const styles = StyleSheet.create({
+styles = StyleSheet.create({
+  subtitleView: {
+    flexDirection: 'row',
+    paddingLeft: 10,
+    paddingTop: 5
+  },
+  ratingImage: {
+    height: 19.21,
+    width: 100
+  },
+  ratingText: {
+    paddingLeft: 10,
+    color: 'grey'
+  },
+  font: {
+    fontSize: 30
+  },
+  avatar: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 15,
+    paddingRight: 5,
+  }, 
+  rowAlign: {
+    flexDirection: 'row',
+    // alignItems: 'flex-start',
+    // justifyContent: 'flex-end'
+  },
+  border: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1
+  }, 
   container: {
     flex: 1
+  },
+  bigText : {
+    backgroundColor: colors.background,
+    fontSize: 20,
+    padding: 20,
+    color: colors.text,
   }
-
-});
-
+})
 
 export default TabPortfolio;
