@@ -5,7 +5,7 @@ import LogInPage from '../screens/LogInPage';
 import RegisterPage from '../screens/RegisterPage';
 import TabIndex from '../screens/TabIndex';
 import TabIndexServiceProvider from '../screens/TabIndexServiceProvider';
-import TabPortfolioServiceProvider from '../screens/TabPortfolioServiceProvider';
+import MiddleManPortfolioServiceProvider from '../screens/MiddleManPortfolioServiceProvider';
 
 export const LogIn = StackNavigator({
         LogInPage: {
@@ -21,7 +21,7 @@ export const LogIn = StackNavigator({
             screen: TabIndex
         },
         ViewPortfolio: {
-            screen: TabPortfolioServiceProvider
+            screen: MiddleManPortfolioServiceProvider
         },
     }, {
         initialRouteName:  'LogInPage',

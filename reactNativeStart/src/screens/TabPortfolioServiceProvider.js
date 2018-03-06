@@ -9,11 +9,12 @@ import firebase from 'firebase';
 class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {picFolders: [] }; //folder has text + picUrl 
+    this.state = {picFolders: []}; //folder has text + picUrl 
+    this.isEditMode = this.props.isEdit ? true : false;
     this.user = null;
   }
   componentWillMount() {
-    firebase.auth().onAuthStateChanged( user => {
+    this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
       if (user) {
         this.user = user;
         const rootRef = firebase.database().ref().child("users");
@@ -52,10 +53,14 @@ class TabPortfolioServiceProvider extends React.Component {
     }
     this.state.picFolders = tempPicFolders;
   }
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView> 
+        <ScrollView>
+          <Text>{this.isEditMode ? 'EditMode' : 'NotEditMode, Erase this after.'}</Text>
           <FlatList
             data={this.state.picFolders}
             keyExtractor={(item, index) => index}
