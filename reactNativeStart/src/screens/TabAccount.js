@@ -155,7 +155,7 @@ class TabAccount extends React.Component {
   }
   componentWillMount() {
     // firebase.database().ref()
-    firebase.auth().onAuthStateChanged( user => {
+    this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
       if (user) {
         // this.setState({ email: user.email, userInfo: user });
         this.setState({ userUid: user.uid, email: user.email, tempEmail: user.email });
@@ -164,6 +164,7 @@ class TabAccount extends React.Component {
         const rootRef = firebase.database().ref().child("users");
         const infoRef = rootRef.child('info');
         const userRef = infoRef.child(user.uid);
+        const picRef = userRef.child('picFolder');
 
         userRef.once('value')
         .then((snapshot) => {
@@ -196,7 +197,9 @@ class TabAccount extends React.Component {
       //   }
       // });
   }
-
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
   _renderNameConfirm() {
     if (this.state.isEditNameMode) {
       return (<View style={this.state.isEditNameMode ? styles.center : {}}>
