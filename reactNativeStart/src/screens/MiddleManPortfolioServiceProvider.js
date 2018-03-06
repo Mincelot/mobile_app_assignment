@@ -11,7 +11,7 @@ class MiddleManPortfolioServiceProvider extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TabPortfolioServiceProvider isEdit="true"></TabPortfolioServiceProvider>
+        <TabPortfolioServiceProvider isView="true"></TabPortfolioServiceProvider>
       </View>
     ); 
   }

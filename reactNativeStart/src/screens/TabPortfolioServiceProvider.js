@@ -10,7 +10,7 @@ class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {picFolders: []}; //folder has text + picUrl 
-    this.isEditMode = this.props.isEdit ? true : false;
+    this.isViewMode = this.props.isView ? this.props.isView : false;
     this.user = null;
   }
   componentWillMount() {
@@ -60,7 +60,7 @@ class TabPortfolioServiceProvider extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Text>{this.isEditMode ? 'EditMode' : 'NotEditMode, Erase this after.'}</Text>
+          <Text>{this.isViewMode ? 'ViewMode' : 'EditMode, Erase this after.'}</Text>
           <FlatList
             data={this.state.picFolders}
             keyExtractor={(item, index) => index}
