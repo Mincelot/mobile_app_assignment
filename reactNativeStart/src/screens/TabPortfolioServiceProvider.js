@@ -4,7 +4,7 @@ import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { Card } from 'react-native-elements';
 
-class TabPortfolio extends React.Component {
+class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = { text: ''};
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default TabPortfolio;
+export default TabPortfolioServiceProvider;
