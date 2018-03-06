@@ -13,7 +13,8 @@ const mockData1 = require('../data/data1');
 class TabSearch extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchParam : '', data: [], dataBackup: [], selectedService: 'All', loading: false};
+    this.state = { searchParam : '', data: [], selectedService: 'All', loading: false};
+    this.dataBackup = [];
   }
   componentDidMount() {
       const rootRef = firebase.database().ref().child("users");
@@ -30,17 +31,16 @@ class TabSearch extends React.Component {
           });
           // console.log("intVal",this.intVal);
         });
-        this.setState({ data: dataTemp, dataBackup: dataTemp });
+        this.dataBackup = dataTemp;
+        this.setState({ data: dataTemp });
       })
       .catch((error) => {
         this.setState({ status: error.message });
       })
   }
-  onClearText() {
-
-  }
   onChangeSelectedFilter(itemValue, itemIndex) {
     if (itemValue != this.state.selectedService) {
+      this.setState({selectedService: itemValue});
       if (itemValue != 'All') {
         // take new value, and search by it
         const rootRef = firebase.database().ref().child("users");
@@ -58,6 +58,14 @@ class TabSearch extends React.Component {
             });
             // console.log("intVal",this.intVal);
           });
+          // this.setState({ data: dataTemp, dataBackup: dataTemp });
+          // newData = [];
+          // newData = dataTemp.filter(function (el) {
+          //   return el.name.toLowerCase().indexOf(this.state.searchParam.toLowerCase()) > -1 ||
+          //          el.email.toLowerCase().indexOf(this.state.searchParam.toLowerCase()) > -1;
+          // });
+
+          this.dataBackup = dataTemp;
           this.setState({ data: dataTemp });
         })
         .catch((error) => {
@@ -78,18 +86,26 @@ class TabSearch extends React.Component {
             });
             // console.log("intVal",this.intVal);
           });
-          this.setState({ data: dataTemp, dataBackup: dataTemp });
+          // let newData = [];
+          // newData = dataTemp.filter(function (el) {
+          //   return el.name.toLowerCase().indexOf(this.state.searchParam.toLowerCase()) > -1 ||
+          //          el.email.toLowerCase().indexOf(this.state.searchParam.toLowerCase()) > -1;
+          // });
+
+          this.dataBackup = dataTemp;
+          this.setState({ data: dataTemp });
         })
         .catch((error) => {
           this.setState({ status: error.message });
         })
       }
-      this.setState({selectedService: itemValue});
+      this.onChangeSearchText(this.state.searchParam);
     }
   }
-  onChangeText() {
-    // this.setState{( searchParam: value )};
-  }
+  // onClearText() {
+    // this.onChangeSearchText("");
+    // this.setState({data : this.state.dataBackup, searchParam: ''});
+  // }
   onClickView() {
     NavigatorService.navigate('ViewPortfolio');
   }
@@ -97,27 +113,29 @@ class TabSearch extends React.Component {
     // Needs no server call. Essentially just filtering the data from the available filters.
     // Applying filtration without server call would appear to be almost instantenous,
     // with bigger data sets which would only involve fetching a limited number instead of
-    // all the data, such as the first 100 users, might require an additional query.
+    // all the data, such as the first 100 users, might require an additional query and 
+    // hence additional server calls.
     let newData = [];
-    newData = this.state.dataBackup.filter(function (el) {
-      return el.name.indexOf(newSearchString) > -1 ||
-             el.email.indexOf(newSearchString) > -1;
+    newData = this.dataBackup.filter(function (el) {
+      return el.name.toLowerCase().indexOf(newSearchString.toLowerCase()) > -1 ||
+             el.email.toLowerCase().indexOf(newSearchString.toLowerCase()) > -1;
     });
-    this.setState({data : newData});
+    this.setState({data: newData, searchParam: newSearchString});
+
   }
   render() {
     return (
         <View style={styles.container}>
-          {/* <SearchBar
-            round
-            onChangeText={(searchParamTemp) => this.setState({ searchParam: searchParamTemp })}
-            onClearText={this.onClearText.bind(this)}
-            placeholder='Seach by name...' /> */}
+          <Text>{this.state.searchParam}</Text>
           <SearchBar
             lightTheme
             round
+            // clearIcon={this.state.searchParam.length > 0 ? true : false}
+            clearIcon={true}
+            noIcon={false}
+            // icon={{ type: 'font-awesome', name: 'search' }}
             onChangeText={this.onChangeSearchText.bind(this)}
-            onClearText={this.onClearText.bind(this)}
+            // onClearText={this.onClearText.bind(this)}
             placeholder='Seach by name or email...' />
           <View>
             <Picker
