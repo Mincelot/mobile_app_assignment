@@ -2,14 +2,14 @@ import React from 'react';
 import { Text, StyleSheet, View, ScrollView, TextInput, FlatList } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
-import { Card } from 'react-native-elements';
+import { Card,Header, Icon, Button } from 'react-native-elements';
 import firebase from 'firebase';
 // import { FlatList } from 'react-native-gesture-handler';
 
 class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {picFolders: []}; //folder has text + picUrl 
+    this.state = {picFolders: [], uploadPicture: false}; //folder has text + picUrl 
     this.isViewMode = this.props.isView ? this.props.isView : false;
     this.user = null;
   }
@@ -30,7 +30,7 @@ class TabPortfolioServiceProvider extends React.Component {
             snapshot.forEach((item) => {
               // console.log(child.key, child.val()); 
               picTemp.push({
-                text: item.val().text,
+                description: item.val().text,
                 picture: item.val().picUrl
               });
             });
@@ -56,11 +56,31 @@ class TabPortfolioServiceProvider extends React.Component {
   componentWillUnmount() {
     this.unsubscribe();
   }
+
+   renderuploadButton(){
+  //   <Icon
+  //     reverse
+  //     // raised
+  //     name='control-point'
+  //     type='font-awesome'
+  //     color='#f50'
+  //     onPress={() => console.log('hello')} 
+  //     /
+      <Text>Upload things</Text>
+   }
+
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          //leftComponent={{ icon: 'menu', color: '#fff' }}
+          centerComponent={{ text: 'My Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}
+          rightComponent={{ icon: 'control-point', color: '#fff', size: 30, /*onPress: renderuploadButton() */ }}
+          //rightComponent={this.renderuploadButton()}
+          outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
+        />
         <ScrollView>
-          <Text>{this.isViewMode ? 'ViewMode' : 'EditMode, Erase this after.'}</Text>
+          {/* <Text>{this.isViewMode ? 'ViewMode' : 'EditMode, Erase this after.'}</Text> */}
           <FlatList
             data={this.state.picFolders}
             keyExtractor={(item, index) => index}
@@ -70,8 +90,8 @@ class TabPortfolioServiceProvider extends React.Component {
               <TextInput
                 style={{height: 40}}
                 placeholder="Description..."
-                value={item.text} //original text 
-                //returnText is the new one, and we assign it back to item.text
+                value={item.description} //original text 
+                //returnText is the new one, and we assign it back to item.description
                 onChangeText={this.onTextChange(item)}
               />
             </Card>} 
