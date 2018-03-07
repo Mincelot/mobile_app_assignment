@@ -13,7 +13,7 @@ const mockData1 = require('../data/data1');
 class TabSearch extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchParam : '', data: [], selectedService: 'All', loading: false};
+    this.state = { searchParam : '', data: [], selectedService: 'All', status: '' };
     this.dataBackup = [];
   }
   componentDidMount() {
@@ -24,12 +24,10 @@ class TabSearch extends React.Component {
       .then((snapshot) => {
         var dataTemp = [];
         snapshot.forEach((item) => {
-          // console.log(child.key, child.val()); 
           dataTemp.push({
             name: item.val().name,
             email: item.val().email
           });
-          // console.log("intVal",this.intVal);
         });
         this.dataBackup = dataTemp;
         this.setState({ data: dataTemp });
@@ -40,7 +38,7 @@ class TabSearch extends React.Component {
   }
   onChangeSelectedFilter(itemValue, itemIndex) {
     if (itemValue != this.state.selectedService) {
-      this.setState({selectedService: itemValue});
+      this.setState({ selectedService: itemValue });
       if (itemValue != 'All') {
         // take new value, and search by it
         const rootRef = firebase.database().ref().child("users");
@@ -49,24 +47,19 @@ class TabSearch extends React.Component {
         const filteredDataByServiceType = infoRef.orderByChild("serviceType").equalTo(itemValue);
         filteredDataByServiceType.once('value')
         .then((snapshot) => {
-          var dataTemp = [];
+          // A more ideal way would be to filter the snapshot then make copy.
+          let dataTemp = [];
           snapshot.forEach((item) => {
-            // console.log(child.key, child.val()); 
             dataTemp.push({
               name: item.val().name,
               email: item.val().email
             });
-            // console.log("intVal",this.intVal);
           });
-          // this.setState({ data: dataTemp, dataBackup: dataTemp });
-          // newData = [];
-          // newData = dataTemp.filter(function (el) {
-          //   return el.name.toLowerCase().indexOf(this.state.searchParam.toLowerCase()) > -1 ||
-          //          el.email.toLowerCase().indexOf(this.state.searchParam.toLowerCase()) > -1;
-          // });
 
           this.dataBackup = dataTemp;
-          this.setState({ data: dataTemp });
+          this.setState({ data: dataTemp}, () => {
+            this.onChangeSearchText(this.state.searchParam);
+          });
         })
         .catch((error) => {
           this.setState({ status: error.message });
@@ -77,29 +70,35 @@ class TabSearch extends React.Component {
         const filterData = infoRef.orderByChild("isAccountTypeClient").equalTo(false).limitToLast(10);
         filterData.once('value')
         .then((snapshot) => {
-          var dataTemp = [];
+          let dataTemp = [];
           snapshot.forEach((item) => {
-            // console.log(child.key, child.val()); 
             dataTemp.push({
               name: item.val().name,
               email: item.val().email
             });
-            // console.log("intVal",this.intVal);
           });
-          // let newData = [];
-          // newData = dataTemp.filter(function (el) {
-          //   return el.name.toLowerCase().indexOf(this.state.searchParam.toLowerCase()) > -1 ||
-          //          el.email.toLowerCase().indexOf(this.state.searchParam.toLowerCase()) > -1;
-          // });
 
           this.dataBackup = dataTemp;
-          this.setState({ data: dataTemp });
+          this.setState({ data: dataTemp}, () => {
+            this.onChangeSearchText(this.state.searchParam);
+          });
         })
         .catch((error) => {
           this.setState({ status: error.message });
         })
+        // if (this.state.searchParam != '') {
+        //   this.newData = [];
+        //   let searchStr = this.state.searchParam;
+        //   this.newData = this.dataTemp.filter(function (el) {
+        //     return el.name.toLowerCase().indexOf(searchStr.toLowerCase()) > -1 ||
+        //             el.email.toLowerCase().indexOf(searchStr.toLowerCase()) > -1;
+        //   });
+        //   this.setState({ data: this.newData });
+        // } else {
+          // this.setState({ data: this.dataTemp });
+        // }
       }
-      this.onChangeSearchText(this.state.searchParam);
+      // this.onChangeSearchText(this.state.searchParam);
     }
   }
   // onClearText() {
@@ -120,13 +119,12 @@ class TabSearch extends React.Component {
       return el.name.toLowerCase().indexOf(newSearchString.toLowerCase()) > -1 ||
              el.email.toLowerCase().indexOf(newSearchString.toLowerCase()) > -1;
     });
-    this.setState({data: newData, searchParam: newSearchString});
+    this.setState({ data: newData, searchParam: newSearchString});
 
   }
   render() {
     return (
         <View style={styles.container}>
-          <Text>{this.state.searchParam}</Text>
           <SearchBar
             lightTheme
             round
