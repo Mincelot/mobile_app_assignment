@@ -2,8 +2,8 @@ import React from 'react';
 import { Text, StyleSheet, View, ScrollView, TextInput, FlatList } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
-import { Card } from 'react-native-elements';
-import { Divider, Avatar, List, ListItem } from 'react-native-elements';
+import { Divider, Avatar, List, ListItem, Header, Card } from 'react-native-elements';
+import firebase from 'firebase';
 
 
 const hypotheticalList = [
@@ -23,46 +23,77 @@ const hypotheticalList = [
 class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { text: ''};
+    this.state = { passedOrdersArray: [], /*chefPics: []*/};
+    this.user = null;
   }
+
+  componentWillMount() {
+    this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
+      if (user) {
+        this.user = user;
+        const rootRef = firebase.database().ref().child("users");
+        const infoRef = rootRef.child('info');
+        const userRef = infoRef.child(this.user.uid);
+        const pastOrders = userRef.child('pastOrders');
+        
+        pastOrders.once('value')
+
+        .then((snapshot) => {
+          var ordersTemp = [];
+          //var pictures = [];
+          if (snapshot.val()){
+            snapshot.forEach((item) => {
+              // console.log(child.key, child.val()); 
+              ordersTemp.push({
+                chefID: item.val().chef,
+                cuisineName: item.val().cuisine,
+                priceAmount: item.vale().price
+              });
+              /*pictures.push({
+
+              });*/
+            });
+            this.setState({ pastOrdersArray: ordersTemp});
+          }
+        })
+        .catch((error) => {
+          this.setState({ status: error.message });
+        })
+      }
+
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+
   render() {
     return (
-      <View style={styles.conatiner}>
+      <View style={styles.container}>
+      <Header 
+        //leftComponent={{ icon: 'menu', color: '#fff' }}
+        centerComponent={{ text: 'Past Orders', style: {color: '#fff', fontSize: 12 }}}
+        //rightComponent={{ icon: 'home', color: '#fff' }}
+        outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
+        />
         <ScrollView>
-        <View style={[{backgroundColor: colors.backgroundSecondary}, styles.list]}>
-          <List containerStyle={{marginBottom: 300}}>
-          {
-            hypotheticalList.map((key, value) => (
-              <View style={[styles.border, styles.rowAlign]}>
-                    <View style={styles.avatar}>
-                      <Avatar
-                        large
-                        source={{uri:key.picture}}
-                        activeOpacity={0.7}
-                      />
-                    </View>
-                    <View style={{flex: 1, flexWrap: 'wrap'}}>
-                      <Text style={[styles.bigText]}>Name: {key.order}</Text>
-                      <Text style={[styles.bigText]}>Chef: {key.chef}</Text>
-                      <Text style={[styles.bigText]}>Price:</Text>
-                    </View>
-              </View>
+          <FlatList
+          
+          data={this.state.pastOrdersArray}
+          keyExtractor={(item, index) => index}
+          renderItem={({item}) =>
+          
+          <Card
+            image={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}>
+            <Text h1>Chef: {item.chefID}</Text>
+            <Text h2>Price: {item.priceAmount}</Text>
+            <Text h3>Cuisine: {item.cuisineName}</Text>
 
-              /*<ListItem style={styles.avatar}
-                key={value}
-                  large
-                  avatar={{uri:key.picture}}
-                title={key.order}
-                subtitle={
-                  <View style={styles.subtitleView}>
-                    <Text style={styles.font}>{key.chef}</Text>
-                  </View>
-                }        
-              />*/
-            ))
-          }
-          </List>
-        </View>
+          </Card>} 
+          /> 
+        
         </ScrollView>
       </View>
     ); 
