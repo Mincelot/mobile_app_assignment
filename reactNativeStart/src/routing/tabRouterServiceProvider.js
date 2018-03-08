@@ -6,7 +6,7 @@ import { Text } from 'react-native';
 
 import TabPortfolioServiceProvider from '../screens/TabPortfolioServiceProvider';
 import TabMessages from '../screens/TabMessages';
-import TabFavourites from '../screens/TabFavourites';
+// import TabFavourites from '../screens/TabFavourites';
 import TabAccount from '../screens/TabAccount';
 
 export const RootServiceProvider = TabNavigator(
@@ -17,9 +17,9 @@ export const RootServiceProvider = TabNavigator(
         TabMessages: {
             screen: TabMessages
         },
-        TabFavourites: {
-            screen: TabFavourites
-        },
+        // TabFavourites: {
+        //     screen: TabFavourites
+        // },
         TabAccount: {
             screen: TabAccount
         }
