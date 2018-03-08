@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   buttonColor: {
-    backgroundColor: 'orange'
+    backgroundColor: colors.alternatePurple
   },
   textColor: {
     color: 'black'
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerStyle: {
-    color: colors.backgroundColor,
+    // color: colors.backgroundColor,
     fontSize: 36, 
     fontWeight: 'bold'
   }

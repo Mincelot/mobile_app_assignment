@@ -37,11 +37,11 @@ export const RootServiceProvider = TabNavigator(
                 // } else if (routeName === 'TabFavourites') {
                     // iconName = 'rss-feed';
                 } else if (routeName === 'TabAccount') {
-                    iconName = 'user-circle';
+                    iconName = 'user';
                 }
                 // You can return any component that you like here! We usually use an
                 // icon component from react-native-vector-icons
-                return <Icon name={iconName} type={type} size={25} color={tintColor} />;
+                return <Icon name={iconName} type={type} color={tintColor} />;
             },
             tabBarLabel: () => {
                 const { routeName } = navigation.state;
@@ -50,8 +50,8 @@ export const RootServiceProvider = TabNavigator(
                     iconLabel = 'Portfolio';
                 } else if (routeName === 'TabMessages') {
                     iconLabel = 'Messages';
-                } else if (routeName === 'TabFavourites') {
-                    iconLabel = 'Favourites';
+                // } else if (routeName === 'TabFavourites') {
+                //     iconLabel = 'Favourites';
                 } else if (routeName === 'TabAccount') {
                     iconLabel = 'Account';
                 }
@@ -66,7 +66,7 @@ export const RootServiceProvider = TabNavigator(
                 backgroundColor: colors.tabNavBorderBottom,
             },
             showIcon: true,
-            showLabel: true,
+            showLabel: false,
         },
         tabBarPosition: 'bottom',
         animationEnabled: true,

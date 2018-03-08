@@ -3,7 +3,9 @@
 const colors = {
     // background: '#FDF3E7',
     background: 'white',
+    navyBlue: '#000080',
     backgroundTitle: '#9933ff',
+    alternatePurple: '#493595',
     // background: '#1F0808',
     textWhite: '#000080',
     text: 'black',
