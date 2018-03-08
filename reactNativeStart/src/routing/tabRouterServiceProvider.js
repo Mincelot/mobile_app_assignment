@@ -6,7 +6,7 @@ import { Text } from 'react-native';
 
 import TabPortfolioServiceProvider from '../screens/TabPortfolioServiceProvider';
 import TabMessages from '../screens/TabMessages';
-import TabFavourites from '../screens/TabFavourites';
+// import TabFavourites from '../screens/TabFavourites';
 import TabAccount from '../screens/TabAccount';
 
 export const RootServiceProvider = TabNavigator(
@@ -17,9 +17,9 @@ export const RootServiceProvider = TabNavigator(
         TabMessages: {
             screen: TabMessages
         },
-        TabFavourites: {
-            screen: TabFavourites
-        },
+        // TabFavourites: {
+        //     screen: TabFavourites
+        // },
         TabAccount: {
             screen: TabAccount
         }
@@ -28,18 +28,20 @@ export const RootServiceProvider = TabNavigator(
             tabBarIcon: ({ focused, tintColor }) => {
                 const { routeName } = navigation.state;
                 let iconName;
+                let type = 'font-awesome';
                 if (routeName === 'TabPortfolio') {
-                    iconName = 'rowing';
+                    iconName = 'layers';
+                    type = '';
                 } else if (routeName === 'TabMessages') {
-                    iconName = 'rowing';
-                } else if (routeName === 'TabFavourites') {
-                    iconName = 'rss-feed';
+                    iconName = 'envelope';
+                // } else if (routeName === 'TabFavourites') {
+                    // iconName = 'rss-feed';
                 } else if (routeName === 'TabAccount') {
-                    iconName = 'rowing';
+                    iconName = 'user';
                 }
                 // You can return any component that you like here! We usually use an
                 // icon component from react-native-vector-icons
-                return <Icon name={iconName} size={25} color={tintColor} />;
+                return <Icon name={iconName} type={type} color={tintColor} />;
             },
             tabBarLabel: () => {
                 const { routeName } = navigation.state;
@@ -48,8 +50,8 @@ export const RootServiceProvider = TabNavigator(
                     iconLabel = 'Portfolio';
                 } else if (routeName === 'TabMessages') {
                     iconLabel = 'Messages';
-                } else if (routeName === 'TabFavourites') {
-                    iconLabel = 'Favourites';
+                // } else if (routeName === 'TabFavourites') {
+                //     iconLabel = 'Favourites';
                 } else if (routeName === 'TabAccount') {
                     iconLabel = 'Account';
                 }
@@ -64,7 +66,7 @@ export const RootServiceProvider = TabNavigator(
                 backgroundColor: colors.tabNavBorderBottom,
             },
             showIcon: true,
-            showLabel: true,
+            showLabel: false,
         },
         tabBarPosition: 'bottom',
         animationEnabled: true,

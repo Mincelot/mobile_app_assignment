@@ -4,6 +4,7 @@ import { Text, StyleSheet, View } from 'react-native';
 import { StackNavigator } from "react-navigation";
 import { FormLabel, FormInput,Button,ButtonGroup, CheckBox, SocialIcon } from 'react-native-elements';
 import ReadyForNavigation from '../services/navigatingAccountType';
+import colors from '../styles/color';
 
 import firebase from 'firebase';
 
@@ -70,18 +71,18 @@ class RegisterPage extends React.Component {
         <View><Text style={{color:'red'}}>{this.state.status}</Text></View>
     
         <View style={{width:'95%'}}>
-          <FormLabel>Email</FormLabel>
+          <FormLabel labelStyle={styles.textColor}>Email</FormLabel>
           <FormInput 
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
             />
-          <FormLabel>Password</FormLabel>
+          <FormLabel labelStyle={styles.textColor}>Password</FormLabel>
           <FormInput 
             secureTextEntry={true}
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
             />
-          <FormLabel>Display Name</FormLabel>
+          <FormLabel labelStyle={styles.textColor}>Display Name</FormLabel>
           <FormInput
             value={this.state.name}
             onChangeText={name => this.setState({ name })}
@@ -89,14 +90,14 @@ class RegisterPage extends React.Component {
         </View>
 
         <View style={{ alignItems: 'center', marginBottom: 15,width:'95%' }}>
-            <FormLabel>Are you a...</FormLabel>
+            <FormLabel labelStyle={styles.textColor}>Are you a...</FormLabel>
             <ButtonGroup
                 onPress={this.onChangeAccountState.bind(this)}
                 selectedIndex={selectedIndex}
                 buttons={['Client', 'Server']}
                 disableSelected= {true}
                 containerStyle={{ height: 60, backgroundColor:'white' }}
-                selectedButtonStyle={{ backgroundColor: '#1E90FF' }}
+                selectedButtonStyle={{ backgroundColor: colors.navyBlue }}
                 selectedTextStyle={{ color: 'white' }}
             />
         </View>
@@ -104,6 +105,7 @@ class RegisterPage extends React.Component {
         <View style={styles.buttonContainer}>
           <View>
             <Button
+              buttonStyle={styles.buttonColor}
               title="Back"
               onPress={this.onGoBack.bind(this)}
               borderRadius={5}
@@ -111,6 +113,7 @@ class RegisterPage extends React.Component {
           </View>
           <View>
             <Button 
+              buttonStyle={styles.buttonColor}
               title="Sign Up"
               onPress={this.onSignUp.bind(this)}
               borderRadius={5}
@@ -129,22 +132,28 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       padding: 5,
-      backgroundColor:"#FDF3E7"
+      backgroundColor: colors.backgroundColor
+    },
+    buttonColor: {
+      backgroundColor: colors.alternatePurple
     },
     buttonContainer: {
       flex: 1,
       flexDirection: 'row',
     }, 
-    Button:{
-      borderRadius:10,
-      backgroundColor:'blue'
-    },
+    // Button:{
+    //   borderRadius: 10,
+    //   backgroundColor: colors.navyBlue
+    // },
     ButtonGroup:{
-      borderRadius:10
+      borderRadius: 10
     },
     accountContainer: {
       flex: 1
     },
+    textColor: {
+      color: 'black'
+    }
   
   });
   

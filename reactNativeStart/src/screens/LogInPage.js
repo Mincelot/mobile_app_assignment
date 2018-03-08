@@ -6,7 +6,9 @@ import { FormLabel, FormInput, Button, CheckBox, SocialIcon } from 'react-native
 import ReadyForNavigation from '../services/navigatingAccountType';
 
 import firebase from 'firebase';
+import colors from '../styles/color';
 const firebaseConstant = require('../constants/firebase');
+const appConstant = require('../constants/appConstants');
 
 firebase.initializeApp(firebaseConstant.FIREBASE_CONFIG);
 
@@ -92,13 +94,16 @@ class LogInPage extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{width:'95%',marginTop:'20%'}}>
-          <FormLabel>Email</FormLabel>
+        <View style={[{ width:'95%', marginTop:'8%' }, styles.headerContainer]}>
+          <Text style={styles.headerStyle}>{appConstant.APP_NAME}</Text>
+        </View>
+        <View style={{ width:'95%', marginTop:'15%' }}>
+          <FormLabel labelStyle={styles.textColor}>Email</FormLabel>
           <FormInput 
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
             />
-          <FormLabel>Password</FormLabel>
+          <FormLabel labelStyle={styles.textColor}>Password</FormLabel>
           <FormInput 
             secureTextEntry={true}
             value={this.state.password}
@@ -114,6 +119,7 @@ class LogInPage extends React.Component {
         <View style={styles.buttonContainer}>
           <View>
             <Button 
+              buttonStyle={styles.buttonColor}
               title="Sign Up"
               onPress={this.onSignUp.bind(this)}
               borderRadius={5}
@@ -121,6 +127,7 @@ class LogInPage extends React.Component {
           </View>
           <View>
             <Button 
+              buttonStyle={styles.buttonColor}
               title="Log In"
               onPress={this.onSignIn.bind(this)}
               borderRadius={5}
@@ -147,10 +154,12 @@ class LogInPage extends React.Component {
         <View style={styles.accountContainer}>
           <View>
             <Button
+              buttonStyle={styles.buttonColor}
               title="By-pass login. Button for test purposes Only. Client"
               onPress={this.onPass.bind(this)}
             />
-             <Button
+            <Button
+              buttonStyle={styles.buttonColor}
               title="By-pass login. Button for test purposes Only. Service Provider"
               onPress={this.onPassServiceProvider.bind(this)}
             />
@@ -167,14 +176,29 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:"#FDF3E7"
+    backgroundColor: colors.backgroundColor
   },
   buttonContainer: {
     flex: 1,
     flexDirection: 'row'
-  }, 
+  },
   accountContainer: {
     flex: 1
+  },
+  buttonColor: {
+    backgroundColor: colors.alternatePurple
+  },
+  textColor: {
+    color: 'black'
+  },
+  headerContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerStyle: {
+    // color: colors.backgroundColor,
+    fontSize: 36, 
+    fontWeight: 'bold'
   }
 
 });
