@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, StyleSheet, View, ScrollView, TextInput, FlatList, Modal, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, ScrollView, TextInput, FlatList,
+   Modal, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { Card,Header, Icon, Button, FormInput } from 'react-native-elements';
 import firebase from 'firebase';
-// import { FlatList } from 'react-native-gesture-handler';
 
 class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
@@ -22,7 +22,6 @@ class TabPortfolioServiceProvider extends React.Component {
         const infoRef = rootRef.child('info');
         const userRef = infoRef.child(this.user.uid);
         const picRef = userRef.child('picFolder');
-        
         picRef.once('value')
 
         .then((snapshot) => {
@@ -44,6 +43,7 @@ class TabPortfolioServiceProvider extends React.Component {
 
     });
   }
+  
   onTextChange(item, returnText) {
     // this.setState({ testDescription: returnText });
     var tempPicFolders = this.state.picFolders;
@@ -54,6 +54,7 @@ class TabPortfolioServiceProvider extends React.Component {
       }
     }
   }
+
   componentWillUnmount() {
     this.unsubscribe();
   }
@@ -71,8 +72,8 @@ class TabPortfolioServiceProvider extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View>     
-            {!this.isViewMode && //view mode false = chef user 
+        <View> 
+          {!this.isViewMode && //view mode false = chef user 
           <Header
             centerComponent={{ text: 'My Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}
             rightComponent={<Icon
@@ -93,7 +94,16 @@ class TabPortfolioServiceProvider extends React.Component {
           />
           } 
         </View>
+        {/* <View> */}
+        {/* <Animated.View style={{ marginBottom: this.keyboardHeight }}> */}
+        <KeyboardAvoidingView behavior="padding" style={styles.form} keyboardVerticalOffset={
+              Platform.select({
+                  ios: () => 5,
+                  android: () => 7
+              })()
+          }>
         <ScrollView style={{marginBottom: 20}} keyboardShouldPersistTaps='always'>
+          {/* <Animated.View style={[{ paddingBottom: this.keyboardHeight }]}> */}
           {/* <Text>{this.isViewMode ? 'ViewMode' : 'EditMode, Erase this after.'}</Text> */}
           <View>     
             {!this.isViewMode && //view mode false = chef user  
@@ -144,7 +154,6 @@ class TabPortfolioServiceProvider extends React.Component {
                   <TouchableOpacity
                       style={styles.myButton}
                       onPress={this.setModalVisible.bind(this)}>
-                      
                       <Text style={{color: '#7E8F7C'}}> Cancel </Text>
                   </TouchableOpacity>
                   </View>
@@ -174,8 +183,11 @@ class TabPortfolioServiceProvider extends React.Component {
             } 
           </View>                   
 
-
+          {/* </Animated.View> */}
         </ScrollView>
+        </KeyboardAvoidingView>
+        {/* </View> */}
+        {/* </Animated.View> */}
       </View>
     ); 
   }
@@ -203,7 +215,11 @@ const styles = StyleSheet.create({
     borderWidth:2,
     borderColor:"#f3753f",
     borderRadius: 10
-  }
+  },
+  form: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
 
 });
 
