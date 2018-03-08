@@ -1,1 +1,1 @@
-export const APP_NAME = 'CatorCity';
+export const APP_NAME = 'Ratatouille';

@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, StyleSheet, View, ScrollView, TextInput, FlatList, Modal, TouchableOpacity } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
-import UploadButton from '../components/UploadButton';
 import { Card,Header, Icon, Button, FormInput } from 'react-native-elements';
 import firebase from 'firebase';
 // import { FlatList } from 'react-native-gesture-handler';
@@ -45,11 +44,11 @@ class TabPortfolioServiceProvider extends React.Component {
 
     });
   }
-  onTextChange(returnText, item, tempPicFolders){
-    
-    //var tempPicFolders = this.state.picFolders;
-    for(var i=0; i<tempPicFolders.length; i++ ){
-      if(tempPicFolders[i] == item){
+  onTextChange( returnText, item) {
+    this.setState({ testDescription: returnText });
+    var tempPicFolders = this.state.picFolders;
+    for (let i = 0; i < tempPicFolders.length; i++) {
+      if (tempPicFolders[i].description == item.description) {
           tempPicFolders[i].description = returnText;
       }
     }
@@ -72,7 +71,7 @@ class TabPortfolioServiceProvider extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      {/* <Text>{this.isViewMode ? 'true' : 'false'}</Text> */}
+      <Text>{this.state.testDescription}</Text>
         <View>     
             {!this.isViewMode && //view mode false = chef user 
           <Header
@@ -111,7 +110,7 @@ class TabPortfolioServiceProvider extends React.Component {
                       placeholder="Description..."
                       value={item.description} //original text 
                       //returnText is the new one, and we assign it back to item.description
-                      onChangeText={this.onTextChange.bind(item,this.state.picFolders)}
+                      onChangeText={this.onTextChange.bind(this, item)}
                     />
                   </Card>
                 </View>}  
@@ -157,10 +156,7 @@ class TabPortfolioServiceProvider extends React.Component {
           <View>     
             {this.isViewMode && //view mode false = chef user  
             <View>
-            <Text>Hello</Text>
-            <Text>{this.state.picFolders.length}</Text>
-            
-            
+              {/* Needs a passed unique UID from the search page to be passed in order for this to show data. */}
               <FlatList
               data={this.state.picFolders}
               keyExtractor={(item, index) => index}
