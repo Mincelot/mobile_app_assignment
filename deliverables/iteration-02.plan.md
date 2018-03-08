@@ -57,7 +57,11 @@ Essentially, we want to understand how your team members share a codebase and av
 For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
  * If applicable, specify any naming conventions or standards you decide to adopt.
  * Don't forget to **explain why** you chose this workflow.
-
+ 
+ * Since we plan to split out tasks equally and each of them are independent in files, we will be less likely to encounter conflicts in codes. Therefore our Git workflow focuses majorly in commiting to the master branch within the product directory.
+ * Our current project product directory is named as "reactiveNativeStart" as we are now developing our project from the code mock up prototype.
+ * Each member is responsible to create the necessary file and implement the functions within that file. Then commiting and pushing the new file to the product directory in the master branch.
+ * If we encounter any conflicts in code, the member is responsible to reach to the other and discuss whose part to keep for final version.
 
 
 ## Product
