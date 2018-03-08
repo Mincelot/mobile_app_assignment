@@ -11,7 +11,8 @@ class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {picFolders: [], modalVisible: false, tempUrl: '', testDescription: ''}; //folder has text + picUrl 
-    this.isViewMode = this.props.isView ? this.props.isView : false;
+    this.isViewMode = this.props.isView ? true : false;
+    // this.userid = this.props.userId
     this.user = null;
   }
   componentWillMount() {
@@ -71,17 +72,29 @@ class TabPortfolioServiceProvider extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text>{this.state.testDescription}</Text>
-        <Header
-          centerComponent={{ text: 'My Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}
-          rightComponent={<Icon
-            name='control-point'
-            color='#fff'
-            size={40}
-            onPress={() => {this.setState({ modalVisible: true})}}
-          /> }         
-          outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
-        />
+      {/* <Text>{this.isViewMode ? 'true' : 'false'}</Text> */}
+        <View>     
+            {!this.isViewMode && //view mode false = chef user 
+          <Header
+            centerComponent={{ text: 'My Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}
+            rightComponent={<Icon
+              name='control-point'
+              color='#fff'
+              size={40}
+              onPress={() => {this.setState({ modalVisible: true})}}
+            /> }         
+            outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
+          />
+          } 
+        </View>
+        <View>     
+            {this.isViewMode && //view mode false = chef user 
+          <Header
+            centerComponent={{ text: 'Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}        
+            outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}  
+          />
+          } 
+        </View>
         <ScrollView>
           {/* <Text>{this.isViewMode ? 'ViewMode' : 'EditMode, Erase this after.'}</Text> */}
           <View>     
@@ -105,55 +118,65 @@ class TabPortfolioServiceProvider extends React.Component {
               />
             } 
           </View> 
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={this.state.modalVisible}
-            onRequestClose={() => {
-              alert('Modal has been closed.');
-            }}>
-            <View style={{height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
-              <View style={styles.centeredDialog}>
-                <Text style={[styles.labelText, {fontSize: 14}]}>Please enter the direct link of your picture:</Text>
-                <FormInput
-                  placeholder='Tap here to edit'
-                  value={this.state.tempUrl ? this.state.tempUrl : ''}
-                  onChangeText={(newUrl) => this.setState({ tempUrl: newUrl })}
-                >
-                </FormInput>
-                <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
-                <TouchableOpacity
-                    style={[styles.myButton]}
-                    onPress={this.uploadPicture.bind(this)}>
-                    <Text style={{color: '#7E8F7C'}}> Confirm </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.myButton}
-                    onPress={this.setModalVisible.bind(this)}>
-                    
-                    <Text style={{color: '#7E8F7C'}}> Cancel </Text>
-                </TouchableOpacity>
+          <View>
+            {!this.isViewMode &&
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {
+                alert('Modal has been closed.');
+              }}>
+              <View style={{height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+                <View style={styles.centeredDialog}>
+                  <Text style={[styles.labelText, {fontSize: 14}]}>Please enter the direct link of your picture:</Text>
+                  <FormInput
+                    placeholder='Tap here to edit'
+                    value={this.state.tempUrl ? this.state.tempUrl : ''}
+                    onChangeText={(newUrl) => this.setState({ tempUrl: newUrl })}
+                  >
+                  </FormInput>
+                  <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
+                  <TouchableOpacity
+                      style={[styles.myButton]}
+                      onPress={this.uploadPicture.bind(this)}>
+                      <Text style={{color: '#7E8F7C'}}> Confirm </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                      style={styles.myButton}
+                      onPress={this.setModalVisible.bind(this)}>
+                      
+                      <Text style={{color: '#7E8F7C'}}> Cancel </Text>
+                  </TouchableOpacity>
+                  </View>
                 </View>
               </View>
+            </Modal>
+            }
             </View>
-          </Modal>
-          {/* <View>     
+          <View>     
             {this.isViewMode && //view mode false = chef user  
+            <View>
+            <Text>Hello</Text>
+            <Text>{this.state.picFolders.length}</Text>
+            
+            
               <FlatList
-                data={this.state.picFolders}
-                keyExtractor={(item, index) => index}
-                renderItem={({item}) =>
-                <View style={styles.container}>
-                  <Card
-                    image={{uri:item.picture}}>
-                    <Text>
-                      {item.description}
-                    </Text>
-                  </Card> 
-                </View>}
-              />
+              data={this.state.picFolders}
+              keyExtractor={(item, index) => index}
+              renderItem={({item}) =>
+              <View style={styles.container}>
+                <Card
+                  image={{uri:item.picture}}>
+                  <Text>
+                    {item.description}
+                  </Text>
+                </Card>
+              </View>}  
+            />
+            </View>
             } 
-          </View>                   */}
+          </View>                   
 
 
         </ScrollView>
