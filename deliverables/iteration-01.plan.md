@@ -9,7 +9,7 @@
 
 #### Roles & responsibilities
 
-* We plan to use agile software development, specifically scrum. This will give us a running platform every iteration cycle so that we can make appropriate amends. This will allow us to add modifications beyond the basic scope of the project idea. Since we do not have previous experience with this type of development we cannot predict the exact nature of the final product.
+* We plan to use agile software development, specifically Scrum. This will give us a running platform every iteration cycle so that we can make appropriate amends. This will allow us to add modifications beyond the basic scope of the project idea. Since we do not have previous experience with this type of development we cannot predict the exact nature of the final product.
 
 * Each Sprint will last 3 weeks. 
 
@@ -19,22 +19,22 @@
 
 * In a typical professional software development environment, the product owner would be the one with the vision of the final product. The product owner might appear only at the start and end of each sprint for a progress update. It is the scrum master’s job to handle the day to day activities. The product owner’s role is to understand the deviances that occur in the development process and make the final decisions on ‘what’ to target (leave the ‘how’ to the scrum master). 
 
-* The scrum master is the middleman between the product owner and the development team. The scrum master can manage the  team members with knowledge of their strengths and weaknesses. For example, if some members are more adept with back end development, the scrum master will take that into consideration when allocating tasks to capitalize efficiency. The scrum master has knowledge of how code should be implement, which is something the product owner does not typically need to be aware. We believe that distributing some of the harder tasks to members who are not as experienced in the particular field compared to others can be beneficial in the long run by enhancing their skill set and facilitating harder implementation in the future. When the time comes and we are working through parallel development, we would be avoiding chain development circumstances later in the cycle. Conclusively it is scrum master’s role to make sure that deadlines are met for each sprint and to keep track of the status of the team members. Similarly to the software world, the scrum master is not always the CTO (Lead Technician), yet it is the scrum master’s role to seek the CTO's guidance when needed and in our case to make sure a technical plan of best practices and routes is taken to achieve the necessary goals.
+* The scrum master is the middleman between the product owner and the development team. The scrum master can manage the team members with knowledge of their strengths and weaknesses. For example, if some members are more adept with back-end development, the scrum master will take that into consideration when allocating tasks to capitalize efficiency. The scrum master has knowledge of how code should be implemented, which is something the product owner does not typically need to be aware. We believe that distributing some of the harder tasks to members who are not as experienced in the particular field compared to others can be beneficial in the long run by enhancing their skill set and facilitating harder implementation in the future. When the time comes and we are working in parallel development, we would be avoiding chain development circumstances later in the cycle. Conclusively it is scrum master’s role to make sure that deadlines are met for each sprint and to keep track of the status of the team members. Similarly to the software world, the scrum master is not always the CTO (Lead Technician), yet it is the scrum master’s role to seek the CTO's guidance when needed and in our case to make sure a technical plan of best practices and routes is taken to achieve the necessary goals.
 
 
 
 #### Events
 
-* We plan to host face to face meetings every Friday at around 4 pm in Bahen. These will be code review sessions ensuring that everybody understands each other’s code and team memebers will have a chance to discuss the difficulties they encountered during implementation. We will try to come up with a solution of each problem. In addition, each session will have tasks that must be completed, for example, during the first session, our task was to come up with at least 4 ideas for the project.
+* We plan to host face to face meetings every Friday at around 4 pm in Bahen. These will be code review sessions ensuring that everybody understands each other’s code and team members will have a chance to discuss the difficulties they encountered during implementation. We will try to come up with a solution for each problem. In addition, each session will have tasks that must be completed, for example, during the first session, our task was to come up with at least 4 ideas for the project.
 
 
-* We will also be having regular online meetings during weekdays and weekends using Skype calls to discuss the project, answer quick questions and stay up to date with each member's progress. 
+* We will also be having regular online meetings during weekdays and weekends using Skype calls to discuss the project, answer quick questions and stay up to date on each member's progress.
 
 #### Artifacts
 
-* We use Asana (project task board) to log our ideas, discuss notes, tasks and any resources or other project related messages. This is an important step for the project as it helped guide us through the begining steps and research of our project. In addition, we also used the Facebook group chat application for instant checking-in/responses.
+* We use Asana (project task board) to log our ideas, discuss notes, tasks, and any resources or other project related messages. This is an important step for the project as it helped guide us through the beginning steps and research of our project. In addition, we also used the Facebook group chat application for instant checking-in/responses.
 
-* To prioritize and organize each task, we will calculate how much hours we have each week and based on how much time each tasks takes we will aloocate tasks based on time availability. For example, if we only have 3 hours on Monday we will work on tasks that can be done within 3 hours, while leaving the more difficult and time consuming tasks until the weekend when we have more time. We would also leave an extra 25% of time for testing purposes. 
+* To prioritize and organize each task, we will calculate how much hours we have each week and based on how much time each task takes we will allocate tasks based on our time availability. For example, if we only have 3 hours on Monday we will work on tasks that can be done within 3 hours while leaving the more difficult and time-consuming tasks until the weekend when we have more time. We would also leave an extra 25% of the time for testing purposes.
 
 * To be able to make task assignments to team members, we first need to understand each team member’s preference/skillset to assign who will bring the most value to each responsibility, afterwards we assign jobs to each member based on his/her preferred option/time availability, in case of a tie, we will decide using random functions.
 
