@@ -28,18 +28,20 @@ export const RootServiceProvider = TabNavigator(
             tabBarIcon: ({ focused, tintColor }) => {
                 const { routeName } = navigation.state;
                 let iconName;
+                let type = 'font-awesome';
                 if (routeName === 'TabPortfolio') {
-                    iconName = 'rowing';
+                    iconName = 'layers';
+                    type = '';
                 } else if (routeName === 'TabMessages') {
-                    iconName = 'rowing';
-                } else if (routeName === 'TabFavourites') {
-                    iconName = 'rss-feed';
+                    iconName = 'envelope';
+                // } else if (routeName === 'TabFavourites') {
+                    // iconName = 'rss-feed';
                 } else if (routeName === 'TabAccount') {
-                    iconName = 'rowing';
+                    iconName = 'user-circle';
                 }
                 // You can return any component that you like here! We usually use an
                 // icon component from react-native-vector-icons
-                return <Icon name={iconName} size={25} color={tintColor} />;
+                return <Icon name={iconName} type={type} size={25} color={tintColor} />;
             },
             tabBarLabel: () => {
                 const { routeName } = navigation.state;
