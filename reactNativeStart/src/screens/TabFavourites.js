@@ -9,7 +9,7 @@ class TabFavourites extends React.Component {
         <View style={[styles.container, {backgroundColor: colors.backgroundSecondary}]}>
           <Text style={defaultStyles.text}>TabFavourites Page!</Text>
         </View>
-    ); 
+    );
   }
 }
 

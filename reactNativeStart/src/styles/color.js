@@ -1,16 +1,17 @@
 // Colors intially taken from ignite library color setup
 
 const colors = {
-    background: '#FDF3E7',
+    // background: '#FDF3E7',
+    background: 'white',
     backgroundTitle: '#9933ff',
     // background: '#1F0808',
-    textWhite: 'white',
+    textWhite: '#000080',
     text: 'black',
     tabNav: 'purple',
-    tabNavIconOn: 'white',
-    tabNavIconOff: '#1F0808',
-    tabNavBackground: 'purple',
-    tabNavBorderBottom: 'violet',
+    tabNavIconOn: '#000080',
+    tabNavIconOff: 'white',
+    tabNavBackground: '#c3b5ff',
+    tabNavBorderBottom: '#000080',
 
 
 
