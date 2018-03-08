@@ -24,7 +24,7 @@ class TabSearch extends React.Component {
       .then((snapshot) => {
         var dataTemp = [];
         snapshot.forEach((item) => {
-          dataTemp.push({
+          dataTemp.push({  
             name: item.val().name,
             email: item.val().email
           });
@@ -126,8 +126,10 @@ class TabSearch extends React.Component {
     return (
         <View style={styles.container}>
           <SearchBar
-            lightTheme
             round
+            // underlineColorAndroid='dark'
+            containerStyle={{ backgroundColor: colors.backgroundColor, borderColor: colors.backgroundColor }}
+            inputStyle={{ backgroundColor: colors.backgroundColor, borderColor: colors.backgroundColor }}
             // clearIcon={this.state.searchParam.length > 0 ? true : false}
             clearIcon={true}
             noIcon={false}

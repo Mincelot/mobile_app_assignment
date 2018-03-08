@@ -19,42 +19,41 @@ const hypotheticalList = [
         },
       ]
 
-
 class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { passedOrdersArray: [], /*chefPics: []*/};
-    this.user = null;
+    this.state = { pastOrdersArray: [], user: {uid: 'null'}};
+    // this.user = null;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
       if (user) {
-        this.user = user;
+        // this.user = user;
+        this.setState({ user: user });
+
         const rootRef = firebase.database().ref().child("users");
         const infoRef = rootRef.child('info');
-        const userRef = infoRef.child(this.user.uid);
+        const userRef = infoRef.child(user.uid);
         const pastOrders = userRef.child('pastOrders');
-        
         pastOrders.once('value')
-
         .then((snapshot) => {
-          var ordersTemp = [];
+          let ordersTemp = [];
           //var pictures = [];
-          if (snapshot.val()){
+          // if (snapshot.val()) {
             snapshot.forEach((item) => {
               // console.log(child.key, child.val()); 
               ordersTemp.push({
                 chefID: item.val().chef,
-                cuisineName: item.val().cuisine,
-                priceAmount: item.vale().price
+                // cuisineName: item.val().cuisine,
+                // priceAmount: item.vale().price
               });
               /*pictures.push({
 
               });*/
             });
-            this.setState({ pastOrdersArray: ordersTemp});
-          }
+            this.setState({ pastOrdersArray: ordersTemp });
+          // }
         })
         .catch((error) => {
           this.setState({ status: error.message });
@@ -68,39 +67,42 @@ class TabPortfolio extends React.Component {
     this.unsubscribe();
   }
 
-
   render() {
     return (
       <View style={styles.container}>
-      <Header 
+      <Header
         //leftComponent={{ icon: 'menu', color: '#fff' }}
         centerComponent={{ text: 'Past Orders', style: {color: '#fff', fontSize: 12 }}}
         //rightComponent={{ icon: 'home', color: '#fff' }}
         outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
         />
         <ScrollView>
+          <View>
           <FlatList
-          
-          data={this.state.pastOrdersArray}
-          keyExtractor={(item, index) => index}
-          renderItem={({item}) =>
-          
-          <Card
-            image={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}>
-            <Text h1>Chef: {item.chefID}</Text>
-            <Text h2>Price: {item.priceAmount}</Text>
-            <Text h3>Cuisine: {item.cuisineName}</Text>
-
-          </Card>} 
+            data={this.state.pastOrdersArray}
+            keyExtractor={(item, index) => index}
+            renderItem={ ({item}) =>
+              <View style={styles.container}>
+                <Card
+                  image={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}>
+                  <Text h1>Chef: {item.chefID}</Text>
+                  {/* <Text h2>Price: {item.priceAmount}</Text>
+                  <Text h3>Cuisine: {item.cuisineName}</Text> */}
+                </Card>
+              </View>
+            } 
           /> 
-        
+        </View>
         </ScrollView>
       </View>
     ); 
   }
 } 
 
-styles = StyleSheet.create({
+styles = StyleSheet.create({ 
+  container: {
+    flex: 1
+  },
   subtitleView: {
     flexDirection: 'row',
     paddingLeft: 10,
@@ -131,9 +133,6 @@ styles = StyleSheet.create({
   border: {
     borderBottomColor: 'black',
     borderBottomWidth: 1
-  }, 
-  container: {
-    flex: 1
   },
   bigText : {
     backgroundColor: colors.background,
