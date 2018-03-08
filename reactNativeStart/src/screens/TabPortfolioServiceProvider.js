@@ -9,7 +9,7 @@ import firebase from 'firebase';
 class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {picFolders: [], modalVisible: false, tempUrl: '', testDescription: ''}; //folder has text + picUrl 
+    this.state = {picFolders: [], modalVisible: false, tempUrl: ''}; //folder has text + picUrl 
     this.isViewMode = this.props.isView ? true : false;
     // this.userid = this.props.userId
     this.user = null;
@@ -44,15 +44,15 @@ class TabPortfolioServiceProvider extends React.Component {
 
     });
   }
-  onTextChange( returnText, item) {
-    this.setState({ testDescription: returnText });
+  onTextChange(item, returnText) {
+    // this.setState({ testDescription: returnText });
     var tempPicFolders = this.state.picFolders;
     for (let i = 0; i < tempPicFolders.length; i++) {
-      if (tempPicFolders[i].description == item.description) {
+      if (tempPicFolders[i] == item) {
           tempPicFolders[i].description = returnText;
+          this.setState({picFolders: tempPicFolders});
       }
     }
-    this.setState({picFolders: tempPicFolders, testDescription: returnText});
   }
   componentWillUnmount() {
     this.unsubscribe();
@@ -71,7 +71,6 @@ class TabPortfolioServiceProvider extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text>{this.state.testDescription}</Text>
         <View>     
             {!this.isViewMode && //view mode false = chef user 
           <Header
@@ -94,12 +93,13 @@ class TabPortfolioServiceProvider extends React.Component {
           />
           } 
         </View>
-        <ScrollView>
+        <ScrollView style={{marginBottom: 20}} keyboardShouldPersistTaps='always'>
           {/* <Text>{this.isViewMode ? 'ViewMode' : 'EditMode, Erase this after.'}</Text> */}
           <View>     
             {!this.isViewMode && //view mode false = chef user  
               <FlatList
                 data={this.state.picFolders}
+                extraData={this.state}
                 keyExtractor={(item, index) => index}
                 renderItem={({item}) =>
                 <View style={styles.container}>
