@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View, ScrollView, TextInput, FlatList, TouchableHighlight } from 'react-native';
+import { Text, StyleSheet, View, ScrollView, TextInput, FlatList, TouchableHighlight, Modal } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { Divider, Avatar, List, ListItem, Header, Card } from 'react-native-elements';
@@ -23,7 +23,7 @@ const hypotheticalList = [
 class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}};
+    this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false};
     // this.user = null;
   }
 
@@ -49,9 +49,12 @@ class TabPortfolio extends React.Component {
               // console.log(child.key, child.val()); 
               ordersTemp.push({
                 chefID: item.val().chef,
-                //chefname: infoRef.child(item.chefID).name,
+                //chefInfo: infoRef.child(item.chefID),
+                //chefName: chefInfo.val().name,
                 cuisineName: item.val().cuisine,
+                orderDate: item.val().date,
                 priceAmount: item.val().price
+
               });
               /*pictures.push({
               });*/
@@ -59,6 +62,7 @@ class TabPortfolio extends React.Component {
             this.setState({ pastOrdersArray: ordersTemp });
           // }
         })
+
         chefs.once('value')
         .then((snapshot) => {
           let chefsTemp = [];
@@ -83,10 +87,14 @@ class TabPortfolio extends React.Component {
           this.setState({ status: error.message });
         })
       }
+      
 
     });
   }
 
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
   componentWillUnmount() {
     this.unsubscribe();
   }
@@ -106,23 +114,57 @@ class TabPortfolio extends React.Component {
         />
         <ScrollView>
           <View>
-            
+          <Modal
+          animationType="fade"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            alert('Modal has been closed.');
+          }}>
+          <View style={{marginTop: 22}}>
+            <View>
+            <Header
+              leftComponent={{ icon: 'menu', color: '#fff' }}
+              centerComponent={{ text: 'Order', style: {color: '#fff', fontSize: 30, fontStyle: "italic" }}}
+              //rightComponent={{ icon: 'home', color: '#fff' }}
+              outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
+              />
+              <Text>Hello World!</Text>
+              
+              <View style={[styles.center, styles.paddingImage]}>
+                <Text>35$</Text>
+                <Text>Jan 1st 2018</Text>
+                <Text>Guy 123</Text>
+              </View>
+              
+              <TouchableHighlight
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}>
+                <Text>Back</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
           <FlatList
             data={this.state.pastOrdersArray}
             keyExtractor={(item, index) => index}
             renderItem={ ({item}) =>
               <View style={styles.container}>
-              <TouchableHighlight onPress={this.onClickView.bind(this)}>{
+              <TouchableHighlight onPress={() => {
+                this.setModalVisible(true);
+              }}
+              /*onPress={this.onClickView.bind(this)}*/ >{
                 <ListItem
                   /*image={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}>
                   <Text h1>Chef: {item.chefID}</Text>
                   <Text h2>Price: {item.priceAmount}</Text>
                   <Text h3>Cuisine: {item.cuisineName}</Text>*/
-                  large
-                    roundAvatar
-                    avatar={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
-                    title={item.chefID}
-                    subtitle={item.cuisineName}
+                  //large
+                    //roundAvatar
+                    //avatar={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
+                    title={item.orderDate}
+                    subtitle={item.priceAmount}
                     />
               }
               </TouchableHighlight>
