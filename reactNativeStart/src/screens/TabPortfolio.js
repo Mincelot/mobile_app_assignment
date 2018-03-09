@@ -92,7 +92,7 @@ class TabPortfolio extends React.Component {
   }
 
   onClickView() {
-    NavigatorService.navigate('ViewPortfolio');
+    NavigatorService.navigate('ViewOrder');
   }
 
   render() {
