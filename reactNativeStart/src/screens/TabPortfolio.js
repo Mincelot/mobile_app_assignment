@@ -10,7 +10,7 @@ class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
     this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false, 
-    chef: '', cuisine: '' , date: '', price: '',chef_name: ''};
+    chef: '', cuisine: '' , date: '', price: '', chef_name: '', guests: ''};
     this.user = null;
   }
 
@@ -33,7 +33,8 @@ class TabPortfolio extends React.Component {
                 chefID: item.val().chef,
                 cuisineName: item.val().cuisine,
                 orderDate: item.val().date,
-                priceAmount: item.val().price
+                priceAmount: item.val().price,
+                guestNumber: item.val().guests
 
               });
             });
@@ -77,8 +78,9 @@ class TabPortfolio extends React.Component {
     })
   }
 
-  setModalVisible(visible, chefUID, cuisineInfo, dateInfo, priceInfo) {
-    this.setState({modalVisible: visible, chef: chefUID, cuisine: cuisineInfo, date: dateInfo, price: priceInfo});
+  setModalVisible(visible, chefUID, cuisineInfo, dateInfo, priceInfo, guestAmount) {
+    this.setState({modalVisible: visible, chef: chefUID, cuisine: cuisineInfo, date: dateInfo, 
+      price: priceInfo, guests: guestAmount});
   }
   componentWillUnmount() {
     this.unsubscribe();
@@ -113,7 +115,7 @@ class TabPortfolio extends React.Component {
                     containerStyle= {styles.containerBorder}
                     title={this.state.date}
                     price={this.state.price}
-                    info={[this.state.cuisine + ' cuisine','With ' + this.state.chef_name]}
+                    info={[this.state.cuisine + ' cuisine','With ' + this.state.chef_name, this.state.guests + ' guests']}
                     button={{ title: 'See All Orders', icon: 'format-align-justify' }}
                     onButtonPress={() => {
                       this.setModalVisible(!this.state.modalVisible);
@@ -131,7 +133,7 @@ class TabPortfolio extends React.Component {
               
                 <View style={styles.container}>
                   <TouchableHighlight onPress={() => {
-                    this.setModalVisible(true, item.chefID, item.cuisineName, item.orderDate, item.priceAmount);
+                    this.setModalVisible(true, item.chefID, item.cuisineName, item.orderDate, item.priceAmount, item.guestNumber);
                     this.getChefName(item.chefID);
                     }}
                   >{
