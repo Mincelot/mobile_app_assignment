@@ -23,7 +23,9 @@ const hypotheticalList = [
 class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false};
+    this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false, 
+    chef: {uid: 'null'}, cuisine: {cuisine: 'null' }, date: {date: 'null' }, price: {price: 'null'},
+    chef_name: {name: 'null'}};
     // this.user = null;
   }
 
@@ -92,8 +94,8 @@ class TabPortfolio extends React.Component {
     });
   }
 
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+  setModalVisible(visible, chefUID, cuisineInfo, dateInfo, priceInfo) {
+    this.setState({modalVisible: visible, chef: chefUID, cuisine: cuisineInfo, date: dateInfo, price: priceInfo});
   }
   componentWillUnmount() {
     this.unsubscribe();
@@ -129,12 +131,20 @@ class TabPortfolio extends React.Component {
               //rightComponent={{ icon: 'home', color: '#fff' }}
               outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
               />
-              <Text>Hello World!</Text>
+              <View style={[styles.center, styles.paddingImage]}>
+              <Avatar
+                xlarge
+                containerStyle={[styles.center, styles.paddingImage]}
+                source={{uri: "https://i.imgur.com/bE4jFyr.jpg"}}
+                activeOpacity={0.7}
+              />
+              </View>
               
               <View style={[styles.center, styles.paddingImage]}>
-                <Text>35$</Text>
-                <Text>Jan 1st 2018</Text>
-                <Text>Guy 123</Text>
+                <Text>35$ {this.state.price}</Text>
+                <Text>Jan 1st 2018 {this.state.date}</Text>
+                <Text>Guy 123 {this.state.chef}</Text>
+                <Text> {this.state.cuisine}</Text>
               </View>
               
               <TouchableHighlight
@@ -150,9 +160,10 @@ class TabPortfolio extends React.Component {
             data={this.state.pastOrdersArray}
             keyExtractor={(item, index) => index}
             renderItem={ ({item}) =>
+            
               <View style={styles.container}>
               <TouchableHighlight onPress={() => {
-                this.setModalVisible(true);
+                this.setModalVisible(true, item.chefID, item.cuisineName, item.orderDate, item.priceAmount);
               }}
               /*onPress={this.onClickView.bind(this)}*/ >{
                 <ListItem
@@ -170,7 +181,7 @@ class TabPortfolio extends React.Component {
               </TouchableHighlight>
               </View>
             } 
-          /> 
+          />
           </View>
         </ScrollView>
       </View>
@@ -212,6 +223,13 @@ styles = StyleSheet.create({
   border: {
     borderBottomColor: 'black',
     borderBottomWidth: 1
+  }, center: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paddingImage: {
+    paddingTop: 30,
+    paddingBottom: 5
   },
   bigText : {
     backgroundColor: colors.background,
