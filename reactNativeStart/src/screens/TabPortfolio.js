@@ -24,8 +24,7 @@ class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
     this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false, 
-    chef: {uid: 'null'}, cuisine: {cuisine: 'null' }, date: {date: 'null' }, price: {price: 'null'},
-    chef_name: {name: 'null'}};
+    chef: '', cuisine: '' , date: '', price: '',chef_name: ''};
     // this.user = null;
   }
 
@@ -94,6 +93,22 @@ class TabPortfolio extends React.Component {
     });
   }
 
+  getChefName(chefID) {
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    console.log(chefID);
+    console.log(infoRef);
+    const chefRef = infoRef.child(chefID);
+    console.log(chefRef);
+    const name = chefRef.child('name');
+    console.log(name);
+
+    this.setState({chef_name: name});
+    console.log(this.state.chef_name);
+            
+    
+  }
+
   setModalVisible(visible, chefUID, cuisineInfo, dateInfo, priceInfo) {
     this.setState({modalVisible: visible, chef: chefUID, cuisine: cuisineInfo, date: dateInfo, price: priceInfo});
   }
@@ -145,8 +160,10 @@ class TabPortfolio extends React.Component {
                 <Text>Jan 1st 2018 {this.state.date}</Text>
                 <Text>Guy 123 {this.state.chef}</Text>
                 <Text> {this.state.cuisine}</Text>
+                
+                
               </View>
-              
+
               <TouchableHighlight
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
@@ -164,17 +181,12 @@ class TabPortfolio extends React.Component {
               <View style={styles.container}>
               <TouchableHighlight onPress={() => {
                 this.setModalVisible(true, item.chefID, item.cuisineName, item.orderDate, item.priceAmount);
+                //console.log(item.chefID);
+                //this.getChefName(item.chefID);
               }}
-              /*onPress={this.onClickView.bind(this)}*/ >{
+              >{
                 <ListItem
-                  /*image={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}>
-                  <Text h1>Chef: {item.chefID}</Text>
-                  <Text h2>Price: {item.priceAmount}</Text>
-                  <Text h3>Cuisine: {item.cuisineName}</Text>*/
-                  //large
-                    //roundAvatar
-                    //avatar={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
-                    title={item.orderDate}
+                  title={item.orderDate}
                     subtitle={item.priceAmount}
                     />
               }
