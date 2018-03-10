@@ -79,6 +79,7 @@ function nav(state = initialNavState, action) {
             selectedUserUid: action.selectedUserUid ? action.selectedUserUid: 'Test' } }),
         state
       );
+      nextState
       break;
     case 'Logout':
       nextState = AppNavigator.router.getStateForAction(

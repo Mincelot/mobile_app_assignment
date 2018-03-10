@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, StackNavigator, NavigationActions  } from 'react-navigation';
+import { addNavigationHelpers, StackNavigator, NavigationActions, HeaderBackButton } from 'react-navigation';
 import { addListener } from '../utils/redux';
 
 import LogInPage from '../screens/LogInPage';
@@ -30,12 +30,17 @@ export const AppNavigator = StackNavigator({
             screen: Root
         },
         ViewPortfolio: {
-            screen: TabPortfolioServiceProvider
+            screen: TabPortfolioServiceProvider,
+            navigationOptions: ({navigation}) => ({ //don't forget parentheses around the object notation
+                title: 'Profile',
+                headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />
+            })
         },
         ViewOrder: {
             screen: OrderPage
         }
     }, {
+        mode: 'modal',
         initialRouteName:  'LogInPage',
         headerMode: 'none',
     }

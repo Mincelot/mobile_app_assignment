@@ -138,7 +138,6 @@ class TabSearch extends React.Component {
   render() {
     return (
         <View style={styles.container}>
-          <Text>{this.state.status}</Text>
           <SearchBar
             round
             // underlineColorAndroid='dark'
