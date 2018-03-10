@@ -45,7 +45,8 @@ class LogInPage extends React.Component {
     //   .catch((error) => {
     //     this.setState({ status: error.message, loading: false});
     //   })
-    this.props.navigation.navigate('RegisterPage');
+    // this.props.navigation.navigate('RegisterPage');
+    this.props.navigation.dispatch({ type: 'Register' });
   }
   onSignIn() {
     this.setState({ status: '', loading: true });

@@ -13,35 +13,62 @@ class TabPortfolioServiceProvider extends React.Component {
     this.isViewMode = this.props.isView ? true : false;
     // this.userid = this.props.userId
     this.user = null;
+    this.userUidPassedIn = this.props.selectedUserUid;
+    this.unsubscribe = null;
   }
   componentWillMount() {
-    this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
-      if (user) {
-        this.user = user;
-        const rootRef = firebase.database().ref().child("users");
-        const infoRef = rootRef.child('info');
-        const userRef = infoRef.child(this.user.uid);
-        const picRef = userRef.child('picFolder');
-        picRef.once('value')
+    if (!this.isViewMode) {
+      this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
+        if (user) {
+          this.user = user;
+          const rootRef = firebase.database().ref().child("users");
+          const infoRef = rootRef.child('info');
+          const userRef = infoRef.child(this.user.uid);
+          const picRef = userRef.child('picFolder');
+          picRef.once('value')
 
-        .then((snapshot) => {
-          var picTemp = [];
-          if (snapshot.val()){
-            snapshot.forEach((item) => {
-              picTemp.push({
-                description: item.val().text,
-                picture: item.val().picUrl
+          .then((snapshot) => {
+            var picTemp = [];
+            if (snapshot.val()){
+              snapshot.forEach((item) => {
+                picTemp.push({
+                  description: item.val().text,
+                  picture: item.val().picUrl
+                });
               });
-            });
-            this.setState({ picFolders: picTemp});
-          }
-        })
-        .catch((error) => {
-          this.setState({ status: error.message });
-        })
-      }
+              this.setState({ picFolders: picTemp});
+            }
+          })
+          .catch((error) => {
+            this.setState({ status: error.message });
+          })
+        }
 
-    });
+      });
+    } else {
+      this.user = user;
+      const rootRef = firebase.database().ref().child("users");
+      const infoRef = rootRef.child('info');
+      const userRef = infoRef.child(this.userUidPassedIn);
+      const picRef = userRef.child('picFolder');
+      picRef.once('value')
+
+      .then((snapshot) => {
+        var picTemp = [];
+        if (snapshot.val()){
+          snapshot.forEach((item) => {
+            picTemp.push({
+              description: item.val().text,
+              picture: item.val().picUrl
+            });
+          });
+          this.setState({ picFolders: picTemp});
+        }
+      })
+      .catch((error) => {
+        this.setState({ status: error.message });
+      })
+    }
   }
   
   onTextChange(item, returnText) {
@@ -56,7 +83,9 @@ class TabPortfolioServiceProvider extends React.Component {
   }
 
   componentWillUnmount() {
-    this.unsubscribe();
+    if (this.unsubscribe != null) {
+      this.unsubscribe();
+    }
   }
 
   uploadPicture(){
@@ -72,6 +101,7 @@ class TabPortfolioServiceProvider extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+      <Text>{this.isViewMode ? 'TEST22' : 'Yes'}</Text>
         <View> 
           {!this.isViewMode && //view mode false = chef user 
           <Header

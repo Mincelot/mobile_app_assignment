@@ -111,12 +111,12 @@ class TabAccount extends React.Component {
   }
   logOut() {
     firebase.auth().signOut()
-    .then(function() {
-      // Sign-out successful.
-      NavigatorService.navigate('LogInPage');
-    }, function(error) {
-      // An error happened.
-    });
+    .then(() => {
+      this.props.navigation.dispatch({ type: 'Logout' });
+    })
+    .catch((error) => {
+        this.setState({ status: error.message });
+    })
   }
   navigateOut() {
     NavigatorService.navigate('LogInPage');
