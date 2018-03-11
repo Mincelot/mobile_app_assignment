@@ -40,6 +40,7 @@ List any process-related changes you are planning to make (if there are any)
  * Ordered from most to least important.
  * Explain why you are making a change.
 
+We planned to meet in person but due to schedule/ location conflicts we this did not happen as often as we would have liked. We were only able to conduct full group meetings over skype and in tutorial. We did not have group coding sessions. Subdivisions of the group met up in person to review code/ go over minor coding details. Bigger idea/ layout issues were delt with in tutorial or over skype when the entirety of the group was present. 
 
 ## Product - Review
 
