@@ -3,7 +3,7 @@
 ## Iteration 02
 
  * Start date: February 22, 2018
- * End date: March 9, 2018
+ * End date: March 11, 2018
 
 ## Process
 
@@ -12,8 +12,11 @@
 #### Roles & responsibilities
 
 Describe the different roles on the team and the responsibilities associated with each role.
+---
 * As descripted from last iteration, we will be briefly identifying number of tasks (such as page views and functions)that are most important and distribute them equally to each member as the responsibilities based on how much spare time and the ability they have.
 * During the initial meeting, each of us will play a role in sharing and discussing ideas regarding to UI design and the specific functions for each of application page.
+* After the initially meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. 
+* We then decides to assign each of the above tasks as follows: Log in/ Registration (Helen), Search Page (Vlad), Profile for clients (Mariko),Profile for service provider(Akanksha),Message page (Emil) and account setting page (Mike).
 
 #### Events
 
@@ -22,11 +25,11 @@ Describe meetings (and other events) you are planning to have:
  * When and where? In-person or online?
  * What's the purpose of each meeting?
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
-
- In person meeting - Feb 27th: Decide on a UI and distribute features to individual members to code.
- In person meeting - March 1st: Coding session + review code + UI graphical layout designs 
- In person meeting - March 9th: Progress result exchanges and some discussion relating to message fucntion and problems encountered.
- Online meeting (?)
+----
+ * In person meeting - Feb 27th: Decide on a UI and distribute features to individual members to code.
+ * In person meeting - March 1st: Coding session + review code + UI graphical layout designs 
+ * In person meeting - March 9th: Progress result exchanges and some discussion relating to message fucntion and problems encountered.
+ * Online meeting - March 11th: On Skype call, each group member will discusse any final concerns and gather together to finalize the video and deliverable paperworks.
 
 #### Artifacts
 
@@ -65,7 +68,7 @@ For example, "we use pull-requests" is not a precise statement since it leaves t
  * Order the items from most to least important.
  * Feel free (but not obligated) to specify some/all tasks as user stories.
 
- The goal is to produce a working application of our project with some of its most important and basic functionalities included. The functions (as listed on Asana) are: Login page, Registration page, Account pages, Profile pages, Message board, Search page. 
+* The goal is to produce a working application of our project with some of its most important and basic functionalities included. The functions (as listed on Asana) are: Login page, Registration page, Account pages, Profile pages, Message board, Search page. 
  
 
 #### Artifacts
@@ -77,5 +80,5 @@ List/describe the artifacts you will produce in order to present your project id
  * Be concise, yet precise.         
    For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
    
- - We will produce sketches of the UI design during the course of several personal meeting and potentially online meetings.
- - In addition, we will also provide screenshots of the discussion board (Asana) we use to brainstorm features of different pages.
+* We will produce sketches of the UI design during the course of several personal meeting and potentially online meetings.
+* In addition, we will also provide screenshots of the discussion board (Asana) we use to brainstorm features of different pages.
