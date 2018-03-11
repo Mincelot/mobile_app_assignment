@@ -70,3 +70,5 @@ Going into the next iteration, our main insights are:
  For the client aspect (on the portofolio/past orders tab) of the app, we should implement a way for them to add ratings/ comment. This should make finding their favourite chefs easier as well as giving chefs feedback. Their feedback/ rating would be made known to the chef. We should decide whether we want ratings/comments to be public to other client users. 
 
  We need a way for chefs to confirm that the order occured after the fact in order to have records of the order in the passed order's (portfolio) tab. Basically the chef would accept or send a signal to the app which would then charge the client and the order would be recorded. 
+
+ In portfolio, when clients look at their past orders, it would be useful to link the chef's name to their portfolio. This would make it simpler for the user to connect to the chef rather than find out the name and then search it in the search tab. 
