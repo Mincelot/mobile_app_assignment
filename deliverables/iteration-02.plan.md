@@ -35,20 +35,13 @@ We planned to host the following meetings during this iteration:
 * Tasks distributed in the meetings will be organized on Asana as log notes by priority. Tasks will be assigned to members based on their expertise and interest in the function. 
 
 #### Git / GitHub workflow
-
-Describe your Git / GitHub workflow.     
-Essentially, we want to understand how your team members share a codebase and avoid conflicts.
-
- * Be concise, yet precise.      
-For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
- * If applicable, specify any naming conventions or standards you decide to adopt.
- * Don't forget to **explain why** you chose this workflow.
  
  * Since we plan to split out tasks equally and each of the features are independent in files, we will be less likely to encounter code conflicts within the same JavaScript file. 
  * Above is the reason why our Git workflow focuses majorly in commiting to the master branch within the product directory.
  * Our current project product directory is named as "reactiveNativeStart" because we are now developing our project from the code mock up prototype. Once we have the project finalized, we will be renaming the product directory.
  * Each member is responsible to create the necessary file and implement the functions within that file. Then committing and pushing the new file to the product directory in the master branch.
  * If we encounter any conflicts in code, the committer is responsible to reach to the member who is responsible for developing that feature and together they need to discuss whose part to keep for final version.
+ * Any changes made to another members file will be due to the interacting nature of the files.
 
 
 ## Product
@@ -67,13 +60,6 @@ For example, "we use pull-requests" is not a precise statement since it leaves t
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to present your project idea.
-
- * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
- * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
- * Be concise, yet precise.         
-   For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
-   --
 * The main artifact for this iteration is the actual application codes that can be tested on both Android and IOS platform using Expo.
 * Without showing the actual application and its code, we cannot present our project to the audiences.
 * We will also produce sketches of the UI design and use it as the major reference on how to implement the front end designs (i.e. Button location and shapes, Text front, major theme color, icons, etc)
