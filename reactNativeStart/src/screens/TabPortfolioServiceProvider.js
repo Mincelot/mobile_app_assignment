@@ -77,11 +77,11 @@ class TabPortfolioServiceProvider extends React.Component {
     }
   }
   
-  onTextChange(item, returnText) {
+  onTextChange(pic, returnText) {
     // this.setState({ testDescription: returnText });
     var tempPicFolders = this.state.picFolders;
     for (let i = 0; i < tempPicFolders.length; i++) {
-      if (tempPicFolders[i].picture == item) {
+      if (tempPicFolders[i].picture == pic) {
           tempPicFolders[i].description = returnText;
           this.setState({picFolders: tempPicFolders});
       }
@@ -94,56 +94,55 @@ class TabPortfolioServiceProvider extends React.Component {
     }
   }
  
-  addDescriptionModal(){
-    if(this.state.tempUrl){
-      console.log('in add descrption');
-      this.setState({descriptionModalVisible: true});
-      console.log(this.state.tempUrl);
-      let newPicUrl = this.state.tempUrl;
-      this.setState({tempUrl: ''});
-      //REMEMBER TO SET IT TO EMPTY STRING
-      console.log(newPicUrl);
-      //let index = this.state.picFolders.length;
-      //console.log(index);
-      //let lastItem = this.state.picFolders[index];
-      <View>     
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={this.state.descriptionModalVisible}
-            onRequestClose={() => {
-              alert('Modal has been closed.');
-            }}>
-            <View style={{height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
-              <View style={styles.centeredDialog}>
-                <Text style={[styles.labelText, {fontSize: 14}]}>Describe your dish!</Text>
-                <FormInput
-                  placeholder='Tap here to edit'
-                  value={this.state.tempDescription ? this.state.tempDescription : ''}
-                  onChangeText={(newDescription) => this.setState({ tempDescription: newDescription })}
-                >
-                </FormInput>
-                <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
-                <TouchableOpacity
-                    style={[styles.myButton]}
-                    onPress={this.onTextChange.bind(this,newPicUrl)}>
-                    <Text style={{color: '#7E8F7C'}}> Confirm </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.myButton}
-                    onPress={this.setState({descriptionModalVisible: false})}>
-                    <Text style={{color: '#7E8F7C'}}> Cancel </Text>
-                </TouchableOpacity>
-                </View>
-              </View>
-            </View>
-          </Modal>      
-      </View>
-    }
-  }
+  //maybe change to this for D3. 
+  // addDescriptionModal(){
+  //   if(this.state.tempUrl){
+  //     console.log('in add description');
+  //     this.setState({descriptionModalVisible: true});
+  //     console.log(this.state.tempUrl);
+  //     let newPicUrl = this.state.tempUrl;
+  //     this.setState({tempUrl: ''});
+  //     console.log(newPicUrl);
+  //     <View> 
+  //       {this.descriptionModalVisible &&  
+  //         <Modal
+  //           animationType="fade"
+  //           transparent={true}
+  //           visible={this.state.descriptionModalVisible}
+  //           onRequestClose={() => {
+  //             alert('Modal has been closed.');
+  //           }}>
+  //           <View style={{height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+  //             <View style={styles.centeredDialog}>
+  //               <Text style={[styles.labelText, {fontSize: 14}]}>Describe your dish!</Text>
+  //               <FormInput
+  //                 placeholder='Tap here to edit'
+  //                 value={this.state.tempDescription ? this.state.tempDescription : ''}
+  //                 onChangeText={(newDescription) => this.setState({ tempDescription: newDescription })}
+  //               >
+  //               </FormInput>
+  //               <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
+  //               <TouchableOpacity
+  //                   style={[styles.myButton]}
+  //                   onPress={this.onTextChange.bind(this,newPicUrl)}>
+  //                   <Text style={{color: '#7E8F7C'}}> Confirm </Text>
+  //               </TouchableOpacity>
+  //               <TouchableOpacity
+  //                   style={styles.myButton}
+  //                   onPress={this.setState({descriptionModalVisible: false})}>
+  //                   <Text style={{color: '#7E8F7C'}}> Cancel </Text>
+  //               </TouchableOpacity>
+  //               </View>
+  //             </View>
+  //           </View>
+  //         </Modal>  
+  //       }    
+  //     </View>
+  //   }
+  // }
 
 //Uploads picture on firebase and the screen.
-  uploadPicture(){
+uploadPictureAndDescription(){
     const rootRef = firebase.database().ref().child("users");
     const infoRef = rootRef.child('info');
     const userRef = infoRef.child(this.currentUser.uid);
@@ -162,9 +161,12 @@ class TabPortfolioServiceProvider extends React.Component {
     const picPath = picRef.child(folderName);
     //console.log(picPath);
     if (this.state.tempUrl){
+      
       picPath.set({
         picUrl: this.state.tempUrl,
-        description: ''
+        
+        text: this.state.tempDescription
+        
       })
       .then((user) => {
         this.setState({ status: 'Status: Uploaded picture!', descriptionModalVisible: true });
@@ -174,14 +176,14 @@ class TabPortfolioServiceProvider extends React.Component {
         this.setState({ status: error.message });
       })
       this.setState({ modalVisible: false ,picFolders: 
-        [...this.state.picFolders,{ picture: this.state.tempUrl, description: ''} ]}, () => {
-        // this.setState({ tempUrl : '' });
+        [...this.state.picFolders,{ picture: this.state.tempUrl, description: this.state.tempDescription} ]}, () => {
+         this.setState({ tempUrl : '' , tempDescription: ''});
       });
       Alert.alert(
         'Notification',
         'Upload successful!',
         [
-          {text: 'OK', onPress: () => {this.addDescriptionModal(this)}}
+          {text: 'OK', onPress: () => {}}
         ]
       )
     }
@@ -248,7 +250,7 @@ class TabPortfolioServiceProvider extends React.Component {
                 <View style={styles.container}>
                   <Card
                     image={{uri:item.picture}}>
-                    <TextInput
+                    <TextInput //only for editing the description
                       style={{height: 40}}
                       placeholder="Description..."
                       value={item.description} //original text 
@@ -273,15 +275,22 @@ class TabPortfolioServiceProvider extends React.Component {
                 <View style={styles.centeredDialog}>
                   <Text style={[styles.labelText, {fontSize: 14}]}>Please enter the direct link of your picture:</Text>
                   <FormInput
-                    placeholder='Tap here to edit'
+                    placeholder='Tap to add URL of image'
                     value={this.state.tempUrl ? this.state.tempUrl : ''}
                     onChangeText={(newUrl) => this.setState({ tempUrl: newUrl })}
+                  >
+                  </FormInput>
+                  <FormInput
+                    placeholder='Tap to add description'
+                    value={this.state.tempDescription ? this.state.tempDescription : ''}
+                    onChangeText={(newDescription) => this.setState({tempDescription: newDescription})}
+                    //{this.onTextChange.bind(this, this.state.tempUrl)}
                   >
                   </FormInput>
                   <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
                   <TouchableOpacity
                       style={[styles.myButton]}
-                      onPress={this.uploadPicture.bind(this)}>
+                      onPress={this.uploadPictureAndDescription.bind(this)}>
                       <Text style={{color: '#7E8F7C'}}> Confirm </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
