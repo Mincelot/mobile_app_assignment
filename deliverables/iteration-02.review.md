@@ -55,6 +55,8 @@ List any process-related changes you are planning to make (if there are any)
  * For each goal/task, explain why it was not met/completed.      
    e.g. Did you change your mind, or did you just not get to it yet?
 
+   For the client profile, we had first decided to allow the client to upload photos to their orders. But we then agreed that we wanted the creative side of the app to be strictly for the chefs/bartenders (so they can add pictures for each order in order to have complete control over their portfolio) whereas clients are simply customers that can view their past orders and make new orders. 
+
 ## Meeting Highlights
 
 Going into the next iteration, our main insights are:
@@ -64,3 +66,5 @@ Going into the next iteration, our main insights are:
  * High-level concepts that should guide your work for the next iteration.
  * These concepts should help you decide on where to focus your efforts.
  * Can be related to product and/or process.
+
+ For the client aspect (on the portofolio/past orders tab) of the app, we should implement a way for them to add ratings/ comment. This should make finding their favourite chefs easier as well as giving chefs feedback. Their feedback/ rating would be made known to the chef. We should decide whether we want ratings/comments to be public to other client users. 
