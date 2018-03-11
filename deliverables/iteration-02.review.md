@@ -1,14 +1,14 @@
-# YOUR PRODUCT/TEAM NAME
+# Ratatouille / team 23
 
  > _Note:_ This document is meant to be written during (or shortly after) your review meeting, which should happen fairly close to the due date.      
  >      
  > _Suggestion:_ Have your review meeting a day or two before the due date. This way you will have some time to go over (and edit) this document, and all team members should have a chance to make their contribution.
 
 
-## Iteration XX - Review & Retrospect
+## Iteration 02 - Review & Retrospect
 
- * When: FILL IN THE DATE WHEN YOU ACTUALLY HAD YOUR REVIEW MEETING
- * Where: PHYSICAL LOCATION AND/OR ONLINE
+ * When: March 8th, 2018
+ * Where: GB303
 
 ## Process - Reflection
 
@@ -23,6 +23,9 @@ List process-related (i.e. team organization) decisions that, in retrospect, tur
  * Ordered from most to least important.
  * Explain why (i.e. give a supporting argument) you consider a decision to be successful.
  * Feel free to refer/link to process artifact(s).
+ 
+  1. The decision that we each share our own ideas about the UI designs and then come to a conclusion about what design we are going to have instead of doing each page separately by each group member is successful because it reduce a lot of time for us to go back and unify the style of the UI.
+ 2. The decision that we decide what tasks to fulfilled and then distribute them across members turns out to be successful because after the initially meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. We then decides to assign each of the above tasks as follows: Log in/ Registration (Helen/Ke Lan), Search Page (Vlad), Profile for clients (Mariko),Profile for service provider(Akanksha),Message page (Emil) and account setting page (Mike/Yu Xuan).
 
 #### Decisions that did not turn out as well as we hoped
 
@@ -49,6 +52,13 @@ We planned to meet in person but due to schedule/ location conflicts we this did
  * From most to least important.
  * Refer/link to artifact(s) that show that a goal/task was met/completed.
  * If a goal/task was not part of the original iteration plan, please mention it.
+ 
+  Our task is basically divided into doing several different pages for our application, each page are fully implemented with core features.
+ 1. Registration page (insert screenshot)
+ 2. Login Page (insert screenshot of login page here)
+ 3. Account pages
+ 4. Message board
+ 5. Search page
 
 #### Goals and/or tasks that were planned but not met/completed:
 
