@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, View, ScrollView, TextInput, FlatList,
-   Modal, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+   Modal, TouchableOpacity, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { NavigationActions } from "react-navigation";
@@ -10,9 +10,11 @@ import firebase from 'firebase';
 class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {picFolders: [], modalVisible: false, tempUrl: ''}; //folder has text + picUrl 
+    this.state = {picFolders: [], modalVisible: false, tempUrl: '', tempDescription: '', descriptionModalVisible: false}; //folder has text + picUrl 
     this.isViewMode = false;
     this.userUidPassedIn = '';
+    this.currentUser = '';
+    this.numPicFolders = 0;
     if (this.props && this.props.navigation && this.props.navigation.state && this.props.navigation.state.params) {
       this.isViewMode = this.props.navigation.state.params.isView ? true : false;
       this.userUidPassedIn = this.props.navigation.state.params.selectedUserUid;
@@ -23,6 +25,7 @@ class TabPortfolioServiceProvider extends React.Component {
     if (!this.isViewMode) {
       this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
         if (user) {
+          this.currentUser = user;
           const rootRef = firebase.database().ref().child("users");
           const infoRef = rootRef.child('info');
           const userRef = infoRef.child(user.uid);
@@ -30,6 +33,8 @@ class TabPortfolioServiceProvider extends React.Component {
           picRef.once('value')
 
           .then((snapshot) => {
+            this.numPicFolders = snapshot.numChildren();
+            console.log(this.numPicFolders);
             var picTemp = [];
             if (snapshot.val()){
               snapshot.forEach((item) => {
@@ -89,13 +94,128 @@ class TabPortfolioServiceProvider extends React.Component {
     }
   }
 
+  // addDescriptionModal(){
+
+  //   let newPicUrl = this.state.tempUrl;
+  //   let index = this.state.picFolders.indexOf(newPicUrl);
+  //   let lastItem = this.state.picFolders[index];
+  //   <View>     
+  //       <Modal
+  //         animationType="fade"
+  //         transparent={true}
+  //         visible={this.state.descriptionModalVisible}
+  //         onRequestClose={() => {
+  //           alert('Modal has been closed.');
+  //         }}>
+  //         <View style={{height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+  //           <View style={styles.centeredDialog}>
+  //             <Text style={[styles.labelText, {fontSize: 14}]}>Describe your dish!</Text>
+  //             <FormInput
+  //               placeholder='Tap here to edit'
+  //               value={this.state.tempDescription ? this.state.tempDescription : ''}
+  //               onChangeText={(newDescription) => this.setState({ tempDescription: newDescription })}
+  //             >
+  //             </FormInput>
+  //             <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
+  //             <TouchableOpacity
+  //                 style={[styles.myButton]}
+  //                 onPress={this.onTextChange.bind(this,lastItem)}>
+  //                 <Text style={{color: '#7E8F7C'}}> Confirm </Text>
+  //             </TouchableOpacity>
+  //             <TouchableOpacity
+  //                 style={styles.myButton}
+  //                 onPress={this.setState({descriptionModalVisible: false})}>
+  //                 <Text style={{color: '#7E8F7C'}}> Cancel </Text>
+  //             </TouchableOpacity>
+  //             </View>
+  //           </View>
+  //         </View>
+  //       </Modal>      
+  //   </View>
+  // }
+//Uploads picture on firebase and the screen + add description.
   uploadPicture(){
-    this.setState({ modalVisible: false ,picFolders: [...this.state.picFolders,{ picture: this.state.tempUrl, description: ''} ]}, () => {
-      this.setState({ tempUrl : '' });
-    });   
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const userRef = infoRef.child(this.currentUser.uid);
+    const picRef = userRef.child('picFolder');
+
+    let folderNum = this.numPicFolders + 1; //increases the number of folders
+    this.numPicFolders = this.numPicFolders + 1;
+
+    //console.log(folderNum);
+    let folderName = 'picFolder'+folderNum; //creates the name of the folder
+    //console.log(folderName);
+    picRef.update({
+      folderName: null
+    })
+    //create the path to the next picture.
+    const picPath = picRef.child(folderName);
+    //console.log(picPath);
+    if (this.state.tempUrl){
+      picPath.set({
+        picUrl: this.state.tempUrl
+      })
+      .then((user) => {
+        this.setState({ status: 'Status: Uploaded picture!' });
+
+      })
+      .catch((error) => {
+        this.setState({ status: error.message });
+      })
+      this.setState({ modalVisible: false ,picFolders: 
+        [...this.state.picFolders,{ picture: this.state.tempUrl, description: ''} ]}, () => {
+        this.setState({ tempUrl : '' });
+      });
+      Alert.alert(
+        'Notification',
+        'Upload successful!',
+        [
+          {text: 'OK', onPress: () => {this.setState({ descriptionModalVisible: true})}}
+        ]
+      )
+    }
+    
+    let newPicUrl = this.state.tempUrl;
+    let index = this.state.picFolders.indexOf(newPicUrl);
+    let lastItem = this.state.picFolders[index];
+    <View>     
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.state.descriptionModalVisible}
+          onRequestClose={() => {
+            alert('Modal has been closed.');
+          }}>
+          <View style={{height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+            <View style={styles.centeredDialog}>
+              <Text style={[styles.labelText, {fontSize: 14}]}>Describe your dish!</Text>
+              <FormInput
+                placeholder='Tap here to edit'
+                value={this.state.tempDescription ? this.state.tempDescription : ''}
+                onChangeText={(newDescription) => this.setState({ tempDescription: newDescription })}
+              >
+              </FormInput>
+              <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
+              <TouchableOpacity
+                  style={[styles.myButton]}
+                  onPress={this.onTextChange.bind(this,lastItem)}>
+                  <Text style={{color: '#7E8F7C'}}> Confirm </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                  style={styles.myButton}
+                  onPress={this.setState({descriptionModalVisible: false})}>
+                  <Text style={{color: '#7E8F7C'}}> Cancel </Text>
+              </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>      
+    </View>
+
   }
 
-  setModalVisible() {
+  setModalVisibleFalse() {
     this.setState({modalVisible: false});
   }
 
@@ -121,7 +241,7 @@ class TabPortfolioServiceProvider extends React.Component {
           } 
         </View>
         <View>     
-          {this.isViewMode && //view mode false = chef user 
+          {this.isViewMode && //view mode true = client user 
             <Header
               leftComponent={<Icon
                 name='arrow-back'
@@ -193,7 +313,7 @@ class TabPortfolioServiceProvider extends React.Component {
                   </TouchableOpacity>
                   <TouchableOpacity
                       style={styles.myButton}
-                      onPress={this.setModalVisible.bind(this)}>
+                      onPress={this.setModalVisibleFalse.bind(this)}>
                       <Text style={{color: '#7E8F7C'}}> Cancel </Text>
                   </TouchableOpacity>
                   </View>
@@ -203,7 +323,7 @@ class TabPortfolioServiceProvider extends React.Component {
             }
             </View>
           <View>     
-            {this.isViewMode && //view mode false = chef user  
+            {this.isViewMode && //view mode true = client user  
             <View>
               {/* Needs a passed unique UID from the search page to be passed in order for this to show data. */}
               <FlatList
