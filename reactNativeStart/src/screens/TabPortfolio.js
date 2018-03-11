@@ -1,134 +1,151 @@
 import React from 'react';
-import { Text, StyleSheet, View, ScrollView, TextInput, FlatList, TouchableHighlight } from 'react-native';
+import { Text, StyleSheet, View, ScrollView, TextInput, FlatList, TouchableHighlight, Modal } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
-import { Divider, Avatar, List, ListItem, Header, Card } from 'react-native-elements';
+import { Divider, Avatar, List, ListItem, Header, Card, PricingCard } from 'react-native-elements';
 import NavigatorService from '../services/navigator';
 import firebase from 'firebase';
-
-
-const hypotheticalList = [
-        {
-          order: 'Order 1',
-          picture: 'https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg',
-          chef: 'Chef 1'
-        },
-        {
-          order: 'Order 2',
-          picture: 'https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg',
-          chef: 'Chef 2'
-        },
-      ]
 
 class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}};
-    // this.user = null;
+    this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false, 
+    chef: '', cuisine: '' , date: '', price: '', chef_name: '', guests: ''};
+    this.user = null;
   }
 
   componentDidMount() {
     this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
       if (user) {
-        // this.user = user;
         this.setState({ user: user });
 
         const rootRef = firebase.database().ref().child("users");
         const infoRef = rootRef.child('info');
         const userRef = infoRef.child(user.uid);
         const pastOrders = userRef.child('pastOrders');
-        //const filterData = infoRef.orderByChild("isAccountTypeClient").equalTo(false).limitToLast(100);
         const chefs = infoRef.orderByChild("isAccountTypeClient").equalTo(false).limitToLast(100);
 
         pastOrders.once('value')
         .then((snapshot) => {
           let ordersTemp = [];
-          //var pictures = [];
-          // if (snapshot.val()) {
             snapshot.forEach((item) => {
-              // console.log(child.key, child.val()); 
               ordersTemp.push({
                 chefID: item.val().chef,
-                //chefname: infoRef.child(item.chefID).name,
                 cuisineName: item.val().cuisine,
-                priceAmount: item.val().price
+                orderDate: item.val().date,
+                priceAmount: item.val().price,
+                guestNumber: item.val().guests
+
               });
-              /*pictures.push({
-              });*/
             });
             this.setState({ pastOrdersArray: ordersTemp });
-          // }
         })
+
         chefs.once('value')
         .then((snapshot) => {
           let chefsTemp = [];
-          //var pictures = [];
-          // if (snapshot.val()) {
             snapshot.forEach((item) => {
-              // console.log(child.key, child.val()); 
               chefsTemp.push({
                 chefIDOfficial: item.val().uid,
                 chefName: item.val().name
-                //chefname: infoRef.child(item.chefID).name,
-                //cuisineName: item.val().cuisine,
-                //priceAmount: item.val().price
               });
-              /*pictures.push({
-              });*/
             });
             this.setState({ chefsArray: chefsTemp });
-          // }
         })
         .catch((error) => {
           this.setState({ status: error.message });
         })
       }
+      
 
     });
   }
+// Gets Chef info based on uid 
+  getChefName(chefID) {
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const chefRef = infoRef.child(chefID);
+    const chefName = chefRef.child('name');
+    
+    var chefsActualName = '';
 
+    chefName.once('value')
+    .then((snapshot) => {
+      if  (snapshot.val()) {
+        chefsActualName = snapshot.val();
+        this.setState({chef_name: chefsActualName});
+      }
+    })
+  }
+
+  setModalVisible(visible, chefUID, cuisineInfo, dateInfo, priceInfo, guestAmount) {
+    this.setState({modalVisible: visible, chef: chefUID, cuisine: cuisineInfo, date: dateInfo, 
+      price: priceInfo, guests: guestAmount});
+  }
   componentWillUnmount() {
     this.unsubscribe();
   }
 
+  // Should send be able to click on chef name and send to portfolio
   onClickView() {
-    NavigatorService.navigate('ViewOrder');
+    NavigatorService.navigate('ViewPortfolio');
   }
 
   render() {
     return (
       <View style={styles.container}>
-      <Header
-        //leftComponent={{ icon: 'menu', color: '#fff' }}
+        <Header
         centerComponent={{ text: 'Past Orders', style: {color: '#fff', fontSize: 30, fontStyle: "italic" }}}
-        //rightComponent={{ icon: 'home', color: '#fff' }}
         outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
         />
+
         <ScrollView>
           <View>
-            
-          <FlatList
-            data={this.state.pastOrdersArray}
-            keyExtractor={(item, index) => index}
-            renderItem={ ({item}) =>
-              <View style={styles.container}>
-              <TouchableHighlight onPress={this.onClickView.bind(this)}>{
-                <ListItem
-                  /*image={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}>
-                  <Text h1>Chef: {item.chefID}</Text>
-                  <Text h2>Price: {item.priceAmount}</Text>
-                  <Text h3>Cuisine: {item.cuisineName}</Text>*/
-                  large
-                    roundAvatar
-                    avatar={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
-                    title={item.chefID}
-                    subtitle={item.cuisineName}
-                    />
-              }
-              </TouchableHighlight>
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {
+                alert('Modal has been closed.');
+              }}>
+              <View style={{marginTop: 22, height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+                <View style={styles.centeredModal}>
+                  <PricingCard
+                    color= {colors.tabNavBackground}
+                    containerStyle= {styles.containerBorder}
+                    title={this.state.date}
+                    price={this.state.price}
+                    info={[this.state.cuisine + ' cuisine','With ' + this.state.chef_name, this.state.guests + ' guests']}
+                    button={{ title: 'See All Orders', icon: 'format-align-justify' }}
+                    onButtonPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);
+                    }}
+                  />
+                </View>
+                  
               </View>
-            } 
-          /> 
+            </Modal>
+
+            <FlatList
+              data={this.state.pastOrdersArray}
+              keyExtractor={(item, index) => index}
+              renderItem={ ({item}) =>
+              
+                <View style={styles.container}>
+                  <TouchableHighlight onPress={() => {
+                    this.setModalVisible(true, item.chefID, item.cuisineName, item.orderDate, item.priceAmount, item.guestNumber);
+                    this.getChefName(item.chefID);
+                    }}
+                  >{
+                    <ListItem
+                      title={item.orderDate}
+                        subtitle={item.priceAmount}
+                    />
+                    }
+                  </TouchableHighlight>
+                </View>
+              } 
+            />
           </View>
         </ScrollView>
       </View>
@@ -170,12 +187,28 @@ styles = StyleSheet.create({
   border: {
     borderBottomColor: 'black',
     borderBottomWidth: 1
+  }, center: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paddingImage: {
+    paddingTop: 30,
+    paddingBottom: 5
   },
   bigText : {
     backgroundColor: colors.background,
     fontSize: 20,
     padding: 20,
     color: colors.text,
+  },
+  centeredModal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: '20%',
+  }, 
+  containerBorder: {
+    borderRadius: 10
   }
 })
 

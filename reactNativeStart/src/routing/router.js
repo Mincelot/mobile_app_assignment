@@ -1,14 +1,22 @@
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-navigation';
+import { addListener } from '../utils/redux';
 
 import LogInPage from '../screens/LogInPage';
 import RegisterPage from '../screens/RegisterPage';
-import TabIndex from '../screens/TabIndex';
-import TabIndexServiceProvider from '../screens/TabIndexServiceProvider';
-import MiddleManPortfolioServiceProvider from '../screens/MiddleManPortfolioServiceProvider';
+import TabPortfolioServiceProvider from '../screens/TabPortfolioServiceProvider';
+// import TabIndex from '../screens/TabIndex';
+// import TabIndexServiceProvider from '../screens/TabIndexServiceProvider';
+// import MiddleManPortfolioServiceProvider from '../screens/MiddleManPortfolioServiceProvider';
 import OrderPage from '../screens/OrderPage';
 
-export const LogIn = StackNavigator({
+import { Root } from './tabRouter';
+import { RootServiceProvider } from './tabRouterServiceProvider';
+
+
+export const AppNavigator = StackNavigator({
         LogInPage: {
             screen: LogInPage
         },
@@ -16,13 +24,13 @@ export const LogIn = StackNavigator({
             screen: RegisterPage
         },
         TabIndexServiceProvider: {
-            screen: TabIndexServiceProvider
+            screen: RootServiceProvider
         },
         TabIndexPageClient: {
-            screen: TabIndex
+            screen: Root
         },
         ViewPortfolio: {
-            screen: MiddleManPortfolioServiceProvider
+            screen: TabPortfolioServiceProvider
         },
         ViewOrder: {
             screen: OrderPage
@@ -33,4 +41,48 @@ export const LogIn = StackNavigator({
     }
 );
 
-export default LogIn;
+class AppWithNavigationState extends React.Component {
+    static propTypes = {
+      dispatch: PropTypes.func.isRequired,
+      nav: PropTypes.object.isRequired,
+    };
+
+    // Back Button Functionality. Note that should remove this eventually,
+    // as a signed in user, needs to log out before seeing the log in screen again.
+    // componentDidMount() {
+    //     BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
+    // }
+    // componentWillUnmount() {
+    //     BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
+    // }
+    // onBackPress = () => {
+    //     const { dispatch, nav } = this.props;
+    //     if (nav.index === 0) {
+    //         return false;
+    //     }
+    //     dispatch(NavigationActions.back());
+    //         return true;
+    // };
+
+    // Back Button functionality ends here.
+    render() {
+      const { dispatch, nav } = this.props;
+      return (
+        <AppNavigator
+          navigation={addNavigationHelpers({
+            dispatch,
+            state: nav,
+            addListener,
+          })}
+        />
+      );
+    }
+}
+
+const mapStateToProps = state => ({
+    nav: state.nav,
+});
+
+export default connect(mapStateToProps)(AppWithNavigationState);
+
+// export default LogIn;

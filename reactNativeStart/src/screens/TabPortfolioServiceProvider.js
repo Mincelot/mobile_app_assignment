@@ -3,45 +3,73 @@ import { Text, StyleSheet, View, ScrollView, TextInput, FlatList,
    Modal, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
-import { Card,Header, Icon, Button, FormInput } from 'react-native-elements';
+import { NavigationActions } from "react-navigation";
+import { Card, Header, Icon, Button, FormInput } from 'react-native-elements';
 import firebase from 'firebase';
 
 class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {picFolders: [], modalVisible: false, tempUrl: ''}; //folder has text + picUrl 
-    this.isViewMode = this.props.isView ? true : false;
-    // this.userid = this.props.userId
-    this.user = null;
+    this.isViewMode = false;
+    this.userUidPassedIn = '';
+    if (this.props && this.props.navigation && this.props.navigation.state && this.props.navigation.state.params) {
+      this.isViewMode = this.props.navigation.state.params.isView ? true : false;
+      this.userUidPassedIn = this.props.navigation.state.params.selectedUserUid;
+    }
+    this.unsubscribe = null;
   }
   componentWillMount() {
-    this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
-      if (user) {
-        this.user = user;
-        const rootRef = firebase.database().ref().child("users");
-        const infoRef = rootRef.child('info');
-        const userRef = infoRef.child(this.user.uid);
-        const picRef = userRef.child('picFolder');
-        picRef.once('value')
+    if (!this.isViewMode) {
+      this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
+        if (user) {
+          const rootRef = firebase.database().ref().child("users");
+          const infoRef = rootRef.child('info');
+          const userRef = infoRef.child(user.uid);
+          const picRef = userRef.child('picFolder');
+          picRef.once('value')
 
-        .then((snapshot) => {
-          var picTemp = [];
-          if (snapshot.val()){
-            snapshot.forEach((item) => {
-              picTemp.push({
-                description: item.val().text,
-                picture: item.val().picUrl
+          .then((snapshot) => {
+            var picTemp = [];
+            if (snapshot.val()){
+              snapshot.forEach((item) => {
+                picTemp.push({
+                  description: item.val().text,
+                  picture: item.val().picUrl
+                });
               });
-            });
-            this.setState({ picFolders: picTemp});
-          }
-        })
-        .catch((error) => {
-          this.setState({ status: error.message });
-        })
-      }
+              this.setState({ picFolders: picTemp});
+            }
+          })
+          .catch((error) => {
+            this.setState({ status: error.message });
+          })
+        }
 
-    });
+      });
+    } else {
+      const rootRef = firebase.database().ref().child("users");
+      const infoRef = rootRef.child('info');
+      const userRef = infoRef.child(this.userUidPassedIn);
+      const picRef = userRef.child('picFolder');
+      picRef.once('value')
+
+      .then((snapshot) => {
+        var picTemp = [];
+        if (snapshot.val()){
+          snapshot.forEach((item) => {
+            picTemp.push({
+              description: item.val().text,
+              picture: item.val().picUrl
+            });
+          });
+          this.setState({ picFolders: picTemp});
+        }
+      })
+      .catch((error) => {
+        this.setState({ status: error.message });
+      })
+    }
   }
   
   onTextChange(item, returnText) {
@@ -56,7 +84,9 @@ class TabPortfolioServiceProvider extends React.Component {
   }
 
   componentWillUnmount() {
-    this.unsubscribe();
+    if (this.unsubscribe != null) {
+      this.unsubscribe();
+    }
   }
 
   uploadPicture(){
@@ -67,6 +97,10 @@ class TabPortfolioServiceProvider extends React.Component {
 
   setModalVisible() {
     this.setState({modalVisible: false});
+  }
+
+  backButton() {
+    this.props.navigation.dispatch(NavigationActions.back());
   }
 
   render() {
@@ -81,17 +115,23 @@ class TabPortfolioServiceProvider extends React.Component {
               color='#fff'
               size={40}
               onPress={() => {this.setState({ modalVisible: true})}}
-            /> }         
+            /> }
             outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
           />
           } 
         </View>
         <View>     
-            {this.isViewMode && //view mode false = chef user 
-          <Header
-            centerComponent={{ text: 'Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}        
-            outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}  
-          />
+          {this.isViewMode && //view mode false = chef user 
+            <Header
+              leftComponent={<Icon
+                name='arrow-back'
+                color='#fff'
+                size={40}
+                onPress={this.backButton.bind(this)}
+              />}
+              centerComponent={{ text: 'Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}        
+              outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}  
+            />
           } 
         </View>
         {/* <View> */}

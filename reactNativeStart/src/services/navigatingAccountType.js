@@ -13,9 +13,11 @@ function readyForNavigation(userUid, navigator, skipLookUp) {
     .then((snapshot) => {
         if (snapshot.val()) {
             if (snapshot.val().isAccountTypeClient) {
-                navigator.navigate("TabIndexPageClient");
+                navigator.dispatch({ type: 'LogInClient' });
+                // navigator.navigate("TabIndexPageClient");
             } else {
-                navigator.navigate("TabIndexServiceProvider");
+                navigator.dispatch({ type: 'LogInServiceProvider' });
+                // navigator.navigate("TabIndexServiceProvider");
             }
         }
     })
