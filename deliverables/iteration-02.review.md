@@ -25,6 +25,7 @@ List process-related (i.e. team organization) decisions that, in retrospect, tur
  * Feel free to refer/link to process artifact(s).
  
   1. The decision that we each share our own ideas about the UI designs and then come to a conclusion about what design we are going to have instead of doing each page separately by each group member is successful because it reduce a lot of time for us to go back and unify the style of the UI.
+  
  2. The decision that we decide what tasks to fulfilled and then distribute them across members turns out to be successful because after the initially meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. We then decides to assign each of the above tasks as follows: Log in/ Registration (Helen/Ke Lan), Search Page (Vlad), Profile for clients (Mariko),Profile for service provider(Akanksha),Message page (Emil) and account setting page (Mike/Yu Xuan).
  
  ![Imgur](https://i.imgur.com/JjZu58y.png)
@@ -39,6 +40,7 @@ List process-related (i.e. team organization) decisions that, in retrospect, wer
  * Ordered from most to least important.
  * Feel free to refer/link to process artifact(s).
 
+We planned to meet in person but due to schedule/ location conflicts this did not happen as often as we would have liked. We were only able to conduct full group meetings over skype and in tutorial. We did not have group coding sessions. Subdivisions of the group met up in person to review code/ go over minor coding details. Bigger idea/ layout issues were delt with in tutorial or over skype when the entirety of the group was present. 
 
 #### Planned changes
 
@@ -47,7 +49,7 @@ List any process-related changes you are planning to make (if there are any)
  * Ordered from most to least important.
  * Explain why you are making a change.
 
-We planned to meet in person but due to schedule/ location conflicts we this did not happen as often as we would have liked. We were only able to conduct full group meetings over skype and in tutorial. We did not have group coding sessions. Subdivisions of the group met up in person to review code/ go over minor coding details. Bigger idea/ layout issues were delt with in tutorial or over skype when the entirety of the group was present. 
+Have shorter regular update meetings rather than longer sparsed update meetings. Due to scheduling conflicts its harder to find time for longer periods, it would be more convenient if it was a 20 minute quick updates and discussion meeting instead. 
 
 ## Product - Review
 
@@ -63,6 +65,7 @@ We planned to meet in person but due to schedule/ location conflicts we this did
  3. Account pages
  4. Message board
  5. Search page
+ 6. Profile pages 
 
 #### Goals and/or tasks that were planned but not met/completed:
 
@@ -70,7 +73,11 @@ We planned to meet in person but due to schedule/ location conflicts we this did
  * For each goal/task, explain why it was not met/completed.      
    e.g. Did you change your mind, or did you just not get to it yet?
 
+   For client and service provider, we had to change from uploading an image from device to uploading an image via URL. This was due to space issues related to our databse. 
+   
    For the client profile, we had first decided to allow the client to upload photos to their orders. But we then agreed that we wanted the creative side of the app to be strictly for the chefs/bartenders (so they can add pictures for each order in order to have complete control over their portfolio) whereas clients are simply customers that can view their past orders and make new orders. 
+   
+   For service provider profile, we prioritized linking the profile with searches and implementing upload of pictures and linking it to database. However a certain functionality of deleting the picture has not been implemented yet due to time constraints. However it is possible to edit the description that goes with the picture.
 
 ## Meeting Highlights
 
@@ -86,4 +93,6 @@ Going into the next iteration, our main insights are:
 
  We need a way for chefs to confirm that the order occured after the fact in order to have records of the order in the passed order's (portfolio) tab. Basically the chef would accept or send a signal to the app which would then charge the client and the order would be recorded. 
 
- In portfolio, when clients look at their past orders, it would be useful to link the chef's name to their portfolio. This would make it simpler for the user to connect to the chef rather than find out the name and then search it in the search tab. 
+ In portfolio, when clients look at their past orders, it would be useful to link the chef's name to their portfolio. This would make it simpler for the user to connect to the chef rather than find out the name and then search it in the search tab.
+ 
+ Move away from Expo so that we can have access to a larger database and then be able to upload images from device rather than input a URL. 
