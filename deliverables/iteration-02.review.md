@@ -26,6 +26,10 @@ List process-related (i.e. team organization) decisions that, in retrospect, tur
  
   1. The decision that we each share our own ideas about the UI designs and then come to a conclusion about what design we are going to have instead of doing each page separately by each group member is successful because it reduce a lot of time for us to go back and unify the style of the UI.
  2. The decision that we decide what tasks to fulfilled and then distribute them across members turns out to be successful because after the initially meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. We then decides to assign each of the above tasks as follows: Log in/ Registration (Helen/Ke Lan), Search Page (Vlad), Profile for clients (Mariko),Profile for service provider(Akanksha),Message page (Emil) and account setting page (Mike/Yu Xuan).
+ 
+ ![Imgur](https://i.imgur.com/JjZu58y.png)
+ ![Imgur](https://i.imgur.com/Qye8lwo.jpg)
+ ![Imgur](https://i.imgur.com/kJnnRck.jpg)
 
 #### Decisions that did not turn out as well as we hoped
 
