@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import { Text, StyleSheet, View } from 'react-native';
-import { StackNavigator } from "react-navigation";
+import { StackNavigator, NavigationActions } from "react-navigation";
 import { FormLabel, FormInput,Button,ButtonGroup, CheckBox, SocialIcon } from 'react-native-elements';
 import ReadyForNavigation from '../services/navigatingAccountType';
 import colors from '../styles/color';
@@ -17,7 +17,8 @@ class RegisterPage extends React.Component {
   }
 
   onGoBack(){
-    this.props.navigation.navigate('LogInPage');
+    // this.props.navigation.navigate('LogInPage');
+    this.props.navigation.dispatch(NavigationActions.back());
   }
 
   onSignUp() {
