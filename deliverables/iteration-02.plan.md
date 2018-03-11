@@ -1,9 +1,5 @@
 # Ratatouille / team 23 
 
- > _Note:_ This document is meant to be written during (or shortly after) your initial planning meeting.     
- > It does not really make sense for you to edit this document much (if at all) while working on the project - Instead, at the end of the planning phase, you can refer back to this document and decide which parts of your plan you are happy with and which parts you would like to change.
-
-
 ## Iteration 02
 
  * Start date: February 22, 2018
@@ -16,10 +12,8 @@
 #### Roles & responsibilities
 
 Describe the different roles on the team and the responsibilities associated with each role.
-* As descripted from last iteration, we will be briefly identifying number of taks (such as page views and functions)that are most important and distribute them equally to each member as the responsibilities based on how much spare time and the ability they have.
-* During the initial meeting, each of us plays a role in sharing and discussing ideas regarding to UI design and the specific functions for each of application page.
-* After the initially meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. 
-* We then decides to assign each of the above tasks as follows: Log in/ Registration (Helen), Search Page (Vlad), Profile for clients (Mariko),Profile for service provider(Akanksha),Message page (Emil) and account setting page (Mike).
+* As descripted from last iteration, we will be briefly identifying number of tasks (such as page views and functions)that are most important and distribute them equally to each member as the responsibilities based on how much spare time and the ability they have.
+* During the initial meeting, each of us will play a role in sharing and discussing ideas regarding to UI design and the specific functions for each of application page.
 
 #### Events
 
@@ -46,7 +40,6 @@ List/describe the artifacts you will produce in order to organize your team.
 
 * The Task-boards on Asana will guide each member about their particular functions to code.
 * Tasks distributed in the meetings will be organised on Asana as log notes by priority. Tasks will be assigned to members based on their expertise and interest in the function. 
-* We will also produce some sketches for UI designs and an outline guide for the major pages on blackboard during in person meeting.
 
 #### Git / GitHub workflow
 
@@ -83,3 +76,6 @@ List/describe the artifacts you will produce in order to present your project id
  * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
  * Be concise, yet precise.         
    For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
+   
+ - We will produce sketches of the UI design during the course of several personal meeting and potentially online meetings.
+ - In addition, we will also provide screenshots of the discussion board (Asana) we use to brainstorm features of different pages.
