@@ -11,38 +11,28 @@
 
 #### Roles & responsibilities
 
-Describe the different roles on the team and the responsibilities associated with each role.
----
-* As descripted from last iteration, we will be briefly identifying number of tasks (such as page views and functions)that are most important and distribute them equally to each member as the responsibilities based on how much spare time and the ability they have.
+* We will first identify the number of tasks (such as page views and functions) that are most important.
+* Then distribute the tasks equally to each member as the responsibilities based on member's preferences and how much spare time they have.
 * During the initial meeting, each of us will play a role in sharing and discussing ideas regarding to UI design and the specific functions for each of application page.
 * After the initially meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. 
-* We then decides to assign each of the above tasks as follows: Log in/ Registration (Helen), Search Page (Vlad), Profile for clients (Mariko),Profile for service provider(Akanksha),Message page (Emil) and account setting page (Mike).
+* We then decided to assign each of the above tasks as follows: Log in/ Registration (Helen), Search Page (Vlad), Profile for clients (Mariko),Profile for service provider(Akanksha),Message page (Emil) and account setting page (Mike).
+
 
 #### Events
 
-Describe meetings (and other events) you are planning to have:
-
- * When and where? In-person or online?
- * What's the purpose of each meeting?
- * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
-----
+We planned to host the following meetings during this iteration:
  * In person meeting - Feb 27th: Decide on a UI and distribute features to individual members to code.
  * In person meeting - March 1st: Coding session + review code + UI graphical layout designs 
- * In person meeting - March 9th: Progress result exchanges and some discussion relating to message fucntion and problems encountered.
- * Online meeting - March 11th: On Skype call, each group member will discusse any final concerns and gather together to finalize the video and deliverable paperworks.
+ * In person meeting - March 9th: Progress result exchanges and some discussion relating to message function and problems encountered.
+ * Online meeting - March 11th: On Skype call, each group member will discuss any final concerns and gather together to finalize the video and deliverable paperworks.
+
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to organize your team.       
-
- * Artifacts can be To-do lists, Task boards, schedule(s), etc.
- * We want to understand:
-   * How do you keep track of what needs to get done?
-   * How do you prioritize tasks?
-   * How do tasks get assigned to team members?
-
-* The Task-boards on Asana will guide each member about their particular functions to code.
-* Tasks distributed in the meetings will be organised on Asana as log notes by priority. Tasks will be assigned to members based on their expertise and interest in the function. 
+* By using the Task-Board feature on Asana, we create a sub-board with the meeting date as the name and log any notes / tasks that needs to be done as the tab that falls under the board.
+* Any meeting schedules or extra notices will also be posted as tabs under the meeting date.
+* The priority of tasks will be specially mentioned in the task tab to indicate its importance. 
+* Tasks distributed in the meetings will be organized on Asana as log notes by priority. Tasks will be assigned to members based on their expertise and interest in the function. 
 
 #### Git / GitHub workflow
 
