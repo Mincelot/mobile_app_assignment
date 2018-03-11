@@ -44,22 +44,26 @@ For example, "we use pull-requests" is not a precise statement since it leaves t
  * If applicable, specify any naming conventions or standards you decide to adopt.
  * Don't forget to **explain why** you chose this workflow.
  
- * Since we plan to split out tasks equally and each of them are independent in files, we will be less likely to encounter conflicts in codes. Therefore our Git workflow focuses majorly in commiting to the master branch within the product directory.
- * Our current project product directory is named as "reactiveNativeStart" as we are now developing our project from the code mock up prototype.
- * Each member is responsible to create the necessary file and implement the functions within that file. Then commiting and pushing the new file to the product directory in the master branch.
- * If we encounter any conflicts in code, the member is responsible to reach to the other and discuss whose part to keep for final version.
+ * Since we plan to split out tasks equally and each of the features are independent in files, we will be less likely to encounter code conflicts within the same JavaScript file. 
+ * Above is the reason why our Git workflow focuses majorly in commiting to the master branch within the product directory.
+ * Our current project product directory is named as "reactiveNativeStart" because we are now developing our project from the code mock up prototype. Once we have the project finalized, we will be renaming the product directory.
+ * Each member is responsible to create the necessary file and implement the functions within that file. Then committing and pushing the new file to the product directory in the master branch.
+ * If we encounter any conflicts in code, the committer is responsible to reach to the member who is responsible for developing that feature and together they need to discuss whose part to keep for final version.
 
 
 ## Product
 
 #### Goals and tasks
 
- * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.
- * Order the items from most to least important.
- * Feel free (but not obligated) to specify some/all tasks as user stories.
+* The goal for this iteration is to produce a working application of our project with some of its most important and basic functionalities included (including both front end navigation and some back end functions such as database manipulation ). 
+* The functions (as listed on Asana) are: Login page, Registration page, Account pages, Profile pages, Message board and Search page. 
+* In order to complete our goal for this iteration, we briefly list the following tasks with descending priorities:
+* Task 1: Initial meeting to identify which features are most important and basic 
+* Task 2: Distribute the features as tasks to each team member as their responsibilities for this iteration
+* Task 3: Have the front end (Graphic UI) implemented and partial back-end functions implemented and make sure they work properly
+* Task 4: Meeting to decide on a final UI theme design / layout
+* Task 5: Finalize UI designs on the application
 
-* The goal is to produce a working application of our project with some of its most important and basic functionalities included. The functions (as listed on Asana) are: Login page, Registration page, Account pages, Profile pages, Message board, Search page. 
- 
 
 #### Artifacts
 
@@ -69,6 +73,9 @@ List/describe the artifacts you will produce in order to present your project id
  * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
  * Be concise, yet precise.         
    For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
-   
-* We will produce sketches of the UI design during the course of several personal meeting and potentially online meetings.
-* In addition, we will also provide screenshots of the discussion board (Asana) we use to brainstorm features of different pages.
+   --
+* The main artifact for this iteration is the actual application codes that can be tested on both Android and IOS platform using Expo.
+* Without showing the actual application and its code, we cannot present our project to the audiences.
+* We will also produce sketches of the UI design and use it as the major reference on how to implement the front end designs (i.e. Button location and shapes, Text front, major theme color, icons, etc)
+* In addition, we will also provide screenshots of the discussion board (Asana) we use to brainstorm features of different pages. These are useful to our team as a back reference because when any of us is confused about the current progress, we can always refer back to the notes on Asana and continue working from there.
+
