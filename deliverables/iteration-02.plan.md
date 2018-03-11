@@ -12,10 +12,8 @@
 #### Roles & responsibilities
 
 Describe the different roles on the team and the responsibilities associated with each role.
-* As descripted from last iteration, we will be briefly identifying number of taks (such as page views and functions)that are most important and distribute them equally to each member as the responsibilities based on how much spare time and the ability they have.
-* During the initial meeting, each of us plays a role in sharing and discussing ideas regarding to UI design and the specific functions for each of application page.
-* After the initially meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. 
-* We then decides to assign each of the above tasks as follows: Log in/ Registration (Helen), Search Page (Vlad), Profile for clients (Mariko),Profile for service provider(Akanksha),Message page (Emil) and account setting page (Mike).
+* As descripted from last iteration, we will be briefly identifying number of tasks (such as page views and functions)that are most important and distribute them equally to each member as the responsibilities based on how much spare time and the ability they have.
+* During the initial meeting, each of us will play a role in sharing and discussing ideas regarding to UI design and the specific functions for each of application page.
 
 #### Events
 
