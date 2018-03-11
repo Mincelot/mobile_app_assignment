@@ -7,6 +7,7 @@ import colors from '../styles/color';
 import defaultStyles from '../../src/styles/default';
 // import appConstants from '../constants/appConstants';
 import firebase from 'firebase';
+import { connect } from 'react-redux';
 
 const mockData1 = require('../data/data1');
 
@@ -24,7 +25,8 @@ class TabSearch extends React.Component {
       .then((snapshot) => {
         var dataTemp = [];
         snapshot.forEach((item) => {
-          dataTemp.push({  
+          dataTemp.push({
+            uid: item.key,
             name: item.val().name,
             email: item.val().email
           });
@@ -51,6 +53,7 @@ class TabSearch extends React.Component {
           let dataTemp = [];
           snapshot.forEach((item) => {
             dataTemp.push({
+              uid: item.key,
               name: item.val().name,
               email: item.val().email
             });
@@ -73,6 +76,7 @@ class TabSearch extends React.Component {
           let dataTemp = [];
           snapshot.forEach((item) => {
             dataTemp.push({
+              uid: item.key,
               name: item.val().name,
               email: item.val().email
             });
@@ -105,8 +109,17 @@ class TabSearch extends React.Component {
     // this.onChangeSearchText("");
     // this.setState({data : this.state.dataBackup, searchParam: ''});
   // }
-  onClickView() {
-    NavigatorService.navigate('ViewPortfolio');
+  onClickView(item) {
+    // NavigatorService.navigate('ViewPortfolio');
+    var tempData = this.state.data;
+    let selectedUserUid = '';
+    for (let i = 0; i < tempData.length; i++) {
+      if (tempData[i].uid == item.uid) {
+        selectedUserUid = tempData[i].uid;
+      }
+    }
+    // this.props.navigation.state
+    this.props.navigation.dispatch({ type: 'ViewPortfolio', selectedUserUid: selectedUserUid });
   }
   onChangeSearchText(newSearchString) {
     // Needs no server call. Essentially just filtering the data from the available filters.
@@ -153,7 +166,7 @@ class TabSearch extends React.Component {
                 data={this.state.data}
                 keyExtractor={(item, index) => index}
                 renderItem={({item}) =>
-                <TouchableHighlight onPress={this.onClickView.bind(this)}>
+                <TouchableHighlight onPress={this.onClickView.bind(this, item)}>
                 {/* <View style={[styles.border, styles.rowAlign]}>
                     <View style={styles.avatar}>
                       <Avatar
@@ -217,4 +230,5 @@ const styles = StyleSheet.create({
   }
 
 });
-export default TabSearch;
+
+export default (TabSearch);
