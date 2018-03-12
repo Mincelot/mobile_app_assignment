@@ -33,10 +33,6 @@ Have shorter regular update meetings rather than longer sparsed update meetings.
 ## Product - Review
 
 #### Goals and/or tasks that were met/completed:
-
- * From most to least important.
- * Refer/link to artifact(s) that show that a goal/task was met/completed.
- * If a goal/task was not part of the original iteration plan, please mention it.
  
   Our task is basically divided into doing several different pages for our application, each page (except for messages) is fully implemented with the core features.
  1. Registration page (insert screenshot)
