@@ -10,9 +10,11 @@
 
 #### Decisions that turned out well
 
- 1. The decision that we each share our own ideas about the UI designs and then come to a conclusion about what design we are going to have instead of doing each page separately by each group member is successful because it reduce a lot of time for us to go back and unify the style of the UI.
+ 1. We each shared our own ideas about the UI designs and then came to a conclusion about what design we were going to implement, as opposed to working on each page separately. This was successful because it reduced a lot of time for us when we had did a refurbishing of the app in order to have a more unified style of the UI.
   
- 2. The decision that we decide what tasks to fulfilled and then distribute them across members turns out to be successful because after the initially meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. We then decides to assign each of the above tasks as follows: Log in/ Registration (Helen/Ke Lan), Search Page (Vlad), Profile for clients (Mariko),Profile for service provider(Akanksha),Message page (Emil) and account setting page (Mike/Yu Xuan).
+ 2. We decide what tasks should be fulfilled and then distributed them across members. This turned out to be successful because after the initially meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. We then decides to assign each of the above tasks as follows: Log in/ Registration (Helen/Ke Lan), Search Page (Vlad), Profile for clients (Mariko), Profile for service provider(Akanksha), Message page (Emil) and account setting page (Mike/Yu Xuan).
+ 
+ 3. On certain occasions, we grouped up in smaller groups, 2-3 people and coded on core functionalities that behaved in a similar manner. Having this face to face contanct meant agreeing on smaller implementations and sharing re-usable code from the project went by more smoothly. Log In and Registration, was one interconnected set, the other was the two different profile screens which depended on which type of account a user signed in as.
  
  ![Imgur](https://i.imgur.com/JjZu58y.png)
  ![Imgur](https://i.imgur.com/Qye8lwo.jpg)
@@ -20,7 +22,7 @@
 
 #### Decisions that did not turn out as well as we hoped
 
-The only problem with assigning each member a completely different task was that each member was in charge of their own deadlines and unfortunately not every task was met for the deliverable. We should assign deadlines as a team at the beginning of the next deliverable. 
+The only problem with assigning each member a completely different task was that each member was in charge of their own deadlines and unfortunately not every task was met for the deliverable. As a future reference, We should have assigned deadlines as a team at the beginning of the next deliverable.
 
 We planned to meet in person but due to schedule/ location conflicts this did not happen as often as we would have liked. We were only able to conduct full group meetings over skype and in tutorial. We did not have group coding sessions. Subdivisions of the group met up in person to review code/ go over minor coding details. Bigger idea/ layout issues were delt with in tutorial or over skype when the entirety of the group was present. 
 
