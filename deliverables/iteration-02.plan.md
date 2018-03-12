@@ -7,14 +7,12 @@
 
 ## Process
 
-(Optional:) Quick introduction
-
 #### Roles & responsibilities
 
 * We will first identify the number of tasks (such as page views and functions) that are most important.
 * Then distribute the tasks equally to each member as the responsibilities based on member's preferences and how much spare time they have.
 * During the initial meeting, each of us will play a role in sharing and discussing ideas regarding to UI design and the specific functions for each of application page.
-* After the initially meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. 
+* After the initial meeting, we decided to implement views and functions for pages including log in / registration page, dashboard profile for service provider accounts, past order history for client accounts, service search page, message page and account setting page. 
 * We then decided to assign each of the above tasks as follows: Log in/ Registration (Helen), Search Page (Vlad), Profile for clients (Mariko),Profile for service provider(Akanksha),Message page (Emil) and account setting page (Mike).
 
 
