@@ -37,8 +37,8 @@ Have shorter regular update meetings rather than longer sparsed update meetings.
 #### Goals and/or tasks that were met/completed:
  
   Our task is basically divided into doing several different pages for our application, each page (except for messages) is fully implemented with the core features.
- 1. Registration page (insert screenshot)
- 2. Login Page (insert screenshot of login page here)
+ 1. Registration page
+ 2. Login Page
  3. Account pages (uploading profile picture, editing email, etc)
  4. Search page (by name and/or provided service such as chef or barista)
  5. Profile pages for clients (with past orders and order details) and chefs (with pictures and discriptions)
