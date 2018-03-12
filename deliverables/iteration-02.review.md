@@ -37,8 +37,8 @@ Have shorter regular update meetings rather than longer sparsed update meetings.
 #### Goals and/or tasks that were met/completed:
  
   Our task is basically divided into doing several different pages for our application, each page (except for messages) is fully implemented with the core features.
- 1. Registration page
- 2. Login Page
+ 1. Registration page (insert screenshot)
+ 2. Login Page (insert screenshot of login page here)
  3. Account pages (uploading profile picture, editing email, etc)
  4. Search page (by name and/or provided service such as chef or barista)
  5. Profile pages for clients (with past orders and order details) and chefs (with pictures and discriptions)
@@ -57,17 +57,17 @@ Have shorter regular update meetings rather than longer sparsed update meetings.
 
 Going into the next iteration, our main insights are:
 
- We have come to some conclusion on the particular style of the app, having a blue and purple color implementation, with white background for spaces in the layout, yet greater defining the style would not hurt. As an example, in particular the different libraries we use for text fields and input, which come with different predifined styles and margin numbers on the sides.
+ We have come to some conclusion on the particular style of the app, having a blue and purple color implementation, with a white background for spaces in the layout, yet greater defining the style would not hurt. As an example, in particular, the different libraries we use for text fields and input, which come with different predefined styles and margin numbers on the sides.
  
- We currently have small differences between our android and ios mobile versions, such as there being a difference in the header margin. Further testing for any unforseen differences wouldn't hurt. In particular, the biggest difference is the lack of back button on an ios mobile device, which as of now we have succesfully dealt with on by having a back button on the registration page and the portfolio page.
+ We currently have small differences between our android and ios mobile versions, such as there is a difference in the header margin. Further testing for any unforeseen differences wouldn't hurt. In particular, the biggest difference is the lack of a back button on an ios mobile device, which as of now we have successfully dealt with on by having a back button on the registration page and the portfolio page.
 
- For the client aspect (on the portofolio/past orders tab) of the app, we should implement a way for them to add ratings/ comment. This should make finding their favourite chefs easier as well as giving chefs feedback. Their feedback/ rating would be made known to the chef. We should decide whether we want ratings/comments to be public to other client users. 
+ For the client aspect (on the portfolio/past orders tab) of the app, we should implement a way for them to add ratings/ comment. This should make finding their favorite chefs easier as well as giving chefs feedback. Their feedback/ rating would be made known to the chef. We should decide whether we want ratings/comments to be public to other client users. 
 
- We need a way for chefs to confirm that the order occured after the fact in order to have records of the order in the passed order's (portfolio) tab. Basically the chef would accept or send a signal to the app which would then charge the client and the order would be recorded. 
+ We need a way for chefs to confirm that the order occurred after the fact in order to have records of the order in the passed order's (portfolio) tab. Basically, the chef would accept or send a signal to the app which would then charge the client and the order would be recorded. 
 
- In portfolio, when clients look at their past orders, it would be useful to link the chef's name to their portfolio. This would make it simpler for the user to connect to the chef rather than find out the name and then search it in the search tab.
+ In the portfolio, when clients look at their past orders, it would be useful to link the chef's name to their portfolio. This would make it simpler for the user to connect to the chef rather than find out the name and then search it in the search tab.
  
- Move away from Expo so that we can have access to a larger database and then be able to upload images from device rather than input a URL. 
+ Move away from Expo so that we can have access to a larger database and then be able to upload images from the device rather than input a URL. 
 
  We need to implement messages between clients and chefs (this is how services will be initated).
 
