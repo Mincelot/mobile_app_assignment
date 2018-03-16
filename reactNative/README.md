@@ -1,18 +1,21 @@
 # ReactNativeExamplarStarter
-Simple React Native App comprehensive file structure. Uses Expo to test Android or IOS mobile. No Redux implementation, as the file structure differs based on preference at that point.
 
-After downloading/extracting into a folder, go into same path as package.json and run the following(assuming you have 'yarn' installed):
-- yarn install
-- (once yarn install is completed) yarn start 
+Running android:
 
-If you don't have yarn installed:
-- The line below will install brew on ios computers. Copy the two lines into your terminal.
-- The line after will install yarn.
-- An alternative if you have sudo. The following line: 'sudo port install yarn'
+cd reactNative
+yarn install
 
+cd android
+gradlew clean
+cd ..
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+yarn android
 
-brew install yarn
+In android studio, open a new file or project from file. Select the android project.
+When the project opens/gets loaded.
 
-![bothplatformsreactnative](https://user-images.githubusercontent.com/34944774/36071311-7ce9eb94-0eda-11e8-9303-81e0199d169a.png)
+Launch the AVD manager and create an emulator unless you've already created it in the past.
+Check to make sure you have required SDK's installed.
+https://stackoverflow.com/questions/38577669/run-react-native-on-android-emulator
+
+Launch using the green icon.
