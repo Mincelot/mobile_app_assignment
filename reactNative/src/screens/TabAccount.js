@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Text, InputField, StyleSheet, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { Modal, Text, InputField, StyleSheet, View, ScrollView, TouchableOpacity, Alert, Platform } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { FormLabel, FormInput, Button, Avatar, Icon } from 'react-native-elements';
@@ -7,7 +7,14 @@ import firebase from 'firebase';
 import { StackNavigator, NavigationActions } from "react-navigation";
 import TimerMixin from 'react-timer-mixin';
 import NavigatorService from '../services/navigator';
+import ImagePicker from 'react-native-image-crop-picker';
 
+import RNFetchBlob from 'react-native-fetch-blob';
+
+const Blob = RNFetchBlob.polyfill.Blob;
+const fs = RNFetchBlob.fs;
+window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
+window.Blob = Blob;
 
 class TabAccount extends React.Component {
   constructor(props) {
@@ -74,40 +81,50 @@ class TabAccount extends React.Component {
 
     this.setState({ email: this.state.tempEmail, isEditEmailMode: !this.state.isEditEmailMode });
   }
+  uploadImageToStorage(uri, imageName, mime = 'image/jpg') {
+    return new Promise((resolve, reject) => {
+        const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri;
+        let uploadBlob = null
+        // // Save the collected image as the 
+        const rootRef = firebase.storage().ref('Data');
+        const userRef = rootRef.child(this.user.uid);
+        const profilePicRef = userRef.child('ProfilePictures');
+        const imageRef = profilePicRef.child(imageName);
+        // const imageRef = firebaseApp.storage().ref('posts').child(imageName)
+        fs.readFile(uploadUri, 'base64')
+        .then((data) => {
+          return Blob.build(data, { type: `${mime};BASE64` })
+        })
+        .then((blob) => {
+          uploadBlob = blob
+          return imageRef.put(blob, { contentType: mime })
+        })
+        .then(() => {
+          uploadBlob.close()
+          // return imageRef.getDownloadURL()
+        })
+        .then((url) => {
+          resolve(url)
+        })
+        // .catch((error) => {
+        //   reject(error)
+        // })
+    })
+  }
   onUpdateProfilePic() {
-    const rootRef = firebase.database().ref().child("users");
-    const infoRef = rootRef.child('info');
-    const userRef = infoRef.child(this.user.uid);
-    if (this.state.tempprofilePic){
-      userRef.update({
-        profilePicLink: this.state.tempprofilePic
-      })
-      .then((user) => {
-        this.setState({ status: 'Status: Updated profile picture!' });
-
-      })
-      .catch((error) => {
-        this.setState({ status: error.message });
-      })
-      this.setModalVisible(!this.state.modalVisible);
-      this.setState({profilePic: this.state.tempprofilePic})
-      Alert.alert(
-        'Notification',
-        'Profile picture successfully set!',
-        [
-          {text: 'OK', onPress: () => {}}
-        ]
-      )
-    }
-    else{
-      Alert.alert(
-        'Notification',
-        'Please enter a link first!',
-        [
-          {text: 'OK', onPress: () => {}}
-        ]
-      )
-    }
+    // Get image either from a third part 
+    // program such as facebook/instragram or local images.
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      // Set image as current photo locally in interface.
+      this.setState({profilePic: image.path})
+      this.uploadImageToStorage(image.path, 'profilePic');
+    }).catch((error) => {
+      this.setState({ status: error.message });
+    })
   }
   logOut() {
     firebase.auth().signOut()
@@ -164,38 +181,28 @@ class TabAccount extends React.Component {
         const rootRef = firebase.database().ref().child("users");
         const infoRef = rootRef.child('info');
         const userRef = infoRef.child(user.uid);
-        const picRef = userRef.child('picFolder');
+        // const picRef = userRef.child('picFolder');
 
         userRef.once('value')
         .then((snapshot) => {
           if (snapshot.val() && snapshot.val().name) {
             this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
           }
-          if (snapshot.val() && snapshot.val().profilePicLink){
-            this.setState({ profilePic: snapshot.val().profilePicLink, profilePic: snapshot.val().profilePicLink });
-          }
         })
         .catch((error) => {
           this.setState({ status: error.message });
         })
+
+        const rootRefStorage = firebase.storage().ref('Data');
+        const userRefStorage = rootRefStorage.child(user.uid);
+        const profilePicRefStorage = userRefStorage.child('ProfilePictures');
+        const imageRefStorage = profilePicRefStorage.child('profilePic');
+        imageRefStorage.getDownloadURL().then((url) => { 
+          this.setState({ profilePic: url });
+        });
       }
 
     });
-    // var user = firebase.auth().currentUser;
-
-    // if (user != null) {
-      // this.setState({ userUid: user.uid, email: user.email, tempEmail: user.email });
-      // this.user = user;
-
-      // const rootRef = firebase.database().ref().child("users");
-      // const infoRef = rootRef.child('info');
-      // const userRef = infoRef.child(user.uid);
-
-      // userRef.once('value').then(function(snapshot) {
-      //   if (snapshot.val() && snapshot.val().name) {
-      //     this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
-      //   }
-      // });
   }
   componentWillUnmount() {
     this.unsubscribe();
@@ -233,7 +240,8 @@ class TabAccount extends React.Component {
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    // this.setState({modalVisible: visible});
+    this.onUpdateProfilePic();
   }
  
   render() {
@@ -250,7 +258,7 @@ class TabAccount extends React.Component {
                 rounded
                 containerStyle={[styles.center, styles.paddingImage]}
                 icon={{name: 'user', type: 'font-awesome'}}
-                onPress={() => {this.setState({modalVisible: true});}}
+                onPress={this.onUpdateProfilePic.bind(this)}
                 activeOpacity={0.7}
               />
             :
@@ -259,7 +267,7 @@ class TabAccount extends React.Component {
                 rounded
                 containerStyle={[styles.center, styles.paddingImage]}
                 source={{uri: this.state.profilePic}}
-                onPress={() => {this.setState({modalVisible: true});}}
+                onPress={this.onUpdateProfilePic.bind(this)}
                 activeOpacity={0.7}
               />
             }
