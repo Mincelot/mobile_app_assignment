@@ -12,16 +12,15 @@ import firebase from 'firebase';
 class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', name: '',
+    this.state = { email: '', password: '', name: '', profilePicLink:'https://i.imgur.com/W2EHpLA.jpg',
       status: '', selectedIndex: 0, loading: false, isAccountTypeClient: true };
   }
 
   onGoBack(){
-    // this.props.navigation.navigate('LogInPage');
     this.props.navigation.dispatch(NavigationActions.back());
   }
 
-  onSignUp() {
+  onSignUpClient() {
     this.setState({ status: '', loading: true });
     const { email, password } = this.state;
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -35,17 +34,55 @@ class RegisterPage extends React.Component {
         uidRef.set({
           email: this.state.email,
           name: this.state.name,
-          isAccountTypeClient: this.state.isAccountTypeClient
+          isAccountTypeClient: this.state.isAccountTypeClient,
+          pastOrders: '',
+          favorites: ''
         })
         .then((userReturn) => {
           this.setState({ status: 'Success. Welcome!', loading: false });
+          alert("Welcome to CatorCity!");
           ReadyForNavigation.readyForNavigation(user.uid, this.props.navigation);
         })
         .catch((error) => {
+          alert(error.message);
           this.setState({ status: error.message });
         })
       })
       .catch((error) => {
+        alert(error.message);
+        this.setState({ status: error.message, loading: false});
+      })
+  }
+  onSignUpServiceProvider() {
+    this.setState({ status: '', loading: true });
+    const { email, password } = this.state;
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        // Upload name change
+        const rootRef = firebase.database().ref().child("users");
+        const infoRef = rootRef.child('info');
+        const uidRef = infoRef.child(user.uid);
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        // nameRef.push();
+        uidRef.set({
+          email: this.state.email,
+          name: this.state.name,
+          isAccountTypeClient: this.state.isAccountTypeClient,
+          reviews: '',
+          picFolder:''
+        })
+        .then((userReturn) => {
+          this.setState({ status: 'Success. Welcome!', loading: false });
+          alert("Welcome to CatorCity!");
+          ReadyForNavigation.readyForNavigation(user.uid, this.props.navigation);
+        })
+        .catch((error) => {
+          alert(error.message);
+          this.setState({ status: error.message });
+        })
+      })
+      .catch((error) => {
+        alert(error.message);
         this.setState({ status: error.message, loading: false});
       })
   }
@@ -116,7 +153,10 @@ class RegisterPage extends React.Component {
             <Button 
               buttonStyle={styles.buttonColor}
               title="Sign Up"
-              onPress={this.onSignUp.bind(this)}
+              onPress={()=>{
+                if (this.state.isAccountTypeClient){this.onSignUpClient()}
+                else {this.onSignUpServiceProvider}
+              }}
               borderRadius={5}
             />
           </View>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Text, InputField, StyleSheet, View, ScrollView, TouchableOpacity, Alert, Platform } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
-import { FormLabel, FormInput, Button, Avatar, Icon } from 'react-native-elements';
+import { FormLabel, FormInput, Button, Avatar, Icon, Header } from 'react-native-elements';
 import firebase from 'firebase';
 import { StackNavigator, NavigationActions } from "react-navigation";
 import TimerMixin from 'react-timer-mixin';
@@ -249,10 +249,14 @@ class TabAccount extends React.Component {
  
   render() {
     return (
-        <View style={[styles.container, {backgroundColor: '#FDF3E7'}]}>
+        <View style={styles.container}>
+        <Header
+        centerComponent={{ text: 'Account Setting', style: {color: '#fff', fontSize: 30, fontStyle: "italic" }}}
+        outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
+        />
         <ScrollView>
 		  <View style={styles.dividerView}>
-            <Text style={[defaultStyles.marginSidesIndent, styles.labelText]}>Account Setting</Text>
+            {/* <Text style={[defaultStyles.marginSidesIndent, styles.labelText]}>Account Setting</Text> */}
             {/*------------------------------------------Avatar settings starts here--------------------------------------*/}
             <View style={[styles.center, styles.paddingImage]}>
             {!this.state.profilePic ?
@@ -380,7 +384,7 @@ class TabAccount extends React.Component {
                 style={styles.myButton}
                 onPress={() => {this.passwordReset()}}
               >
-                <Text style={{color: '#7E8F7C'}}> Password Reset to Email </Text>
+                <Text style={{color: '#FFF'}}> Password Reset to Email </Text>
               </TouchableOpacity>
             </View>
             <View style={{paddingTop: 10, paddingBottom: 10}}>
@@ -388,7 +392,7 @@ class TabAccount extends React.Component {
                 style={styles.myButton}
                 onPress={() => {this.logOut()}}
               >
-                <Text style={{color: '#7E8F7C'}}> Log Out </Text>
+                <Text style={{color: '#FFF'}}> Log Out </Text>
               </TouchableOpacity>
 
             </View>
@@ -402,7 +406,7 @@ class TabAccount extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 25,
+    paddingTop: 0,
   },
   center: {
     alignItems: 'center',
@@ -429,9 +433,9 @@ const styles = StyleSheet.create({
   myButton: {
     alignItems: 'center',
     padding: 10,
-    borderWidth:2,
-    backgroundColor:"#FDF3E7",
-    borderColor:"#f3753f",
+    // borderWidth:2,
+    backgroundColor:colors.alternatePurple,
+    // borderColor:"#f3753f",
     borderRadius: 15
 
   },
