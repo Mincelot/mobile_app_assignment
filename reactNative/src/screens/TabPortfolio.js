@@ -10,7 +10,7 @@ class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
     this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false, reviewVisible:false,
-    chef: '', cuisine: '' , date: '', price: '', chef_name: '', guests: '',review:[],reviewedFlag: false,text:'',};
+    chef: '', cuisine: '' , date: '', price: '', chef_name: '', client_name:'',guests: '',review:[],reviewedFlag: false,text:'',};
     this.user = null;
   }
 
@@ -18,6 +18,7 @@ class TabPortfolio extends React.Component {
     this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
       if (user) {
         this.setState({ user: user });
+        this.getClientName(user.uid);
 
         const rootRef = firebase.database().ref().child("users");
         const infoRef = rootRef.child('info');
@@ -78,6 +79,24 @@ class TabPortfolio extends React.Component {
     })
   }
 
+  //gets client name based on uid
+  getClientName(cID) {
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const cRef = infoRef.child(cID);
+    const cName = cRef.child('name');
+    
+    var clientActualName = '';
+
+    cName.once('value')
+    .then((snapshot) => {
+      if  (snapshot.val()) {
+        clientActualName = snapshot.val();
+        this.setState({client_name: clientActualName});
+      }
+    })
+  }
+
   setModalVisible(visible, chefUID, cuisineInfo, dateInfo, priceInfo, guestAmount,flag) {
     this.setState({modalVisible: visible, chef: chefUID, cuisine: cuisineInfo, date: dateInfo, 
       price: priceInfo, guests: guestAmount, reviewedFlag:flag});
@@ -100,13 +119,12 @@ class TabPortfolio extends React.Component {
       alert("You have already reviewed this order !");
     }
     else{
-  
       const rootRef = firebase.database().ref().child("users");
       const infoRef = rootRef.child('info');
       const chefRef = infoRef.child(this.state.chef);
       const reviewRef = chefRef.child('reviews');
       var newReview = reviewRef.push();
-      var reviewobj = {reviewer:this.state.user.uid, date:this.state.date, review:this.state.text};
+      var reviewobj = {reviewer:this.state.client_name, date:this.state.date, review:this.state.text};
       newReview.set(JSON.parse( JSON.stringify(reviewobj) ));
       //still need to update reviewed flag to database, but need a way to index the specific order 
 
