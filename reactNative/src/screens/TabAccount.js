@@ -199,6 +199,9 @@ class TabAccount extends React.Component {
         const imageRefStorage = profilePicRefStorage.child('profilePic');
         imageRefStorage.getDownloadURL().then((url) => { 
           this.setState({ profilePic: url });
+        })
+        .catch((error) =>{
+          this.setState({ profilePic: '' });
         });
       }
 
