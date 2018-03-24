@@ -198,6 +198,60 @@ uploadPictureAndDescription(){
     this.props.navigation.dispatch(NavigationActions.back());
   }
 
+
+  checkFavThisChef(){
+    const currentUser = firebase.auth().currentUser;
+    
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const userRef = infoRef.child(currentUser.uid);
+    const favRef = userRef.child('Favourites');
+    const thisChefRef = favRef.child(this.userUidPassedIn);
+
+    thisChefRef.once('value', (snapshot) => {
+     return (snapshot.exists() && snapshot.val() == true);
+    })
+  }
+
+
+  favThisChef(){
+    //this.useUidPassedIn is the id of the user that is going to be favoured
+    const currentUser = firebase.auth().currentUser;
+    
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const userRef = infoRef.child(currentUser.uid);
+    const favRef = userRef.child('Favourites');
+
+    if (this.checkFavThisChef()){
+      Alert.alert(
+        'Notification',
+        'Already did!',
+        [
+          {text: 'OK', onPress: () => {}}
+        ]
+      )
+    }
+
+    let updates = {};
+    updates[this.userUidPassedIn] = true;
+    favRef.update(updates).catch((error) => {
+      Alert.alert(
+        'Notification',
+        'Failed to add to favourites.',
+        [
+          {text: 'OK', onPress: () => {}}
+        ]
+      )
+    })
+
+
+  
+
+
+    
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -224,7 +278,13 @@ uploadPictureAndDescription(){
                 size={40}
                 onPress={this.backButton.bind(this)}
               />}
-              centerComponent={{ text: 'Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}        
+              centerComponent={{ text: 'Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}   
+              rightComponent={<Icon
+                name='star'
+                color='#fff'
+                size={40}
+                onPress={this.favThisChef.bind(this)}
+              />}     
               outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}  
             />
           } 
