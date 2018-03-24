@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, StyleSheet, View, ScrollView, TextInput, FlatList, TouchableHighlight, Modal } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
-import { Divider, Avatar, List, ListItem, Header, Card, PricingCard } from 'react-native-elements';
+import { Divider, Avatar, List, ListItem, Header, Card, PricingCard,Button } from 'react-native-elements';
 import NavigatorService from '../services/navigator';
 import firebase from 'firebase';
 
@@ -116,12 +116,19 @@ class TabPortfolio extends React.Component {
                     title={this.state.date}
                     price={this.state.price}
                     info={[this.state.cuisine + ' cuisine','With ' + this.state.chef_name, this.state.guests + ' guests']}
-                    button={{ title: 'See All Orders', icon: 'format-align-justify' }}
-                    onButtonPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);
-                    }}
+                    button={{ title: 'Write Review', icon: 'rate-review' }}
+                    // need to implement redirect to review
+                    onButtonPress={()=>{}}
+                  />
+                  <View>
+                  <Button 
+                    title="Back To Orders"
+                    onPress={()=>{this.setModalVisible(!this.state.modalVisible);}}
+                    borderRadius={5}
                   />
                 </View>
+                </View>
+                
                   
               </View>
             </Modal>
