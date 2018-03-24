@@ -199,20 +199,6 @@ uploadPictureAndDescription(){
   }
 
 
-  checkFavThisChef(){
-    const currentUser = firebase.auth().currentUser;
-    
-    const rootRef = firebase.database().ref().child("users");
-    const infoRef = rootRef.child('info');
-    const userRef = infoRef.child(currentUser.uid);
-    const favRef = userRef.child('Favourites');
-    const thisChefRef = favRef.child(this.userUidPassedIn);
-
-    thisChefRef.once('value', (snapshot) => {
-     return (snapshot.exists() && snapshot.val() == true);
-    })
-  }
-
 
   favThisChef(){
     //this.useUidPassedIn is the id of the user that is going to be favoured
@@ -222,28 +208,60 @@ uploadPictureAndDescription(){
     const infoRef = rootRef.child('info');
     const userRef = infoRef.child(currentUser.uid);
     const favRef = userRef.child('Favourites');
+    const thisChefRef = favRef.child(this.userUidPassedIn);
 
-    if (this.checkFavThisChef()){
-      Alert.alert(
-        'Notification',
-        'Already did!',
-        [
-          {text: 'OK', onPress: () => {}}
-        ]
-      )
-    }
+    thisChefRef.once('value', (snapshot) => {
+      // check if this chef has not been favoured
+      if (!(snapshot.exists() && snapshot.val() == true)){
+        let updates = {};
+        updates[this.userUidPassedIn] = true;
+        favRef.update(updates)
+        .then((stuff) => {
+          Alert.alert(
+            'Notification',
+            'This chef is now in your Favourites!',
+            [
+              {text: 'OK', onPress: () => {}}
+            ]
+          )
+        })
+        .catch((error) => {
+          Alert.alert(
+            'Notification',
+            'Failed to add to favourites.',
+            [
+              {text: 'OK', onPress: () => {}}
+            ]
+          )
+        })
+      }
+      else{
+        let updates = {};
+        updates[this.userUidPassedIn] = false;
+        favRef.update(updates)
+        .then((stuff) => {
+          Alert.alert(
+            'Notification',
+            'This chef is no longer your favourite.',
+            [
+              {text: 'OK', onPress: () => {}}
+            ]
+          )
+        })
+        .catch((error) => {
+          Alert.alert(
+            'Notification',
+            'Failed to remove from Favourites.',
+            [
+              {text: 'OK', onPress: () => {}}
+            ]
+          )
+        })
+      }
+     })
 
-    let updates = {};
-    updates[this.userUidPassedIn] = true;
-    favRef.update(updates).catch((error) => {
-      Alert.alert(
-        'Notification',
-        'Failed to add to favourites.',
-        [
-          {text: 'OK', onPress: () => {}}
-        ]
-      )
-    })
+
+    
 
 
   
