@@ -110,11 +110,6 @@ class LogInPage extends React.Component {
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
             />
-          {/* <FormLabel>Display Name</FormLabel>
-          <FormInput
-            value={this.state.name}
-            onChangeText={name => this.setState({ name })}
-            /> */}
         </View>
         <View><Text>{this.state.status}</Text></View>
         <View style={styles.buttonContainer}>
@@ -135,7 +130,7 @@ class LogInPage extends React.Component {
               />
           </View>
         </View>
-        <View>
+        {/* <View>
           <SocialIcon
             style={{ padding: 20}}
             title='Sign In With Facebook'
@@ -143,7 +138,7 @@ class LogInPage extends React.Component {
             onPress={this.onFacebookSignIn.bind(this)}
             type='facebook'
           />
-        </View>
+        </View> */}
         {/* <View style={{alignItems: 'center', marginBottom: 15 }}>
             <FormLabel>Account Type</FormLabel>
             <CheckBox
@@ -153,7 +148,7 @@ class LogInPage extends React.Component {
             />
         </View> */}
         <View style={styles.accountContainer}>
-          <View>
+          <View style={{marginTop:20}}>
             <Button
               buttonStyle={styles.buttonColor}
               title="By-pass login. Button for test purposes Only. Client"
