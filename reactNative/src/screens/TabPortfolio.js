@@ -10,7 +10,7 @@ class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
     this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false, reviewVisible:false,
-    chef: '', cuisine: '' , date: '', price: '', chef_name: '', guests: '',review:'',text:'',};
+    chef: '', cuisine: '' , date: '', price: '', chef_name: '', guests: '',review:[],reviewedFlag: false,text:'',};
     this.user = null;
   }
 
@@ -35,6 +35,7 @@ class TabPortfolio extends React.Component {
                 orderDate: item.val().date,
                 priceAmount: item.val().price,
                 guestNumber: item.val().guests,
+                reviewedFlag: item.val().reviewed
               });
             });
             this.setState({ pastOrdersArray: ordersTemp });
@@ -77,9 +78,9 @@ class TabPortfolio extends React.Component {
     })
   }
 
-  setModalVisible(visible, chefUID, cuisineInfo, dateInfo, priceInfo, guestAmount) {
+  setModalVisible(visible, chefUID, cuisineInfo, dateInfo, priceInfo, guestAmount,flag) {
     this.setState({modalVisible: visible, chef: chefUID, cuisine: cuisineInfo, date: dateInfo, 
-      price: priceInfo, guests: guestAmount});
+      price: priceInfo, guests: guestAmount, reviewedFlag:flag});
   }
   componentWillUnmount() {
     this.unsubscribe();
@@ -89,19 +90,28 @@ class TabPortfolio extends React.Component {
   onClickView() {
     NavigatorService.navigate('ViewPortfolio');
   }
-
+  //switches view between price card and review text input
   toggleInput(visible){
     this.setState({reviewVisible:visible});
   }
   //a function that is supposed to append a new review to given chef to database
-  sendReview(chefID,text){
-    if (this.state.review != ''){
+  sendReview(){
+    if (this.state.reviewedFlag){
       alert("You have already reviewed this order !");
     }
     else{
-      this.setState({review:text});
-      alert("Review send");
+  
+      const rootRef = firebase.database().ref().child("users");
+      const infoRef = rootRef.child('info');
+      const chefRef = infoRef.child(this.state.chef);
+      const reviewRef = chefRef.child('reviews');
+      var newReview = reviewRef.push();
+      var reviewobj = {reviewer:this.state.user.uid, date:this.state.date, review:this.state.text};
+      newReview.set(JSON.parse( JSON.stringify(reviewobj) ));
+      //still need to update reviewed flag to database, but need a way to index the specific order 
 
+      alert("Review send");
+      
     }
     
   }
@@ -155,7 +165,7 @@ class TabPortfolio extends React.Component {
                       title="Send Review"
                       borderRadius={5}
                       onPress={()=>{
-                        this.sendReview(this.state.text);
+                        this.sendReview();
                         this.toggleInput(!this.state.reviewVisible);
                         this.setModalVisible(!this.state.modalVisible);}}
                     />
@@ -166,7 +176,10 @@ class TabPortfolio extends React.Component {
                 <View>
                   <Button 
                     title="Back To Orders"
-                    onPress={()=>{this.setModalVisible(!this.state.modalVisible);}}
+                    onPress={()=>{
+                      if (this.reviewVisible){this.toggleInput(!this.reviewVisible);}
+                      this.setModalVisible(!this.state.modalVisible);
+                    }}
                     borderRadius={5}
                   />
                 </View>
@@ -183,7 +196,7 @@ class TabPortfolio extends React.Component {
               
                 <View style={styles.container}>
                   <TouchableHighlight onPress={() => {
-                    this.setModalVisible(true, item.chefID, item.cuisineName, item.orderDate, item.priceAmount, item.guestNumber);
+                    this.setModalVisible(true, item.chefID, item.cuisineName, item.orderDate, item.priceAmount, item.guestNumber,item.reviewedFlag);
                     this.getChefName(item.chefID);
                     }}
                   >{

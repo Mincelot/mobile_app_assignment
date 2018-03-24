@@ -68,7 +68,7 @@ class RegisterPage extends React.Component {
           email: this.state.email,
           name: this.state.name,
           isAccountTypeClient: this.state.isAccountTypeClient,
-          reviews: '',
+          reviews: {},
           picFolder:''
         })
         .then((userReturn) => {
