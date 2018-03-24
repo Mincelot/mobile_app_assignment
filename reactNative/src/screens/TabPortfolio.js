@@ -2,15 +2,15 @@ import React from 'react';
 import { Text, StyleSheet, View, ScrollView, TextInput, FlatList, TouchableHighlight, Modal } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
-import { Divider, Avatar, List, ListItem, Header, Card, PricingCard,Button } from 'react-native-elements';
+import { Divider, Avatar, List, ListItem, Header, Card, PricingCard,Button,Input} from 'react-native-elements';
 import NavigatorService from '../services/navigator';
 import firebase from 'firebase';
 
 class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false, 
-    chef: '', cuisine: '' , date: '', price: '', chef_name: '', guests: ''};
+    this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false, reviewVisible:false,
+    chef: '', cuisine: '' , date: '', price: '', chef_name: '', guests: '',review:'',text:'',};
     this.user = null;
   }
 
@@ -34,8 +34,7 @@ class TabPortfolio extends React.Component {
                 cuisineName: item.val().cuisine,
                 orderDate: item.val().date,
                 priceAmount: item.val().price,
-                guestNumber: item.val().guests
-
+                guestNumber: item.val().guests,
               });
             });
             this.setState({ pastOrdersArray: ordersTemp });
@@ -91,6 +90,22 @@ class TabPortfolio extends React.Component {
     NavigatorService.navigate('ViewPortfolio');
   }
 
+  toggleInput(visible){
+    this.setState({reviewVisible:visible});
+  }
+  //a function that is supposed to append a new review to given chef to database
+  sendReview(chefID,text){
+    if (this.state.review != ''){
+      alert("You have already reviewed this order !");
+    }
+    else{
+      this.setState({review:text});
+      alert("Review send");
+
+    }
+    
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -108,19 +123,47 @@ class TabPortfolio extends React.Component {
               onRequestClose={() => {
                 alert('Modal has been closed.');
               }}>
-              <View style={{marginTop: 22, height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+              <View style={{ height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+
                 <View style={styles.centeredModal}>
-                  <PricingCard
-                    color= {colors.tabNavBackground}
-                    containerStyle= {styles.containerBorder}
-                    title={this.state.date}
-                    price={this.state.price}
-                    info={[this.state.cuisine + ' cuisine','With ' + this.state.chef_name, this.state.guests + ' guests']}
-                    button={{ title: 'Write Review', icon: 'rate-review' }}
-                    // need to implement redirect to review
-                    onButtonPress={()=>{}}
-                  />
-                  <View>
+                  {(! this.state.reviewVisible)? 
+                    <PricingCard
+                      color= {colors.tabNavBackground}
+                      containerStyle= {styles.containerBorder}
+                      title={this.state.date}
+                      price={this.state.price}
+                      info={[this.state.cuisine + ' cuisine','With ' + this.state.chef_name, this.state.guests + ' guests']}
+                      button={{ title: 'Write Review', icon: 'rate-review' }}
+                      onButtonPress={()=>{
+                        this.toggleInput(!this.state.reviewVisible);
+                        }}
+                    />
+                  :null}
+                
+                {(this.state.reviewVisible)?
+                  <View style={{alignItems:'center'}}>
+                    <View style={{marginBottom:10}}><Text style={{fontSize: 20, color:'rgba(255,255,255,0.9)'}}>Give a review</Text></View>
+                    <View style={{height:'50%',width:'80%',borderRadius:5,backgroundColor:'rgba(255,255,255,0.9)'}}>
+                    <TextInput
+                      style={{width:300}}
+                      onChangeText={(text) => this.setState({text})}
+                      value={this.state.text}
+                    />
+                    </View>  
+                    <View style={{marginTop:10}}>
+                    <Button
+                      title="Send Review"
+                      borderRadius={5}
+                      onPress={()=>{
+                        this.sendReview(this.state.text);
+                        this.toggleInput(!this.state.reviewVisible);
+                        this.setModalVisible(!this.state.modalVisible);}}
+                    />
+                    </View>
+                  </View>
+
+                :null}
+                <View>
                   <Button 
                     title="Back To Orders"
                     onPress={()=>{this.setModalVisible(!this.state.modalVisible);}}
