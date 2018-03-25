@@ -17,6 +17,35 @@ class TabSearch extends React.Component {
     this.state = { searchParam : '', data: [], selectedService: 'All', status: '' };
     this.dataBackup = [];
   }
+  loadImages() {
+    this.counter = 0;
+    for (let i = 0; i < this.dataBackup.length; i++) {
+      const rootRefStorage = firebase.storage().ref('Data');
+      const userRefStorage = rootRefStorage.child(this.dataBackup[i].uid);
+      const profilePicRefStorage = userRefStorage.child('ProfilePictures');
+      const imageRefStorage = profilePicRefStorage.child('profilePic');
+      imageRefStorage.getDownloadURL()
+      .then((url) => {
+        this.counter++;
+        this.dataBackup[i].portfolioUri = url;
+        if (this.counter == this.dataBackup.length) {
+          this.loadImagesFinalDestination();
+        }
+      })
+      .catch((error) => {
+        this.counter++;
+        this.setState({ status: error.message });
+        if (this.counter == this.dataBackup.length) {
+          this.loadImagesFinalDestination();
+        }
+      });
+    }
+  }
+  loadImagesFinalDestination() {
+    this.setState({ data: this.dataBackup }, () => {
+      this.onChangeSearchText(this.state.searchParam);
+    })
+  }
   componentDidMount() {
       const rootRef = firebase.database().ref().child("users");
       const infoRef = rootRef.child('info');
@@ -28,10 +57,12 @@ class TabSearch extends React.Component {
           dataTemp.push({
             uid: item.key,
             name: item.val().name,
-            email: item.val().email
+            email: item.val().email,
+            portfolioUri: ''
           });
         });
         this.dataBackup = dataTemp;
+        this.loadImages();
         this.setState({ data: dataTemp });
       })
       .catch((error) => {
@@ -60,9 +91,10 @@ class TabSearch extends React.Component {
           });
 
           this.dataBackup = dataTemp;
-          this.setState({ data: dataTemp}, () => {
-            this.onChangeSearchText(this.state.searchParam);
-          });
+          this.loadImages();
+          // this.setState({ data: dataTemp}, () => {
+          //   this.onChangeSearchText(this.state.searchParam);
+          // });
         })
         .catch((error) => {
           this.setState({ status: error.message });
@@ -83,9 +115,10 @@ class TabSearch extends React.Component {
           });
 
           this.dataBackup = dataTemp;
-          this.setState({ data: dataTemp}, () => {
-            this.onChangeSearchText(this.state.searchParam);
-          });
+          this.loadImages();
+          // this.setState({ data: dataTemp}, () => {
+          //   this.onChangeSearchText(this.state.searchParam);
+          // });
         })
         .catch((error) => {
           this.setState({ status: error.message });
@@ -164,6 +197,7 @@ class TabSearch extends React.Component {
             <View style={[{backgroundColor: colors.backgroundSecondary}, styles.list]}>
               <FlatList
                 data={this.state.data}
+                extraData={this.state}
                 keyExtractor={(item, index) => index}
                 renderItem={({item}) =>
                 <TouchableHighlight onPress={this.onClickView.bind(this, item)}>
@@ -182,13 +216,13 @@ class TabSearch extends React.Component {
                       <Text style={[styles.bigText]}>Email: {item.email}</Text>
                     </View>
                   </View> */}
-                  <ListItem
-                    large
-                    roundAvatar
-                    avatar={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
-                    title={item.name}
-                    subtitle={item.email}
-                  />
+                    <ListItem
+                      large
+                      roundAvatar
+                      avatar={item.portfolioUri != '' ? {uri: item.portfolioUri} : {}}
+                      title={item.name}
+                      subtitle={item.email}
+                    />
                 </TouchableHighlight>
                 }
               />

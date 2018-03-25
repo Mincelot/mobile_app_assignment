@@ -13,11 +13,10 @@ class TabFavourites extends React.Component {
     this.mounted = false;
   }
   componentDidMount() {
-      firebase.auth().onAuthStateChanged( user => {
+    this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
       if (user) {
         this.setState({ user: user}); 
       }
-      
 
     });
     
@@ -25,6 +24,7 @@ class TabFavourites extends React.Component {
   }
   componentWillUnmount(){
     this.mounted = false;
+    this.unsubscribe();
   }
   getListOfFav(){
       const rootRef = firebase.database().ref().child("users");
