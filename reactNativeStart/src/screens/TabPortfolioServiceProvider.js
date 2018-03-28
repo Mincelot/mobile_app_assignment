@@ -141,7 +141,7 @@ class TabPortfolioServiceProvider extends React.Component {
   //   }
   // }
 
-//Uploads picture on firebase and the screen.
+//Uploads picture+description on firebase and the screen.
 uploadPictureAndDescription(){
     const rootRef = firebase.database().ref().child("users");
     const infoRef = rootRef.child('info');
@@ -260,7 +260,7 @@ uploadPictureAndDescription(){
                   </Card>
                 </View>}  
               />
-            } 
+            }  
           </View> 
           <View>
             {!this.isViewMode &&
@@ -271,10 +271,11 @@ uploadPictureAndDescription(){
               onRequestClose={() => {
                 alert('Modal has been closed.');
               }}>
-              <View style={{height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+              <View style={{height: '100%', width: '100%', backgroundColor: colors.clear}}>
                 <View style={styles.centeredDialog}>
-                  <Text style={[styles.labelText, {fontSize: 14}]}>Please enter the direct link of your picture:</Text>
+                  <Text style={[styles.labelText, {fontSize: 14}]}>Please enter the direct link to your picture:</Text>
                   <FormInput
+                    //backgroundColor= {colors.tabNavIconOn}
                     placeholder='Tap to add URL of image'
                     value={this.state.tempUrl ? this.state.tempUrl : ''}
                     onChangeText={(newUrl) => this.setState({ tempUrl: newUrl })}
@@ -284,7 +285,6 @@ uploadPictureAndDescription(){
                     placeholder='Tap to add description'
                     value={this.state.tempDescription ? this.state.tempDescription : ''}
                     onChangeText={(newDescription) => this.setState({tempDescription: newDescription})}
-                    //{this.onTextChange.bind(this, this.state.tempUrl)}
                   >
                   </FormInput>
                   <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
@@ -340,22 +340,23 @@ const styles = StyleSheet.create({
     flex: 1
   },
   myButton: {
-    alignItems: 'center',
-    padding: 10,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    padding: 15,
     borderWidth:2,
-    backgroundColor:"#FDF3E7",
-    borderColor:"#f3753f",
+    backgroundColor: colors.background,
+    borderColor:colors.tabNavIconOn,
     borderRadius: 15
 
   },
   centeredDialog: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     top: '30%',
-    backgroundColor: '#FDF3E7',
+    backgroundColor: colors.background,
     borderWidth:2,
-    borderColor:"#f3753f",
+    borderColor: colors.tabNavIconOn,
     borderRadius: 10
   },
   form: {

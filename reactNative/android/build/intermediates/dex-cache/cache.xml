@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\.gradle\caches\modules-2\files-2.1\io.reactivex.rxjava2\rxjava\2.1.0\2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1\rxjava-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\rxjava-2.1.0_eb3efbfbf190488753d1b7864ea6e75fc0aeb94f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\drawee\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-1.3.0_e6be89520734240cf2f2e2a7f0ec57de8778cf38.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fbui.textlayoutbuilder\textlayoutbuilder\1.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_99da334de5acbe1b934fac673595232f2098e768.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fbui.textlayoutbuilder\textlayoutbuilder\1.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_1aaa242bb16ea9dd1c8e7e571e9702a4559c690a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.0.0_d33659e671d25e1ac849fa14667bd5f53ebc447f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-1.3.0_4004ac569bdc69ac9bc68bd3d9e4daa37c9ac643.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-1.3.0_745e95f894a03959e6d27dda8ecdf5cedbc4a171.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fresco\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fresco-1.3.0_62b130d841059fbbdbb4f406ce29c008727d2253.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-base-1.3.0_f46e8a481bc76cd7de5b59b0ae072edee3fc31eb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fresco\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fresco-1.3.0_d60efad7cc3f8b19713eaace87131631ebf917a9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.52.0\jars\libs\infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_58dfc84fb5abec2af3d3f96a582b8e2d0f5ca274.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\.gradle\caches\modules-2\files-2.1\com.facebook.fbui.textlayoutbuilder\staticlayout-proxy\1.0\f162442a19fff13995fbd51ba414d9ee05579080\staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_717ec3955c305c22646680a5ed2e9a2f905d398a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.0.1_77cb9f47d8665026604a241361c9d7dc79ead2ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.52.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="af61eb11ffb4296cab0c93218248a3dfcec0a84c">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.react-react-native-0.52.0_f62c9b9fe1c2fecc797ac9f11e9e131a384242cb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.0.0_d8ead99ae0280191e7d32fe50bf54238cd9592d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_8b4e5d4def1ed7f89381ddc1dd84f74eedaf5ec4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\.gradle\caches\modules-2\files-2.1\org.reactivestreams\reactive-streams\1.0.0\14b8c877d98005ba3941c9257cfe09f6ed0e0d74\reactive-streams-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\reactive-streams-1.0.0_e9a94af56fd10ccf851ba9b907147a21062bf18b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.0.0_359a1ee0d979a4eba0128121f9d319873f458e5d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\javax.inject-1_f086b284ae767217fd07af8f7edcc341808304d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.6.0\69edde9fc4b01c9fd51d25b83428837478c27254\okhttp-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\okhttp-3.6.0_9e6c9fbc79016a40766f84ca77b4b558682f14a4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.0.0_ab8eeb0e3b65f6e1ac4083826bd8ab388aff6c0b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_fc6c9aac961bcd32f1567f1764f3f5793f425658.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.52.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="af61eb11ffb4296cab0c93218248a3dfcec0a84c">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.react-react-native-0.52.0_e467e2c333ee6e3ffd62ed439408152874373c83.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.github.yalantis\ucrop\2.2.1-native\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2e492787f157c13839c02e0b7293871dbaed9911">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.github.yalantis-ucrop-2.2.1-native_5adcd3dd5a8337d909522289790a38dd9494c1c2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.0.0_8b73e5c8cbe62cd88924cc4cd24dcf4c519847ad.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\okio-1.13.0_4591beddaa24fe0ff91dad74da6d805ff9be01d6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-1.3.0_0afc836462a3d0220448899479db677c91aac165.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.0.0_1d750dd171e0c1f968bbf7fd7463b80ba0f4d5be.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.52.0\jars\libs\infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_6b494dc4b21513a70492574a71ae85cf08177e64.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1_2b8b027e7c3b8b5c59f1a989f9ecc9ac93628f22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_694297e4e317f66ce93ee009920a0e16855262b3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_3603fdf0953490919cda00eda24021e50e14a7c5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-1.3.0_27704f62ca72b76fdce2e24b388171fea569a236.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_a3d5684e99abb010111a8c0e65aa80309c8bac5e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.0.0_c9e31baf6ee9348572361cc200810b566e71f1e5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\catorcity\react-native-image-crop-picker\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="88f7d5a9a6920f619fe9b1cbf94203d13d1260c3">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\catorcity-react-native-image-crop-picker-unspecified_fc6451f3a08ebb355b62a464f713650525fe2f5d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_1c369e5fe13fbeb098e5c00352515e085b6bf802.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-1.3.0_9957e94c84e14460177b6e9e51450a95ecebdb54.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.0\support-annotations-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\support-annotations-25.0.0_bbb1aa0e2b48f3523dff9020850a7e9b5e209edb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.0.0_bd5dd91abc187bf968c7700208c1b273f915cb5f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.0.0_9e6b630c79d29e1d4843adb31591fac1927c2451.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1_e90eabd70211f50b972c5940e1905c3eb5b44f17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_21a1e7606e71fd1eb8a4dd8b5e0af2828c933c01.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\id.zelory\compressor\2.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6b1555196d65ffa1174f6f49efb2f278905f537a">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\id.zelory-compressor-2.1.0_4cab812a7ebcc873f7214b1f0049518ed9c1aec4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.0.1_1238cd6eaa43db62785cecf8cb3db784c7a7e4ec.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_3a66e6de4c6a43fcc4c81c7c44426fca6eee694e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\drawee\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-1.3.0_fbc957543460754e1b152670874e1a1a3aecf450.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.0\5871fb60dc68d67da54a663c3fd636a10a532948\jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\jsr305-3.0.0_7f8c6b5bd4857796e1a96787d997a8c8efced1d5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-base-1.3.0_ee5c0391c449266bb4efe58f8427a49a64234fc1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\catorcity\react-native-fetch-blob\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5aca1188aec5f45a7580589b8537e9a8a4d9a86f">
+        <dex dex="D:\Locus\chef55\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\catorcity-react-native-fetch-blob-unspecified_538c172f1098bc971e956cce2fa8984ad7206041.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Vladimir\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-urlconnection\3.6.0\3f9b16b774f2c36cfd86dd2053d0b3059531dacc\okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-3.6.0_792cca0f9d4f5794194e857f633a1be38b2f260e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="D:\Locus\chef44\project-team-23\reactNative\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-1.3.0_d256f739b37611ea6658a67737bf2ed2d53d1256.jar" />
+    </item>
+
+</items>
