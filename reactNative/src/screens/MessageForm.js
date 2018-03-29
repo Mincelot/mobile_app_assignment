@@ -1,6 +1,9 @@
 import React from 'react';
 import Header from '../components/Header';
-import { StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
+import { StackNavigator, NavigationActions } from "react-navigation";
+import { FormLabel, FormInput,Button,ButtonGroup, CheckBox, SocialIcon } from 'react-native-elements';
+import ReadyForNavigation from '../services/navigatingAccountType';
 import colors from '../styles/color';
 
 class MessageForm extends React.Component {
@@ -53,7 +56,7 @@ class MessageForm extends React.Component {
             <Button 
               buttonStyle={styles.buttonColor}
               title="Send"
-              onPress={}
+              onPress={this.backButton.bind(this)}
               borderRadius={5}
               />
           </View>
