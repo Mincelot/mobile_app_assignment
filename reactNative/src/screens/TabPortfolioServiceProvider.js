@@ -4,7 +4,7 @@ import { Text, StyleSheet, View, ScrollView, TextInput, FlatList,
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { NavigationActions } from "react-navigation";
-import { Card, Header, Icon, Button, FormInput } from 'react-native-elements';
+import { Card, Header, Icon, Button, FormInput, ButtonGroup } from 'react-native-elements';
 import firebase from 'firebase';
 
 class TabPortfolioServiceProvider extends React.Component {
@@ -18,6 +18,7 @@ class TabPortfolioServiceProvider extends React.Component {
     if (this.props && this.props.navigation && this.props.navigation.state && this.props.navigation.state.params) {
       this.isViewMode = this.props.navigation.state.params.isView ? true : false;
       this.userUidPassedIn = this.props.navigation.state.params.selectedUserUid;
+      this.loggedInClient = this.props.navigation.state.params.loggedInClient;
     }
     this.unsubscribe = null;
   }
@@ -93,53 +94,6 @@ class TabPortfolioServiceProvider extends React.Component {
       this.unsubscribe();
     }
   }
- 
-  //maybe change to this for D3. 
-  // addDescriptionModal(){
-  //   if(this.state.tempUrl){
-  //     console.log('in add description');
-  //     this.setState({descriptionModalVisible: true});
-  //     console.log(this.state.tempUrl);
-  //     let newPicUrl = this.state.tempUrl;
-  //     this.setState({tempUrl: ''});
-  //     console.log(newPicUrl);
-  //     <View> 
-  //       {this.descriptionModalVisible &&  
-  //         <Modal
-  //           animationType="fade"
-  //           transparent={true}
-  //           visible={this.state.descriptionModalVisible}
-  //           onRequestClose={() => {
-  //             alert('Modal has been closed.');
-  //           }}>
-  //           <View style={{height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
-  //             <View style={styles.centeredDialog}>
-  //               <Text style={[styles.labelText, {fontSize: 14}]}>Describe your dish!</Text>
-  //               <FormInput
-  //                 placeholder='Tap here to edit'
-  //                 value={this.state.tempDescription ? this.state.tempDescription : ''}
-  //                 onChangeText={(newDescription) => this.setState({ tempDescription: newDescription })}
-  //               >
-  //               </FormInput>
-  //               <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
-  //               <TouchableOpacity
-  //                   style={[styles.myButton]}
-  //                   onPress={this.onTextChange.bind(this,newPicUrl)}>
-  //                   <Text style={{color: '#7E8F7C'}}> Confirm </Text>
-  //               </TouchableOpacity>
-  //               <TouchableOpacity
-  //                   style={styles.myButton}
-  //                   onPress={this.setState({descriptionModalVisible: false})}>
-  //                   <Text style={{color: '#7E8F7C'}}> Cancel </Text>
-  //               </TouchableOpacity>
-  //               </View>
-  //             </View>
-  //           </View>
-  //         </Modal>  
-  //       }    
-  //     </View>
-  //   }
-  // }
 
 //Uploads picture+description on firebase and the screen.
 uploadPictureAndDescription(){
@@ -259,15 +213,17 @@ uploadPictureAndDescription(){
         })
       }
      })
+  }
 
+  sendMessageRequest(){
+    this.props.navigation.dispatch({ type: 'ViewMessageForm', selectedUserUid: this.userUidPassedIn, 
+    loggedInClient: this.loggedInClient });
 
-    
+    //console.log('in message');
+  }
 
-
-  
-
-
-    
+  viewReviews(){
+    this.props.navigation.dispatch({ type: 'ViewReviewPage', selectedUserUid: this.userUidPassedIn, loggedInClient: this.loggedInClient });
   }
 
   render() {
@@ -306,6 +262,27 @@ uploadPictureAndDescription(){
               outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}  
             />
           } 
+          {this.isViewMode &&  //view mode true = client user 
+            <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-around'}]}>
+
+              <View>
+                <TouchableOpacity
+                  style={[styles.myButton]}
+                  onPress={this.sendMessageRequest.bind(this)}>
+                  <Text style={{color: '#7E8F7C'}}> Message Chef </Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity
+                  style={[styles.myButton]}
+                  onPress={this.viewReviews.bind(this)}>
+                  <Text style={{color: '#7E8F7C'}}> All Reviews </Text>
+                </TouchableOpacity>
+              </View>
+              
+            </View> 
+          }
+          {/* closing client view */}
         </View>
         {/* <View> */}
         {/* <Animated.View style={{ marginBottom: this.keyboardHeight }}> */}
@@ -441,7 +418,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
   },
-
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  buttonColor: {
+    backgroundColor: colors.alternatePurple
+  }
 });
 
 export default TabPortfolioServiceProvider;

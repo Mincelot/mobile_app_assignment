@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import { StyleSheet, View } from 'react-native';
 import colors from '../styles/color';
 
-class ReviewPage extends React.Component {
+class MessageForm extends React.Component {
   render() {
     return (
         <View style={styles.container}>
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ReviewPage;
+export default MessageForm;
