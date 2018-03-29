@@ -16,6 +16,9 @@ import OrderPage from '../screens/OrderPage';
 import { Root } from './tabRouter';
 import { RootServiceProvider } from './tabRouterServiceProvider';
 
+import ReviewPage from '../screens/ReviewPage';
+import MessageForm from '../screens/MessageForm';
+
 
 export const AppNavigator = StackNavigator({
         LogInPage: {
@@ -38,6 +41,12 @@ export const AppNavigator = StackNavigator({
         },
         ViewConversation: {
             screen: Conversation
+        },
+        ViewReviewPage: {
+            screen: ReviewPage
+        },
+        ViewMessageForm: {
+            screen: MessageForm
         }
     }, {
         initialRouteName:  'LogInPage',
