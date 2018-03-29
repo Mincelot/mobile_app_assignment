@@ -2,13 +2,10 @@ import React from 'react';
 import Header from '../components/Header';
 import { Text, StyleSheet, View } from 'react-native';
 import { StackNavigator, NavigationActions } from "react-navigation";
-import { FormLabel, FormInput,Button,ButtonGroup, CheckBox, SocialIcon } from 'react-native-elements';
+import { FormLabel, FormInput,Button,ButtonGroup, CheckBox, SocialIcon, Icon } from 'react-native-elements';
 import ReadyForNavigation from '../services/navigatingAccountType';
->>>>>>> 20a8616fa5e0f6633d1f236ed99fcd4971cd6eb4
 import colors from '../styles/color';
 import defaultStyles from '../../src/styles/default';
-import { NavigationActions } from "react-navigation";
-import { Header, Icon, Button} from 'react-native-elements';
 import firebase from 'firebase';
 import NavigatorService from '../services/navigator';
 import { connect } from 'react-redux';
