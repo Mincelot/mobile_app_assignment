@@ -6,6 +6,8 @@ import colors from '../styles/color';
 import { NavigationActions } from "react-navigation";
 import { Card, Header, Icon, Button, FormInput, ButtonGroup } from 'react-native-elements';
 import firebase from 'firebase';
+import NavigatorService from '../services/navigator';
+import { connect } from 'react-redux';
 
 class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
@@ -18,7 +20,8 @@ class TabPortfolioServiceProvider extends React.Component {
     if (this.props && this.props.navigation && this.props.navigation.state && this.props.navigation.state.params) {
       this.isViewMode = this.props.navigation.state.params.isView ? true : false;
       this.userUidPassedIn = this.props.navigation.state.params.selectedUserUid;
-      this.loggedInClient = this.props.navigation.state.params.loggedInClient;
+      //this.loggedInClient = this.props.navigation.state.params.loggedInClient;
+      this.loggedInClient = firebase.auth().currentUser;
     }
     this.unsubscribe = null;
   }
@@ -223,7 +226,9 @@ uploadPictureAndDescription(){
   }
 
   viewReviews(){
+    //alert('Viewing Reviews.');
     this.props.navigation.dispatch({ type: 'ViewReviewPage', selectedUserUid: this.userUidPassedIn, loggedInClient: this.loggedInClient });
+    alert(this.loggedInClient.uid);
   }
 
   render() {
