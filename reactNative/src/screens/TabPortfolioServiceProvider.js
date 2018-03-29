@@ -12,7 +12,8 @@ import { connect } from 'react-redux';
 class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {picFolders: [], modalVisible: false, tempUrl: '', tempDescription: '', descriptionModalVisible: false}; //folder has text + picUrl 
+    this.state = {picFolders: [], modalVisible: false, tempUrl: '',
+     tempDescription: '', descriptionModalVisible: false, isChefFav: false}; //folder has text + picUrl 
     this.isViewMode = false;
     this.userUidPassedIn = '';
     this.currentUser = '';
@@ -35,7 +36,6 @@ class TabPortfolioServiceProvider extends React.Component {
           const userRef = infoRef.child(user.uid);
           const picRef = userRef.child('picFolder');
           picRef.once('value')
-
           .then((snapshot) => {
             this.numPicFolders = snapshot.numChildren();
             console.log(this.numPicFolders);
@@ -78,6 +78,21 @@ class TabPortfolioServiceProvider extends React.Component {
       .catch((error) => {
         this.setState({ status: error.message });
       })
+      
+      this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
+        const rootRef2 = firebase.database().ref().child("users");
+        const infoRef2 = rootRef2.child('info');
+        const userRef2 = infoRef2.child(user.uid);
+        const favRef2 = userRef2.child('Favourites');
+        const thisChefRef2 = favRef2.child(this.userUidPassedIn);
+
+        thisChefRef2.once('value', (snapshot) => {
+          // check if this chef has not been favoured
+          if (snapshot.exists() && snapshot.val() == true) {
+            this.setState({ isChefFav: true });
+          }
+        });
+      });
     }
   }
   
@@ -154,11 +169,12 @@ uploadPictureAndDescription(){
   backButton() {
     this.props.navigation.dispatch(NavigationActions.back());
   }
-
-
-
   favThisChef(){
-    //this.useUidPassedIn is the id of the user that is going to be favoured
+    this.setState((prevState) => {
+      return {isChefFav: !prevState.isChefFav};
+    });
+
+    //this.userUidPassedIn is the id of the user that is going to be favoured
     const currentUser = firebase.auth().currentUser;
     
     const rootRef = firebase.database().ref().child("users");
@@ -260,13 +276,13 @@ uploadPictureAndDescription(){
               centerComponent={{ text: 'Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}   
               rightComponent={<Icon
                 name='star'
-                color='#fff'
+                color={this.state.isChefFav ? '#FFFF33' : '#fff'}
                 size={40}
                 onPress={this.favThisChef.bind(this)}
-              />}     
-              outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}  
+              />}
+              outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
             />
-          } 
+          }
           {this.isViewMode &&  //view mode true = client user 
             <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-around'}]}>
 
