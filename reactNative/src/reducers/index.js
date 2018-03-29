@@ -92,6 +92,18 @@ function nav(state = initialNavState, action) {
         // state
       );
       break;
+
+    case 'ViewMessageForm':
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'MessageForm',
+        params: { 
+          loggedInClient: action.loggedInClient ? action.loggedInClient: 'Test',
+          selectedUserUid: action.selectedUserUid ? action.selectedUserUid: 'Test'} }),
+        state
+        );
+      nextState;
+      break;
+
     case 'ViewConversation':
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'ViewConversation',
