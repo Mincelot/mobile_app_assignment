@@ -221,6 +221,7 @@ uploadPictureAndDescription(){
   sendMessageRequest(){
     this.props.navigation.dispatch({ type: 'ViewMessageForm', selectedUserUid: this.userUidPassedIn, 
     loggedInClient: this.loggedInClient });
+    //alert(this.loggedInClient.uid);
 
     //console.log('in message');
   }
@@ -228,7 +229,6 @@ uploadPictureAndDescription(){
   viewReviews(){
     //alert('Viewing Reviews.');
     this.props.navigation.dispatch({ type: 'ViewReviewPage', selectedUserUid: this.userUidPassedIn, loggedInClient: this.loggedInClient });
-    alert(this.loggedInClient.uid);
   }
 
   render() {
