@@ -92,6 +92,17 @@ function nav(state = initialNavState, action) {
         // state
       );
       break;
+    case 'ViewConversation':
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'ViewConversation',
+        params: { 
+          selectedUserUid: action.selectedUserUid ? action.selectedUserUid: 'Test' ,
+          isMsgKeeper: action.isMsgKeeper ? action.isMsgKeeper: 'Test' }
+        }),
+        state
+      );
+      nextState
+      break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;
