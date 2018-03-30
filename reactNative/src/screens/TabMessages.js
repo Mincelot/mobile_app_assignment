@@ -9,17 +9,20 @@ import { NavigationActions } from "react-navigation";
 class TabMessages extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { msgData: [], requestData: [], isViewMsg: true, selectedIndex: 0 };
+    this.state = { msgData: [], requestData: [], isViewType: '', selectedIndex: 0 };
     this.dataBackup = [];
     this.dataBackupRequests = [];
   }
   onChangeView(selectedIndex) {
     this.setState({selectedIndex});
     if (selectedIndex == 0) {
-        this.setState({ isViewMsg: true });
+      this.setState({ isViewType: 'chat' });
     }
     else if (selectedIndex == 1) {
-        this.setState({ isViewMsg: false });
+      this.setState({ isViewType: 'request' });
+    }
+    else if (selectedIndex == 2) {
+      this.setState({ isViewType: 'jobs' });
     }
   }
   loadNameForRequests() {
@@ -177,7 +180,7 @@ class TabMessages extends React.Component {
         <ButtonGroup
             onPress={this.onChangeView.bind(this)}
             selectedIndex={this.state.selectedIndex}
-            buttons={['Messages', 'Requests']}
+            buttons={['Chat', 'Requests', 'Jobs']}
             disableSelected= {true}
             containerStyle={{ height: 60, backgroundColor:'white' }}
             selectedButtonStyle={{ backgroundColor: colors.navyBlue }}
@@ -186,7 +189,7 @@ class TabMessages extends React.Component {
             <View style={styles.boxAround}>
               <ScrollView>
                 <View>
-                  {this.state.isViewMsg && 
+                  {this.state.isViewType == 'chat' && 
                     <View>
                       <FlatList
                         data={this.state.msgData}
@@ -209,7 +212,30 @@ class TabMessages extends React.Component {
                       />
                     </View>
                   }
-                  {!this.state.isViewMsg &&
+                  {this.state.isViewType == 'request' &&
+                    <View>
+                        <FlatList
+                          data={this.state.requestData}
+                          extraData={this.state}
+                          keyExtractor={(item, index) => index}
+                          renderItem={({item}) =>
+                          <TouchableHighlight onPress={this.acceptRequest.bind(this, item)}>
+                            <ListItem
+                              large
+                              roundAvatar
+                              avatar={item.portfolioUri != '' ?
+                                <Avatar rounded source={{uri: item.portfolioUri }} /> :
+                                <Avatar rounded title={item.nickname} />
+                              }
+                              title={item.name}
+                              subtitle={item.dateRequest}
+                            />
+                          </TouchableHighlight>
+                          }
+                        />
+                    </View>
+                  }
+                  {this.state.isViewType == 'jobs' &&
                     <View>
                         <FlatList
                           data={this.state.requestData}
@@ -250,7 +276,6 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: '#d6d7da',
   }
-
 
 });
 
