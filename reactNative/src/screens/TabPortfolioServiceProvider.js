@@ -349,13 +349,13 @@ uploadPictureAndDescription(){
             />
           }
           {this.isViewMode &&  //view mode true = client user 
-            <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-around'}]}>
+            <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-around'},{backgroundColor: colors.alternatePurple}]}>
 
               <View>
                 <TouchableOpacity
                   style={[styles.myButton]}
                   onPress={this.sendMessageRequest.bind(this)}>
-                  <Text style={{color: '#7E8F7C'}}> Message Chef </Text>
+                  <Text style={{color: '#fff'}}> Message Chef </Text>
                 </TouchableOpacity>
               </View>
               {!this.state.chatRequestAlreadySend &&
@@ -363,7 +363,7 @@ uploadPictureAndDescription(){
                   <TouchableOpacity
                     style={[styles.myButton]}
                     onPress={this.chatRequest.bind(this)}>
-                    <Text style={{color: '#7E8F7C'}}> Send Chat Request </Text>
+                    <Text style={{color: '#fff'}}> Send Chat Request </Text>
                   </TouchableOpacity>
                 </View>
               }
@@ -371,7 +371,7 @@ uploadPictureAndDescription(){
                 <TouchableOpacity
                   style={[styles.myButton]}
                   onPress={this.viewReviews.bind(this)}>
-                  <Text style={{color: '#7E8F7C'}}> All Reviews </Text>
+                  <Text style={{color: '#fff'}}> All Reviews </Text>
                 </TouchableOpacity>
               </View>
               
@@ -492,11 +492,11 @@ const styles = StyleSheet.create({
   myButton: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    padding: 15,
+    padding: 5,
     borderWidth:2,
-    backgroundColor: colors.background,
-    borderColor:colors.tabNavIconOn,
-    borderRadius: 15
+    backgroundColor: colors.alternatePurple,
+    borderColor:colors.alternatePurple,
+    borderRadius: 2
 
   },
   centeredDialog: {
