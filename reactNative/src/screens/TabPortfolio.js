@@ -30,13 +30,16 @@ class TabPortfolio extends React.Component {
         .then((snapshot) => {
           let ordersTemp = [];
             snapshot.forEach((item) => {
+              // temp.getMonth()
+              let dateObj = new Date(item.val().date)
               ordersTemp.push({
                 chefID: item.val().chef,
                 cuisineName: item.val().cuisine,
-                orderDate: item.val().date,
+                orderDate: dateObj.toDateString(),
                 priceAmount: item.val().price,
                 guestNumber: item.val().guests,
-                reviewedFlag: item.val().reviewed
+                reviewedFlag: item.val().reviewed,
+                isCompletedStatus: item.val().isCompletedStatus
               });
             });
             this.setState({ pastOrdersArray: ordersTemp });
@@ -138,7 +141,7 @@ class TabPortfolio extends React.Component {
     return (
       <View style={styles.container}>
         <Header
-        centerComponent={{ text: 'Past Orders', style: {color: '#fff', fontSize: 30, fontStyle: "italic" }}}
+        centerComponent={{ text: 'Orders', style: {color: '#fff', fontSize: 30, fontStyle: "italic" }}}
         outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
         />
 
@@ -219,8 +222,8 @@ class TabPortfolio extends React.Component {
                     }}
                   >{
                     <ListItem
-                      title={item.orderDate}
-                        subtitle={item.priceAmount}
+                        title={item.orderDate}
+                        subtitle={`${item.priceAmount}  Status: ${item.isCompletedStatus == true ? 'Order Completed' : 'Order is in progress'}`}
                     />
                     }
                   </TouchableHighlight>
