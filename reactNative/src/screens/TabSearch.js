@@ -62,9 +62,12 @@ class TabSearch extends React.Component {
       .then((snapshot) => {
         var dataTemp = [];
         snapshot.forEach((item) => {
+          let initials = item.val().name.match(/\b\w/g) || [];
+          initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
           dataTemp.push({
             uid: item.key,
             name: item.val().name,
+            nickname: initials,
             email: item.val().email,
             portfolioUri: ''
           });
@@ -91,9 +94,12 @@ class TabSearch extends React.Component {
           // A more ideal way would be to filter the snapshot then make copy.
           let dataTemp = [];
           snapshot.forEach((item) => {
+            let initials = item.val().name.match(/\b\w/g) || [];
+            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
             dataTemp.push({
               uid: item.key,
               name: item.val().name,
+              nickname: initials,
               email: item.val().email
             });
           });
@@ -115,9 +121,12 @@ class TabSearch extends React.Component {
         .then((snapshot) => {
           let dataTemp = [];
           snapshot.forEach((item) => {
+            let initials = item.val().name.match(/\b\w/g) || [];
+            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
             dataTemp.push({
               uid: item.key,
               name: item.val().name,
+              nickname: initials,
               email: item.val().email
             });
           });
@@ -228,7 +237,10 @@ class TabSearch extends React.Component {
                     <ListItem
                       large
                       roundAvatar
-                      avatar={item.portfolioUri != '' ? {uri: item.portfolioUri} : {}}
+                      avatar={item.portfolioUri != '' ?
+                       <Avatar rounded source={{uri: item.portfolioUri }} /> :
+                       <Avatar rounded title={item.nickname} />
+                      }
                       title={item.name}
                       subtitle={item.email}
                     />

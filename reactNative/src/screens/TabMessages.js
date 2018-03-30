@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, FlatList, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
-import { Button, ButtonGroup, ListItem } from 'react-native-elements';
+import { Button, ButtonGroup, ListItem, Avatar } from 'react-native-elements';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import firebase from 'firebase';
@@ -37,6 +37,9 @@ class TabMessages extends React.Component {
             // snapshot.forEach((item) => {
               // dataTemp.push({
             this.dataBackupRequests[i].name = snapshot.val().name;
+            let initials = snapshot.val().name.match(/\b\w/g) || [];
+            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+            this.dataBackupRequests[i].nickname = initials;
             this.counter++;
             if (this.counter == this.dataBackupRequests.length) {
               this.loadFinalDest();
@@ -111,6 +114,7 @@ class TabMessages extends React.Component {
                 uid: item.key,
                 dateRequest: item.val().requestDate,
                 name: '',
+                nickname: '',
                 approval: item.val().approval,
                 isMsgKeeper: item.val().isMsgKeeper,
                 portfolioUri: ''
@@ -193,7 +197,10 @@ class TabMessages extends React.Component {
                           <ListItem
                             large
                             roundAvatar
-                            avatar={item.portfolioUri != '' ? {uri: item.portfolioUri} : {}}
+                            avatar={item.portfolioUri != '' ?
+                              <Avatar rounded source={{uri: item.portfolioUri }} /> :
+                              <Avatar rounded title={item.nickname} />
+                            }
                             title={item.name}
                             // subtitle={item.isMsgKeeper == true ? 'true' : 'false'}
                           />
@@ -213,7 +220,10 @@ class TabMessages extends React.Component {
                             <ListItem
                               large
                               roundAvatar
-                              avatar={item.portfolioUri != '' ? {uri: item.portfolioUri} : {}}
+                              avatar={item.portfolioUri != '' ?
+                                <Avatar rounded source={{uri: item.portfolioUri }} /> :
+                                <Avatar rounded title={item.nickname} />
+                              }
                               title={item.name}
                               subtitle={item.dateRequest}
                             />
