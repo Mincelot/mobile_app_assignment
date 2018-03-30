@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {picFolders: [], modalVisible: false, tempUrl: '',
+    this.state = {picFolders: [], modalVisible: false, tempUrl: '', chatRequestAlreadySend: false,
      tempDescription: '', descriptionModalVisible: false, isChefFav: false}; //folder has text + picUrl 
     this.isViewMode = false;
     this.userUidPassedIn = '';
@@ -80,6 +80,8 @@ class TabPortfolioServiceProvider extends React.Component {
       })
       
       this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
+        this.user = user;
+        this.checkChatRequest();
         const rootRef2 = firebase.database().ref().child("users");
         const infoRef2 = rootRef2.child('info');
         const userRef2 = infoRef2.child(user.uid);
@@ -247,6 +249,23 @@ uploadPictureAndDescription(){
     this.props.navigation.dispatch({ type: 'ViewReviewPage', selectedUserUid: this.userUidPassedIn, loggedInClient: this.loggedInClient });
   }
 
+  checkChatRequest() {
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const userRef = infoRef.child(this.user.uid);
+    const favRef = userRef.child('requests');
+    const thisChefRef = favRef.child(this.userUidPassedIn);
+
+    thisChefRef.once('value')
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        this.setState({chatRequestAlreadySend: true});
+      }
+    })
+    .catch((error) => {
+    })
+  }
+
   chatRequest() {
     const currentUser = firebase.auth().currentUser;
 
@@ -265,6 +284,7 @@ uploadPictureAndDescription(){
           isMsgKeeper: true
         }
         thisChefRef.update(obj);
+        this.setState({chatRequestAlreadySend: true});
       }
     })
     .catch((error) => {
@@ -309,7 +329,7 @@ uploadPictureAndDescription(){
           />
           } 
         </View>
-        <View>     
+        <View>
           {this.isViewMode && //view mode true = client user 
             <Header
               leftComponent={<Icon
@@ -338,13 +358,15 @@ uploadPictureAndDescription(){
                   <Text style={{color: '#7E8F7C'}}> Message Chef </Text>
                 </TouchableOpacity>
               </View>
-              <View>
-                <TouchableOpacity
-                  style={[styles.myButton]}
-                  onPress={this.chatRequest.bind(this)}>
-                  <Text style={{color: '#7E8F7C'}}> Send Chat Request </Text>
-                </TouchableOpacity>
-              </View>
+              {!this.state.chatRequestAlreadySend &&
+                <View>
+                  <TouchableOpacity
+                    style={[styles.myButton]}
+                    onPress={this.chatRequest.bind(this)}>
+                    <Text style={{color: '#7E8F7C'}}> Send Chat Request </Text>
+                  </TouchableOpacity>
+                </View>
+              }
               <View>
                 <TouchableOpacity
                   style={[styles.myButton]}
