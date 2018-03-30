@@ -9,7 +9,7 @@ import { NavigationActions } from "react-navigation";
 class TabMessages extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { msgData: [], requestData: [], isViewType: '', selectedIndex: 0 };
+    this.state = { msgData: [], requestData: [], isViewType: 'chat', selectedIndex: 0 };
     this.dataBackup = [];
     this.dataBackupRequests = [];
   }
