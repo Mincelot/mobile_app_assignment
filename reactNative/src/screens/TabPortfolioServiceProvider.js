@@ -349,7 +349,7 @@ uploadPictureAndDescription(){
             />
           }
           {this.isViewMode &&  //view mode true = client user 
-            <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-around'}]}>
+            <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-around'},{backgroundColor: colors.alternatePurple}]}>
 
               <View>
                 <TouchableOpacity
