@@ -22,36 +22,6 @@ class TabMessages extends React.Component {
         this.setState({ isViewMsg: false });
     }
   }
-  // loadImages() {
-  //   this.counter = 0;
-  //   for (let i = 0; i < this.dataBackup.length; i++) {
-  //     const rootRefStorage = firebase.storage().ref('Data');
-  //     const userRefStorage = rootRefStorage.child(this.dataBackup[i].uid);
-  //     const profilePicRefStorage = userRefStorage.child('ProfilePictures');
-  //     const imageRefStorage = profilePicRefStorage.child('profilePic');
-  //     imageRefStorage.getDownloadURL()
-  //     .then((url) => {
-  //       this.counter++;
-  //       this.dataBackup[i].portfolioUri = url;
-  //       if (this.counter == this.dataBackup.length) {
-  //         this.loadImagesFinalDestination();
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       this.counter++;
-  //       this.setState({ status: error.message });
-  //       if (this.counter == this.dataBackup.length) {
-  //         this.loadImagesFinalDestination();
-  //       }
-  //     });
-  //   }
-  // }
-  // loadImagesFinalDestination() {
-  //   this.setState({ msgData: this.dataBackup });
-  //     // , () => {
-  //     // this.onChangeSearchText(this.state.searchParam);
-  //   // })
-  // }
   loadNameForRequests() {
     this.counter = 0;
     for (let i = 0; i < this.dataBackupRequests.length; i++) {
@@ -69,42 +39,19 @@ class TabMessages extends React.Component {
             this.dataBackupRequests[i].name = snapshot.val().name;
             this.counter++;
             if (this.counter == this.dataBackupRequests.length) {
-              this.loadNameForRequestsFinalDest();
+              this.loadFinalDest();
             }
-              // });
-            // });
-            // this.dataBackupRequests = dataTemp;
-            // this.loadImages();
-            // this.setState({ requestData: dataTemp });
           }
         })
         .catch((error) => {
           this.counter++;
           if (this.counter == this.dataBackupRequests.length) {
-            this.loadNameForRequestsFinalDest();
+            this.loadFinalDest();
           }
-          // this.setState({ status: error.message });
         })
-
-
-      // imageRefStorage.getDownloadURL()
-      // .then((url) => {
-      //   this.counter++;
-      //   this.dataBackupRequests[i].portfolioUri = url;
-      //   if (this.counter == this.dataBackupRequests.length) {
-      //     this.loadImagesFinalDestination();
-      //   }
-      // })
-      // .catch((error) => {
-      //   this.counter++;
-      //   this.setState({ status: error.message });
-      //   if (this.counter == this.dataBackupRequests.length) {
-      //     this.loadImagesFinalDestination();
-      //   }
-      // });
     }
   }
-  loadNameForRequestsFinalDest() {
+  loadFinalDest() {
     // filter into two lists based on if approved.
     let requestList = [];
     let msgList = [];
@@ -117,61 +64,29 @@ class TabMessages extends React.Component {
     }
     this.setState({ requestData: requestList, msgData: msgList });
   }
-  // loadNameForMessages() {
-  //   this.counter = 0;
-  //   for (let i = 0; i < this.dataBackup.length; i++) {
-  //     const rootRef = firebase.database().ref().child("users");
-  //     const infoRef = rootRef.child('info');
-  //     const userRef = infoRef.child(this.dataBackup[i].uid);
-
-  //     userRef.once('value')
-  //       .then((snapshot) => {
-  //         if (snapshot.val()) {
-  //           // this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
-  //           // var dataTemp = [];
-  //           // snapshot.forEach((item) => {
-  //             // dataTemp.push({
-  //           this.dataBackup[i].name = snapshot.val().name;
-  //           this.counter++;
-  //           if (this.counter == this.dataBackup.length) {
-  //             this.loadNameForRequestsFinalDest();
-  //           }
-  //             // });
-  //           // });
-  //           // this.dataBackupRequests = dataTemp;
-  //           // this.loadImages();
-  //           // this.setState({ requestData: dataTemp });
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         this.counter++;
-  //         if (this.counter == this.dataBackup.length) {
-  //           this.loadNameForRequestsFinalDest();
-  //         }
-  //         // this.setState({ status: error.message });
-  //       })
-
-
-  //     // imageRefStorage.getDownloadURL()
-  //     // .then((url) => {
-  //     //   this.counter++;
-  //     //   this.dataBackupRequests[i].portfolioUri = url;
-  //     //   if (this.counter == this.dataBackupRequests.length) {
-  //     //     this.loadImagesFinalDestination();
-  //     //   }
-  //     // })
-  //     // .catch((error) => {
-  //     //   this.counter++;
-  //     //   this.setState({ status: error.message });
-  //     //   if (this.counter == this.dataBackupRequests.length) {
-  //     //     this.loadImagesFinalDestination();
-  //     //   }
-  //     // });
-  //   }
-  // }
-  // loadNameForMessagesFinalDest() {
-  //   this.setState({ msgData: this.dataBackup });
-  // }
+  loadImages() {
+    this.counter2 = 0;
+    for (let t = 0; t < this.dataBackupRequests.length; t++) {
+      const rootRefStorage = firebase.storage().ref('Data');
+      const userRefStorage = rootRefStorage.child(this.dataBackupRequests[t].uid);
+      const profilePicRefStorage = userRefStorage.child('ProfilePictures');
+      const imageRefStorage = profilePicRefStorage.child('profilePic');
+      imageRefStorage.getDownloadURL()
+      .then((url) => {
+        this.counter2++;
+        this.dataBackupRequests[t].portfolioUri = url;
+        if (this.counter2 == this.dataBackupRequests.length) {
+          this.loadFinalDest();
+        }
+      })
+      .catch((error) => {
+        this.counter2++;
+        if (this.counter2 == this.dataBackupRequests.length) {
+          this.loadFinalDest();
+        }
+      });
+    }
+  }
   componentWillUnmount() {
     this.unsubscribe();
   }
@@ -186,8 +101,8 @@ class TabMessages extends React.Component {
         const requestRef = userRef.child('requests');
         // const picRef = userRef.child('picFolder');
 
-        requestRef.once('value')
-        .then((snapshot) => {
+        requestRef.on('value', (snapshot) => {
+        // .then((snapshot) => {
           if (snapshot.val()) {
             // this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
             var dataTemp = [];
@@ -197,75 +112,21 @@ class TabMessages extends React.Component {
                 dateRequest: item.val().requestDate,
                 name: '',
                 approval: item.val().approval,
-                isMsgKeeper: item.val().isMsgKeeper
+                isMsgKeeper: item.val().isMsgKeeper,
+                portfolioUri: ''
               });
             });
             this.dataBackupRequests = dataTemp;
-            // this.loadImages();
+            this.loadImages();
             this.loadNameForRequests();
             
             // this.setState({ msgData: dataTemp });
             // this.setState({ requestData: dataTemp });
           }
         })
-        .catch((error) => {
-          // this.setState({ status: error.message });
-        })
-
-
-
-        // const rootRef2 = firebase.database().ref().child("users");
-        // const infoRef2 = rootRef2.child('info');
-        // const userRef2 = infoRef2.child(user.uid);
-        // const msgRef = userRef2.child('messages');
-        // // const picRef = userRef.child('picFolder');
-
-        // msgRef.once('value')
-        // .then((snapshot) => {
-        //   if (snapshot.val()) {
-        //     // this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
-        //     var dataTemp = [];
-        //     snapshot.forEach((item) => {
-        //       dataTemp.push({
-        //         uid: item.key,
-        //         name: ''
-        //       });
-        //     });
-        //     this.dataBackup = dataTemp;
-        //     // this.loadImages();
-        //     this.loadNameForMessages();
-        //     this.setState({ msgData: dataTemp });
-        //   }
-        // })
-        // .catch((error) => {
-        //   // this.setState({ status: error.message });
-        // })
-
       }
 
     });
-
-    // const rootRef = firebase.database().ref().child("users");
-    // const infoRef = rootRef.child('info');
-    // const filterData = infoRef.orderByChild("isAccountTypeClient").equalTo(false).limitToLast(100);
-    // filterData.once('value')
-    // .then((snapshot) => {
-    //   var dataTemp = [];
-    //   snapshot.forEach((item) => {
-    //     dataTemp.push({
-    //       uid: item.key,
-    //       name: item.val().name,
-    //       email: item.val().email,
-    //       portfolioUri: ''
-    //     });
-    //   });
-    //   this.dataBackup = dataTemp;
-    //   this.loadImages();
-    //   this.setState({ msgData: dataTemp });
-    // })
-    // .catch((error) => {
-    //   this.setState({ status: error.message });
-    // })
   }
   acceptRequest(item) {
     const rootRef = firebase.database().ref().child("users");
@@ -332,7 +193,7 @@ class TabMessages extends React.Component {
                           <ListItem
                             large
                             roundAvatar
-                            // avatar={item.portfolioUri != '' ? {uri: item.portfolioUri} : {}}
+                            avatar={item.portfolioUri != '' ? {uri: item.portfolioUri} : {}}
                             title={item.name}
                             // subtitle={item.isMsgKeeper == true ? 'true' : 'false'}
                           />
@@ -352,7 +213,7 @@ class TabMessages extends React.Component {
                             <ListItem
                               large
                               roundAvatar
-                              // avatar={item.portfolioUri != '' ? {uri: item.portfolioUri} : {}}
+                              avatar={item.portfolioUri != '' ? {uri: item.portfolioUri} : {}}
                               title={item.name}
                               subtitle={item.dateRequest}
                             />

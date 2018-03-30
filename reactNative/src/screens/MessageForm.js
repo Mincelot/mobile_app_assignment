@@ -1,11 +1,10 @@
 import React from 'react';
-import Header from '../components/Header';
-import { Text, StyleSheet, View } from 'react-native';
-import { StackNavigator, NavigationActions } from "react-navigation";
-import { FormLabel, FormInput,Button,ButtonGroup, CheckBox, SocialIcon, Icon } from 'react-native-elements';
-import ReadyForNavigation from '../services/navigatingAccountType';
+//import Header from '../components/Header';
+import { StyleSheet, View, Alert, Text } from 'react-native';
 import colors from '../styles/color';
 import defaultStyles from '../../src/styles/default';
+import { NavigationActions } from "react-navigation";
+import { Header, Icon, Button, FormLabel, FormInput} from 'react-native-elements';
 import firebase from 'firebase';
 import NavigatorService from '../services/navigator';
 import { connect } from 'react-redux';
@@ -29,27 +28,38 @@ class MessageForm extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View><Text style={{color:'red'}}>{this.state.status}</Text></View>
-    
-          <View style={{width:'95%'}}>
-            <FormLabel labelStyle={styles.textColor}>Date</FormLabel>
+        <View style={styles.container}>
+          <Header
+            leftComponent={<Icon
+              name='arrow-back'
+              color='#fff'
+              size={40}
+              onPress={this.backButton.bind(this)}
+            />}
+            centerComponent={{ text: 'Message Form', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}
+            outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
+         />
+        {/* <Text>hello</Text> */}
+
+
+        <View style={{width:'95%'}}>
+          <FormLabel labelStyle={styles.textColor}>Date</FormLabel>
             <FormInput 
-              value={this.state.date}
-              onChangeText={date => this.setState({ date })}
-              />
-            <FormLabel labelStyle={styles.textColor}>Cuisine</FormLabel>
+                value={this.state.date}
+                onChangeText={date => this.setState({ date })}
+                />
+          <FormLabel labelStyle={styles.textColor}>Cuisine</FormLabel>
             <FormInput 
               secureTextEntry={true}
               value={this.state.cuisine}
               onChangeText={cuisine => this.setState({ cuisine })}
               />
-            <FormLabel labelStyle={styles.textColor}>Number of people</FormLabel>
+          <FormLabel labelStyle={styles.textColor}>Number of people</FormLabel>
             <FormInput
               value={this.state.partySize}
               onChangeText={partySize => this.setState({ partySize })}
               />
-            <FormLabel labelStyle={styles.textColor}>Price</FormLabel>
+          <FormLabel labelStyle={styles.textColor}>Price</FormLabel>
             <FormInput
               value={this.state.price}
               onChangeText={price => this.setState({ price })}
@@ -63,53 +73,37 @@ class MessageForm extends React.Component {
               title="Send"
               onPress={this.backButton.bind(this)}
               borderRadius={5}
-              />
-          </View>
-          <View>
-            <Button 
-              buttonStyle={styles.buttonColor}
-              title="Back"
-              onPress={this.backButton.bind(this)}
-              borderRadius={5}
-              />
+            />
           </View>
         </View>
+
+
       </View>
+
+
+      
+
+
     ); 
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 5,
-    backgroundColor: colors.backgroundColor
-  },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: 'row'
-  },
-  accountContainer: {
-    flex: 1
-  },
-  buttonColor: {
-    backgroundColor: colors.alternatePurple
-  },
-  textColor: {
-    color: 'black'
-  },
-  headerContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerStyle: {
-    // color: colors.backgroundColor,
-    fontSize: 36, 
-    fontWeight: 'bold'
-  }
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: colors.background
+    },
 
+    buttonColor: {
+      backgroundColor: colors.alternatePurple
+    },
+    buttonContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'row'
+    }
 });
 
 export default MessageForm;
