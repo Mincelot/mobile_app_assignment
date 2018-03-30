@@ -30,14 +30,14 @@ class Conversation extends React.Component {
           .then((url) => {
             this.counter++;
             this.selectedUserUri = url;
-            if (this.counter == this.dataBackup.length) {
+            if (this.counter == 2) {
               this.loadImagesFinalDestination();
             }
           })
           .catch((error) => {
             this.counter++;
             this.setState({ status: error.message });
-            if (this.counter == this.dataBackup.length) {
+            if (this.counter == 2) {
               this.loadImagesFinalDestination();
             }
           });
@@ -46,23 +46,23 @@ class Conversation extends React.Component {
           const userRefStorage2 = rootRefStorage2.child(this.user.uid);
           const profilePicRefStorage2 = userRefStorage2.child('ProfilePictures');
           const imageRefStorage2 = profilePicRefStorage2.child('profilePic');
-          imageRefStorage.getDownloadURL()
+          imageRefStorage2.getDownloadURL()
           .then((url) => {
             this.counter++;
             this.userUri = url;
-            if (this.counter == this.dataBackup.length) {
+            if (this.counter == 2) {
               this.loadImagesFinalDestination();
             }
           })
           .catch((error) => {
             this.counter++;
             this.setState({ status: error.message });
-            if (this.counter == this.dataBackup.length) {
+            if (this.counter == 2) {
               this.loadImagesFinalDestination();
             }
           });
-      }
-      loadImagesFinalDestination() {
+    }
+    loadImagesFinalDestination() {
         for (let t = 0; t < this.dataBackup.length; t++) {
             if (this.dataBackup[t].user._id == 1) {
                 this.dataBackup[t].user.avatar = this.userUri;
@@ -71,7 +71,7 @@ class Conversation extends React.Component {
             }
         }
         this.setState({ data: this.dataBackup });
-      }
+    }
     componentDidMount() {
         const rootRef = firebase.database().ref().child("users");
         const infoRef = rootRef.child('info');
@@ -122,8 +122,8 @@ class Conversation extends React.Component {
 
                 const messages2 = specificUserMsg2.child("conversation3");
 
-                messages2.once('value')
-                .then((snapshot) => {
+                messages2.on('value', (snapshot) => {
+                // .then((snapshot) => {
                     if (snapshot.val()) {
                         // if (snapshot.val().isMsgKeeper) {
                             let dataTemp = [];
@@ -157,12 +157,11 @@ class Conversation extends React.Component {
                                 // }
                             });
                             this.dataBackup = dataTemp;
-                            this.setState({ data: dataTemp });
+                            // Wait for images to load till populating chat. or not.
+                            // this.setState({ data: dataTemp });
                             this.loadImages();
                         // }
                     }
-                })
-                .catch((error) => {
                 })
             }
         });
@@ -182,7 +181,6 @@ class Conversation extends React.Component {
         // };
         // this.dataBackup.push(obj);
         // this.setState({ data: this.dataBackup });
-        let obj = messages[0];
 
         messages[0].createdAt = new Date();
         if (messages[0].user._id == 1) {
@@ -192,7 +190,7 @@ class Conversation extends React.Component {
         }
 
         this.setState((previousState) => ({
-            data: GiftedChat.append(previousState.data, messages),
+            data: GiftedChat.prepend(previousState.data, messages),
         }));
 
         const rootRef2 = firebase.database().ref().child("users");
@@ -214,13 +212,19 @@ class Conversation extends React.Component {
 
         const messages2 = specificUserMsg2.child("conversation3");
 
+        let obj = {};
+        obj._id = messages[0]._id;
+        obj.author = messages[0].author;
+        // obj.date = messages[0].date;
         obj.date = new Date().getTime();
-        if (obj.user._id == 1) {
+        obj.text = messages[0].text;
+
+        if (messages[0].user._id == 1) {
             obj.author = this.user.uid;
-            obj.user.name = this.state.currentUserName;
-        } else if (obj.user._id == 2) {
+            // obj.user.name = this.state.currentUserName;
+        } else if (messages[0].user._id == 2) {
             obj.author = this.selectedUserUid;
-            obj.user.name = this.state.contactName;
+            // obj.user.name = this.state.contactName;
         }
         messages2.push(obj)
         .then(() => {
@@ -291,7 +295,8 @@ const styles = StyleSheet.create({
   },
   chat: {
     flex: 1,
-    marginTop: 5
+    // paddingTop: 5,
+    backgroundColor: colors.background,
   }
 
 });

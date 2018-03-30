@@ -247,6 +247,51 @@ uploadPictureAndDescription(){
     this.props.navigation.dispatch({ type: 'ViewReviewPage', selectedUserUid: this.userUidPassedIn, loggedInClient: this.loggedInClient });
   }
 
+  chatRequest() {
+    const currentUser = firebase.auth().currentUser;
+
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const userRef = infoRef.child(currentUser.uid);
+    const favRef = userRef.child('requests');
+    const thisChefRef = favRef.child(this.userUidPassedIn);
+
+    thisChefRef.once('value')
+    .then((snapshot) => {
+      if (!snapshot.exists()) {
+        let obj = {
+          requestDate: new Date().getTime(),
+          approval: true,
+          isMsgKeeper: true
+        }
+        thisChefRef.update(obj);
+      }
+    })
+    .catch((error) => {
+    })
+
+    const rootRef3 = firebase.database().ref().child("users");
+    const infoRef3 = rootRef3.child('info');
+    const userRef3 = infoRef3.child(this.userUidPassedIn);
+    const favRef3 = userRef3.child('requests');
+    const thisChefRef3 = favRef3.child(currentUser.uid);
+
+    thisChefRef3.once('value')
+    .then((snapshot) => {
+      if (!snapshot.exists()) {
+        let obj = {
+          requestDate: new Date().getTime(),
+          approval: false,
+          isMsgKeeper: false
+        }
+        thisChefRef3.update(obj);
+      }
+    })
+    .catch((error) => {
+    })
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -291,6 +336,13 @@ uploadPictureAndDescription(){
                   style={[styles.myButton]}
                   onPress={this.sendMessageRequest.bind(this)}>
                   <Text style={{color: '#7E8F7C'}}> Message Chef </Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity
+                  style={[styles.myButton]}
+                  onPress={this.chatRequest.bind(this)}>
+                  <Text style={{color: '#7E8F7C'}}> Send Chat Request </Text>
                 </TouchableOpacity>
               </View>
               <View>
