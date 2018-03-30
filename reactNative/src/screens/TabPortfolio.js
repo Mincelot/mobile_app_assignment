@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, StyleSheet, View, ScrollView, TextInput, FlatList, TouchableHighlight, Modal } from 'react-native';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
-import { Divider, Avatar, List, ListItem, Header, Card, PricingCard,Button,Input} from 'react-native-elements';
+import { Divider, Avatar, List, ListItem, Header, Card, PricingCard,Button,Input, Icon} from 'react-native-elements';
 import NavigatorService from '../services/navigator';
 import firebase from 'firebase';
 
@@ -185,6 +185,7 @@ class TabPortfolio extends React.Component {
                     <Button
                       title="Send Review"
                       borderRadius={5}
+
                       onPress={()=>{
                         this.sendReview();
                         this.toggleInput(!this.state.reviewVisible);
@@ -195,7 +196,7 @@ class TabPortfolio extends React.Component {
 
                 :null}
                 <View>
-                  <Button 
+                  <Button
                     title="Back To Orders"
                     onPress={()=>{
                       if (this.reviewVisible){this.toggleInput(!this.reviewVisible);}
@@ -289,7 +290,7 @@ styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    top: '20%',
+    top: '13%',
   }, 
   containerBorder: {
     borderRadius: 10
