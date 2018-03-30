@@ -4,13 +4,16 @@ import { Text, StyleSheet, View, ScrollView, TextInput, FlatList,
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { NavigationActions } from "react-navigation";
-import { Card, Header, Icon, Button, FormInput } from 'react-native-elements';
+import { Card, Header, Icon, Button, FormInput, ButtonGroup } from 'react-native-elements';
 import firebase from 'firebase';
+import NavigatorService from '../services/navigator';
+import { connect } from 'react-redux';
 
 class TabPortfolioServiceProvider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {picFolders: [], modalVisible: false, tempUrl: '', tempDescription: '', descriptionModalVisible: false}; //folder has text + picUrl 
+    this.state = {picFolders: [], modalVisible: false, tempUrl: '',
+     tempDescription: '', descriptionModalVisible: false, isChefFav: false}; //folder has text + picUrl 
     this.isViewMode = false;
     this.userUidPassedIn = '';
     this.currentUser = '';
@@ -18,6 +21,8 @@ class TabPortfolioServiceProvider extends React.Component {
     if (this.props && this.props.navigation && this.props.navigation.state && this.props.navigation.state.params) {
       this.isViewMode = this.props.navigation.state.params.isView ? true : false;
       this.userUidPassedIn = this.props.navigation.state.params.selectedUserUid;
+      //this.loggedInClient = this.props.navigation.state.params.loggedInClient;
+      this.loggedInClient = firebase.auth().currentUser;
     }
     this.unsubscribe = null;
   }
@@ -31,7 +36,6 @@ class TabPortfolioServiceProvider extends React.Component {
           const userRef = infoRef.child(user.uid);
           const picRef = userRef.child('picFolder');
           picRef.once('value')
-
           .then((snapshot) => {
             this.numPicFolders = snapshot.numChildren();
             console.log(this.numPicFolders);
@@ -74,6 +78,21 @@ class TabPortfolioServiceProvider extends React.Component {
       .catch((error) => {
         this.setState({ status: error.message });
       })
+      
+      this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
+        const rootRef2 = firebase.database().ref().child("users");
+        const infoRef2 = rootRef2.child('info');
+        const userRef2 = infoRef2.child(user.uid);
+        const favRef2 = userRef2.child('Favourites');
+        const thisChefRef2 = favRef2.child(this.userUidPassedIn);
+
+        thisChefRef2.once('value', (snapshot) => {
+          // check if this chef has not been favoured
+          if (snapshot.exists() && snapshot.val() == true) {
+            this.setState({ isChefFav: true });
+          }
+        });
+      });
     }
   }
   
@@ -93,53 +112,6 @@ class TabPortfolioServiceProvider extends React.Component {
       this.unsubscribe();
     }
   }
- 
-  //maybe change to this for D3. 
-  // addDescriptionModal(){
-  //   if(this.state.tempUrl){
-  //     console.log('in add description');
-  //     this.setState({descriptionModalVisible: true});
-  //     console.log(this.state.tempUrl);
-  //     let newPicUrl = this.state.tempUrl;
-  //     this.setState({tempUrl: ''});
-  //     console.log(newPicUrl);
-  //     <View> 
-  //       {this.descriptionModalVisible &&  
-  //         <Modal
-  //           animationType="fade"
-  //           transparent={true}
-  //           visible={this.state.descriptionModalVisible}
-  //           onRequestClose={() => {
-  //             alert('Modal has been closed.');
-  //           }}>
-  //           <View style={{height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
-  //             <View style={styles.centeredDialog}>
-  //               <Text style={[styles.labelText, {fontSize: 14}]}>Describe your dish!</Text>
-  //               <FormInput
-  //                 placeholder='Tap here to edit'
-  //                 value={this.state.tempDescription ? this.state.tempDescription : ''}
-  //                 onChangeText={(newDescription) => this.setState({ tempDescription: newDescription })}
-  //               >
-  //               </FormInput>
-  //               <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
-  //               <TouchableOpacity
-  //                   style={[styles.myButton]}
-  //                   onPress={this.onTextChange.bind(this,newPicUrl)}>
-  //                   <Text style={{color: '#7E8F7C'}}> Confirm </Text>
-  //               </TouchableOpacity>
-  //               <TouchableOpacity
-  //                   style={styles.myButton}
-  //                   onPress={this.setState({descriptionModalVisible: false})}>
-  //                   <Text style={{color: '#7E8F7C'}}> Cancel </Text>
-  //               </TouchableOpacity>
-  //               </View>
-  //             </View>
-  //           </View>
-  //         </Modal>  
-  //       }    
-  //     </View>
-  //   }
-  // }
 
 //Uploads picture+description on firebase and the screen.
 uploadPictureAndDescription(){
@@ -197,11 +169,12 @@ uploadPictureAndDescription(){
   backButton() {
     this.props.navigation.dispatch(NavigationActions.back());
   }
-
-
-
   favThisChef(){
-    //this.useUidPassedIn is the id of the user that is going to be favoured
+    this.setState((prevState) => {
+      return {isChefFav: !prevState.isChefFav};
+    });
+
+    //this.userUidPassedIn is the id of the user that is going to be favoured
     const currentUser = firebase.auth().currentUser;
     
     const rootRef = firebase.database().ref().child("users");
@@ -259,15 +232,64 @@ uploadPictureAndDescription(){
         })
       }
      })
+  }
 
+  sendMessageRequest(){
+    this.props.navigation.dispatch({ type: 'ViewMessageForm', selectedUserUid: this.userUidPassedIn, 
+    loggedInClient: this.loggedInClient });
+    //alert(this.loggedInClient.uid);
 
-    
+    //console.log('in message');
+  }
 
+  viewReviews(){
+    //alert('Viewing Reviews.');
+    this.props.navigation.dispatch({ type: 'ViewReviewPage', selectedUserUid: this.userUidPassedIn, loggedInClient: this.loggedInClient });
+  }
 
-  
+  chatRequest() {
+    const currentUser = firebase.auth().currentUser;
 
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const userRef = infoRef.child(currentUser.uid);
+    const favRef = userRef.child('requests');
+    const thisChefRef = favRef.child(this.userUidPassedIn);
 
-    
+    thisChefRef.once('value')
+    .then((snapshot) => {
+      if (!snapshot.exists()) {
+        let obj = {
+          requestDate: new Date().getTime(),
+          approval: true,
+          isMsgKeeper: true
+        }
+        thisChefRef.update(obj);
+      }
+    })
+    .catch((error) => {
+    })
+
+    const rootRef3 = firebase.database().ref().child("users");
+    const infoRef3 = rootRef3.child('info');
+    const userRef3 = infoRef3.child(this.userUidPassedIn);
+    const favRef3 = userRef3.child('requests');
+    const thisChefRef3 = favRef3.child(currentUser.uid);
+
+    thisChefRef3.once('value')
+    .then((snapshot) => {
+      if (!snapshot.exists()) {
+        let obj = {
+          requestDate: new Date().getTime(),
+          approval: false,
+          isMsgKeeper: false
+        }
+        thisChefRef3.update(obj);
+      }
+    })
+    .catch((error) => {
+    })
+
   }
 
   render() {
@@ -299,13 +321,41 @@ uploadPictureAndDescription(){
               centerComponent={{ text: 'Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}   
               rightComponent={<Icon
                 name='star'
-                color='#fff'
+                color={this.state.isChefFav ? '#FFFF33' : '#fff'}
                 size={40}
                 onPress={this.favThisChef.bind(this)}
-              />}     
-              outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}  
+              />}
+              outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
             />
-          } 
+          }
+          {this.isViewMode &&  //view mode true = client user 
+            <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-around'}]}>
+
+              <View>
+                <TouchableOpacity
+                  style={[styles.myButton]}
+                  onPress={this.sendMessageRequest.bind(this)}>
+                  <Text style={{color: '#7E8F7C'}}> Message Chef </Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity
+                  style={[styles.myButton]}
+                  onPress={this.chatRequest.bind(this)}>
+                  <Text style={{color: '#7E8F7C'}}> Send Chat Request </Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity
+                  style={[styles.myButton]}
+                  onPress={this.viewReviews.bind(this)}>
+                  <Text style={{color: '#7E8F7C'}}> All Reviews </Text>
+                </TouchableOpacity>
+              </View>
+              
+            </View> 
+          }
+          {/* closing client view */}
         </View>
         {/* <View> */}
         {/* <Animated.View style={{ marginBottom: this.keyboardHeight }}> */}
@@ -441,7 +491,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
   },
-
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  buttonColor: {
+    backgroundColor: colors.alternatePurple
+  }
 });
 
 export default TabPortfolioServiceProvider;

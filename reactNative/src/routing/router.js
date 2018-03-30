@@ -7,6 +7,7 @@ import { addListener } from '../utils/redux';
 import LogInPage from '../screens/LogInPage';
 import RegisterPage from '../screens/RegisterPage';
 import TabPortfolioServiceProvider from '../screens/TabPortfolioServiceProvider';
+import Conversation from '../screens/Conversation';
 // import TabIndex from '../screens/TabIndex';
 // import TabIndexServiceProvider from '../screens/TabIndexServiceProvider';
 // import MiddleManPortfolioServiceProvider from '../screens/MiddleManPortfolioServiceProvider';
@@ -14,6 +15,9 @@ import OrderPage from '../screens/OrderPage';
 
 import { Root } from './tabRouter';
 import { RootServiceProvider } from './tabRouterServiceProvider';
+
+import ReviewPage from '../screens/ReviewPage';
+import MessageForm from '../screens/MessageForm';
 
 
 export const AppNavigator = StackNavigator({
@@ -34,6 +38,15 @@ export const AppNavigator = StackNavigator({
         },
         ViewOrder: {
             screen: OrderPage
+        },
+        ViewConversation: {
+            screen: Conversation
+        },
+        ViewReviewPage: {
+            screen: ReviewPage
+        },
+        ViewMessageForm: {
+            screen: MessageForm
         }
     }, {
         initialRouteName:  'LogInPage',

@@ -92,6 +92,40 @@ function nav(state = initialNavState, action) {
         // state
       );
       break;
+
+    case 'ViewMessageForm':
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'ViewMessageForm',
+        params: { 
+          loggedInClient: action.loggedInClient ? action.loggedInClient: 'Test',
+          selectedUserUid: action.selectedUserUid ? action.selectedUserUid: 'Test'} }),
+        state
+        );
+      nextState;
+      break;
+
+    case 'ViewReviewPage':
+          nextState = AppNavigator.router.getStateForAction(
+            NavigationActions.navigate({ routeName: 'ViewReviewPage',
+            params: {
+              loggedInClient: action.loggedInClient ? action.loggedInClient: 'Test',
+              selectedUserUid: action.selectedUserUid ? action.selectedUserUid: 'Test'} }),
+            state
+            );
+          nextState;
+          break;
+
+    case 'ViewConversation':
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'ViewConversation',
+        params: { 
+          selectedUserUid: action.selectedUserUid ? action.selectedUserUid: 'Test' ,
+          isMsgKeeper: action.isMsgKeeper ? action.isMsgKeeper: 'Test' }
+        }),
+        state
+      );
+      nextState
+      break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;

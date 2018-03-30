@@ -16,6 +16,7 @@ class TabSearch extends React.Component {
     super(props);
     this.state = { searchParam : '', data: [], selectedService: 'All', status: '' };
     this.dataBackup = [];
+    this.loggedInClient = null;
   }
   loadImages() {
     this.counter = 0;
@@ -47,6 +48,13 @@ class TabSearch extends React.Component {
     })
   }
   componentDidMount() {
+    this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
+      if (user) {
+        // this.setState({ email: user.email, userInfo: user });
+        //this.setState({ userUid: user.uid, email: user.email, tempEmail: user.email });
+        this.loggedInClient = user;
+      }
+    })
       const rootRef = firebase.database().ref().child("users");
       const infoRef = rootRef.child('info');
       const filterData = infoRef.orderByChild("isAccountTypeClient").equalTo(false).limitToLast(100);
@@ -54,9 +62,12 @@ class TabSearch extends React.Component {
       .then((snapshot) => {
         var dataTemp = [];
         snapshot.forEach((item) => {
+          let initials = item.val().name.match(/\b\w/g) || [];
+          initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
           dataTemp.push({
             uid: item.key,
             name: item.val().name,
+            nickname: initials,
             email: item.val().email,
             portfolioUri: ''
           });
@@ -83,9 +94,12 @@ class TabSearch extends React.Component {
           // A more ideal way would be to filter the snapshot then make copy.
           let dataTemp = [];
           snapshot.forEach((item) => {
+            let initials = item.val().name.match(/\b\w/g) || [];
+            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
             dataTemp.push({
               uid: item.key,
               name: item.val().name,
+              nickname: initials,
               email: item.val().email
             });
           });
@@ -107,9 +121,12 @@ class TabSearch extends React.Component {
         .then((snapshot) => {
           let dataTemp = [];
           snapshot.forEach((item) => {
+            let initials = item.val().name.match(/\b\w/g) || [];
+            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
             dataTemp.push({
               uid: item.key,
               name: item.val().name,
+              nickname: initials,
               email: item.val().email
             });
           });
@@ -152,7 +169,8 @@ class TabSearch extends React.Component {
       }
     }
     // this.props.navigation.state
-    this.props.navigation.dispatch({ type: 'ViewPortfolio', selectedUserUid: selectedUserUid });
+    this.props.navigation.dispatch({ type: 'ViewPortfolio', selectedUserUid: selectedUserUid, 
+    loggedInClient: this.loggedInClient });
   }
   onChangeSearchText(newSearchString) {
     // Needs no server call. Essentially just filtering the data from the available filters.
@@ -219,7 +237,10 @@ class TabSearch extends React.Component {
                     <ListItem
                       large
                       roundAvatar
-                      avatar={item.portfolioUri != '' ? {uri: item.portfolioUri} : {}}
+                      avatar={item.portfolioUri != '' ?
+                       <Avatar rounded source={{uri: item.portfolioUri }} /> :
+                       <Avatar rounded title={item.nickname} />
+                      }
                       title={item.name}
                       subtitle={item.email}
                     />
