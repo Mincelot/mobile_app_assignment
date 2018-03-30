@@ -1,13 +1,27 @@
 import React from 'react';
 //import Header from '../components/Header';
-import { StyleSheet, View, Alert, Text, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, View, Alert, Text, FlatList, ScrollView, Image } from 'react-native';
 import colors from '../styles/color';
 import defaultStyles from '../../src/styles/default';
 import { NavigationActions } from "react-navigation";
-import { Header, Icon, Button, ListItem, Card } from 'react-native-elements';
+import { Header, Icon, Button, ListItem, Card, List, Divider } from 'react-native-elements';
 import firebase from 'firebase';
 import NavigatorService from '../services/navigator';
 import { connect } from 'react-redux';
+
+
+const users = [
+ {
+    name: 'brynn',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+ },
+ {
+     name: 'lola',
+     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+  }
+
+]
+
 
 class ReviewPage extends React.Component {
 
@@ -96,25 +110,25 @@ class ReviewPage extends React.Component {
                  outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
             />
            <ScrollView>
-           <Text></Text>
-           <View>{
-           //<Text>hello</Text>
-                <FlatList
-                     data={this.state.reviews}
-                     extraData={this.state}
-                     keyExtractor={(item, index) => index}
-                     renderItem={ ({item}) =>
-
-                           <ListItem
-                             title={item.date}
-                             subtitle={item.review}
-                           />
-                     }
-                /> }
-           </View>
+               <FlatList
+                data={this.state.reviews}
+                extraData={this.state}
+                keyExtractor={(item, index) => index}
+                renderItem={({item}) =>
+                    <Card style={{card: {backgroundColor: '#696969'}}}>
+                      <View style={{padding: 10 }}>
+                      <Text style={{color: colors.navyBlue}}>{item.review}</Text>
+                      </View>
+                      <Divider/>
+                      <View style={{padding: 10 }}>
+                      <Text style={{color: colors.tabNavBackground}}>{item.date}</Text>
+                      <Text style={{color: colors.tabNavBackground}}>by {item.reviewer}</Text>
+                      </View>
+                    </Card>}
+               />
            </ScrollView>
        </View>
-    ); 
+    );
   }
 }
 
