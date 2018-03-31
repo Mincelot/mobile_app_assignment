@@ -11,7 +11,7 @@ import Conversation from '../screens/Conversation';
 // import TabIndex from '../screens/TabIndex';
 // import TabIndexServiceProvider from '../screens/TabIndexServiceProvider';
 // import MiddleManPortfolioServiceProvider from '../screens/MiddleManPortfolioServiceProvider';
-import OrderPage from '../screens/OrderPage';
+//import OrderPage from '../screens/OrderPage';
 
 import { Root } from './tabRouter';
 import { RootServiceProvider } from './tabRouterServiceProvider';
@@ -35,9 +35,6 @@ export const AppNavigator = StackNavigator({
         },
         ViewPortfolio: {
             screen: TabPortfolioServiceProvider
-        },
-        ViewOrder: {
-            screen: OrderPage
         },
         ViewConversation: {
             screen: Conversation

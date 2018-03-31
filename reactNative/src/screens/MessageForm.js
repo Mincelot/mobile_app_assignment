@@ -29,6 +29,7 @@ class MessageForm extends React.Component {
   render() {
     return (
         <View style={styles.container}>
+        <View style={styles.boxAround}>
           <Header
             leftComponent={<Icon
               name='arrow-back'
@@ -39,6 +40,7 @@ class MessageForm extends React.Component {
             centerComponent={{ text: 'Message Form', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}
             outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
          />
+        </View>
         {/* <Text>hello</Text> */}
 
 
@@ -103,7 +105,13 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       flexDirection: 'row'
-    }
+    },
+       boxAround: {
+         margin: 10,
+         borderRadius: 4,
+         borderWidth: 0.5,
+         borderColor: '#d6d7da',
+       }
 });
 
 export default MessageForm;

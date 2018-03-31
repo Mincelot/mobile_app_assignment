@@ -189,6 +189,7 @@ class TabSearch extends React.Component {
   render() {
     return (
         <View style={styles.container}>
+        <View style={styles.boxAround}>
           <SearchBar
             round
             // underlineColorAndroid='dark'
@@ -250,6 +251,7 @@ class TabSearch extends React.Component {
             </View>
           </ScrollView>
         </View>
+        </View>
     );
   }
 }
@@ -282,7 +284,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: 20,
     color: colors.text,
-  }
+  },
+     boxAround: {
+       margin: 10,
+       borderRadius: 4,
+       borderWidth: 0.5,
+       borderColor: '#d6d7da',
+     }
 
 });
 

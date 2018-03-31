@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, ScrollView, TextInput, FlatList, TouchableHighl
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import { Divider, Avatar, List, ListItem, Header, Card, PricingCard,Button,Input, Icon} from 'react-native-elements';
+import StarRating from 'react-native-star-rating';
 import NavigatorService from '../services/navigator';
 import firebase from 'firebase';
 
@@ -10,7 +11,8 @@ class TabPortfolio extends React.Component {
   constructor(props) {
     super(props);
     this.state = { pastOrdersArray: [], chefsArray: [], user: {uid: 'null'}, modalVisible: false, reviewVisible:false,
-    chef: '', cuisine: '' , date: '', price: '', chef_name: '', client_name:'',guests: '',review:[],reviewedFlag: false,text:'',};
+    chef: '', cuisine: '' , date: '', price: '', chef_name: '', client_name:'',guests: '',review:[], rating:0,
+    num_rating:0 ,starCount:0,text:'',};
     this.user = null;
   }
 
@@ -30,8 +32,11 @@ class TabPortfolio extends React.Component {
         .then((snapshot) => {
           let ordersTemp = [];
             snapshot.forEach((item) => {
-              // temp.getMonth()
-              let dateObj = new Date(item.val().date)
+              let dateObj = new Date(item.val().date);
+              // dateObj.setMonth(5);
+              let currDate = new Date();
+              let result = currDate >= dateObj;
+
               ordersTemp.push({
                 chefID: item.val().chef,
                 cuisineName: item.val().cuisine,
@@ -39,7 +44,7 @@ class TabPortfolio extends React.Component {
                 priceAmount: item.val().price,
                 guestNumber: item.val().guests,
                 reviewedFlag: item.val().reviewed,
-                isCompletedStatus: item.val().isCompletedStatus
+                isCompletedStatus: result
               });
             });
             this.setState({ pastOrdersArray: ordersTemp });
@@ -118,33 +123,51 @@ class TabPortfolio extends React.Component {
   }
   //a function that is supposed to append a new review to given chef to database
   sendReview(){
-    if (this.state.reviewedFlag){
-      alert("You have already reviewed this order !");
-    }
-    else{
       const rootRef = firebase.database().ref().child("users");
       const infoRef = rootRef.child('info');
       const chefRef = infoRef.child(this.state.chef);
       const reviewRef = chefRef.child('reviews');
+      const ratingRef = chefRef.child('rating');
+      const num_ratingRef = chefRef.child('num_rating');
+      var cur_rating = 0;
+      var num_rating = 0;
+      ratingRef.once('value')
+      .then((snapshot) => {
+        if  (snapshot.val()) {
+          cur_rating = snapshot.val();
+          this.setState({rating: cur_rating});
+        }
+      })
+      num_ratingRef.once('value')
+      .then((snapshot) => {
+        if  (snapshot.val()) {
+          num_rating = snapshot.val();
+          this.setState({num_rating:num_rating});
+        }
+      })
       var newReview = reviewRef.push();
       var reviewobj = {reviewer:this.state.client_name, date:this.state.date, review:this.state.text};
       newReview.set(JSON.parse( JSON.stringify(reviewobj) ));
-      //still need to update reviewed flag to database, but need a way to index the specific order 
-
+      ratingRef.set(this.state.rating + this.state.starCount);
+      num_ratingRef.set(this.state.num_rating + 1);
       alert("Review send");
-      
-    }
-    
+  }
+  onStarRatingPress(rating) {
+    this.setState({
+      starCount: rating
+    });
   }
 
   render() {
     return (
       <View style={styles.container}>
+      <View style={styles.boxAround}>
         <Header
         centerComponent={{ text: 'Orders', style: {color: '#fff', fontSize: 30, fontStyle: "italic" }}}
         outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
         />
-
+      </View>
+      <View style={styles.boxAround}>
         <ScrollView>
           <View>
             <Modal
@@ -166,7 +189,7 @@ class TabPortfolio extends React.Component {
                       info={[this.state.cuisine + ' cuisine','With ' + this.state.chef_name, this.state.guests + ' guests']}
                       button={{ title: 'Write Review', icon: 'rate-review' }}
                       onButtonPress={()=>{
-                        this.toggleInput(!this.state.reviewVisible);
+                        this.toggleInput(true);
                         }}
                     />
                   :null}
@@ -174,12 +197,25 @@ class TabPortfolio extends React.Component {
                 {(this.state.reviewVisible)?
                   <View style={{alignItems:'center'}}>
                     <View style={{marginBottom:10}}><Text style={{fontSize: 20, color:'rgba(255,255,255,0.9)'}}>Give a review</Text></View>
+                    <View>
+                      <StarRating
+                        disabled={false}
+                        maxStars={5}
+                        rating={this.state.starCount}
+                        selectedStar={(rating) => this.onStarRatingPress(rating)}
+                        emptyStarColor={'#fff'}
+                        fullStarColor={'#fff'}
+                      />
+                    </View>
                     <View style={{height:'50%',width:'80%',borderRadius:5,backgroundColor:'rgba(255,255,255,0.9)'}}>
-                    <TextInput
-                      style={{width:300}}
-                      onChangeText={(text) => this.setState({text})}
-                      value={this.state.text}
-                    />
+                    
+                      <View>
+                      <TextInput
+                        style={{width:300}}
+                        onChangeText={(text) => this.setState({text})}
+                        value={this.state.text}
+                      />
+                    </View>
                     </View>  
                     <View style={{marginTop:10}}>
                     <Button
@@ -188,7 +224,7 @@ class TabPortfolio extends React.Component {
 
                       onPress={()=>{
                         this.sendReview();
-                        this.toggleInput(!this.state.reviewVisible);
+                        this.toggleInput(false);
                         this.setModalVisible(!this.state.modalVisible);}}
                     />
                     </View>
@@ -199,7 +235,7 @@ class TabPortfolio extends React.Component {
                   <Button
                     title="Back To Orders"
                     onPress={()=>{
-                      if (this.reviewVisible){this.toggleInput(!this.reviewVisible);}
+                      this.toggleInput(false);
                       this.setModalVisible(!this.state.modalVisible);
                     }}
                     borderRadius={5}
@@ -224,7 +260,7 @@ class TabPortfolio extends React.Component {
                   >{
                     <ListItem
                         title={item.orderDate}
-                        subtitle={`${item.priceAmount}  Status: ${item.isCompletedStatus == true ? 'Order Completed' : 'Order is in progress'}`}
+                        subtitle={`Status: ${item.isCompletedStatus == true ? 'Order Completed' : 'Order is in progress'}`}
                     />
                     }
                   </TouchableHighlight>
@@ -233,6 +269,7 @@ class TabPortfolio extends React.Component {
             />
           </View>
         </ScrollView>
+        </View>
       </View>
     ); 
   }
@@ -294,7 +331,13 @@ styles = StyleSheet.create({
   }, 
   containerBorder: {
     borderRadius: 10
-  }
+  },
+             boxAround: {
+               margin: 10,
+               borderRadius: 4,
+               borderWidth: 0.5,
+               borderColor: '#d6d7da',
+             }
 })
 
 export default TabPortfolio;
