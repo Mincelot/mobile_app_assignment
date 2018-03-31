@@ -169,7 +169,7 @@ class TabPortfolio extends React.Component {
                       info={[this.state.cuisine + ' cuisine','With ' + this.state.chef_name, this.state.guests + ' guests']}
                       button={{ title: 'Write Review', icon: 'rate-review' }}
                       onButtonPress={()=>{
-                        this.toggleInput(!this.state.reviewVisible);
+                        this.toggleInput(true);
                         }}
                     />
                   :null}
@@ -191,7 +191,7 @@ class TabPortfolio extends React.Component {
 
                       onPress={()=>{
                         this.sendReview();
-                        this.toggleInput(!this.state.reviewVisible);
+                        this.toggleInput(false);
                         this.setModalVisible(!this.state.modalVisible);}}
                     />
                     </View>
@@ -202,7 +202,7 @@ class TabPortfolio extends React.Component {
                   <Button
                     title="Back To Orders"
                     onPress={()=>{
-                      if (this.reviewVisible){this.toggleInput(!this.reviewVisible);}
+                      this.toggleInput(false);
                       this.setModalVisible(!this.state.modalVisible);
                     }}
                     borderRadius={5}
@@ -227,7 +227,7 @@ class TabPortfolio extends React.Component {
                   >{
                     <ListItem
                         title={item.orderDate}
-                        subtitle={`${item.priceAmount}  Status: ${item.isCompletedStatus == true ? 'Order Completed' : 'Order is in progress'}`}
+                        subtitle={`Status: ${item.isCompletedStatus == true ? 'Order Completed' : 'Order is in progress'}`}
                     />
                     }
                   </TouchableHighlight>
