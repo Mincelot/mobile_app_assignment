@@ -135,7 +135,8 @@ class ReviewPage extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: colors.background
+      backgroundColor: colors.background,
+      paddingBottom: 15
     }
 });
 
