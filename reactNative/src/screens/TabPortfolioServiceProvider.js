@@ -315,22 +315,23 @@ uploadPictureAndDescription(){
   render() {
     return (
       <View style={styles.container}>
-        <View> 
-          {!this.isViewMode && //view mode false = chef user 
+        <View style={styles.boxAround}>
+          {!this.isViewMode && //view mode false = chef user
           <Header
-            centerComponent={{ text: 'My Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}
+            centerComponent={{ text: 'My Portfolio', style: { color: "#fff", fontSize: 30, fontStyle: "italic" } }}
             rightComponent={<Icon
               name='control-point'
-              color='#fff'
+              color="#fff"
               size={40}
               onPress={() => {this.setState({ modalVisible: true})}}
-            /> }
+            />}
             outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
           />
           } 
         </View>
-        <View>
-          {this.isViewMode && //view mode true = client user 
+        <View style={styles.boxAround}>
+          {this.isViewMode && //view mode true = client user
+
             <Header
               leftComponent={<Icon
                 name='arrow-back'
@@ -338,10 +339,10 @@ uploadPictureAndDescription(){
                 size={40}
                 onPress={this.backButton.bind(this)}
               />}
-              centerComponent={{ text: 'Portfolio', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}   
+              centerComponent={{ text:"Chef's Portfolio", style: { color: "#fff", fontSize: 30, fontStyle: "italic" } }}
               rightComponent={<Icon
                 name='star'
-                color={this.state.isChefFav ? '#FFFF33' : '#fff'}
+                color={this.state.isChefFav ? '#000080' : '#fff'}
                 size={40}
                 onPress={this.favThisChef.bind(this)}
               />}
@@ -519,7 +520,13 @@ const styles = StyleSheet.create({
   },
   buttonColor: {
     backgroundColor: colors.alternatePurple
-  }
+  },
+     boxAround: {
+       margin: 10,
+       borderRadius: 4,
+       borderWidth: 0.5,
+       borderColor: '#d6d7da',
+     }
 });
 
 export default TabPortfolioServiceProvider;
