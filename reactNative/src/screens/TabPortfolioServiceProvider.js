@@ -315,71 +315,70 @@ uploadPictureAndDescription(){
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.boxAround}>
-          {!this.isViewMode && //view mode false = chef user
-          <Header
-            centerComponent={{ text: 'My Portfolio', style: { color: "#fff", fontSize: 30, fontStyle: "italic" } }}
-            rightComponent={<Icon
-              name='control-point'
-              color="#fff"
-              size={40}
-              onPress={() => {this.setState({ modalVisible: true})}}
-            />}
-            outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
-          />
-          } 
-        </View>
-        <View style={styles.boxAround}>
-          {this.isViewMode && //view mode true = client user
+        {!this.isViewMode && //view mode false = chef user
+          <View style={styles.boxAround}>
+              <Header
+                centerComponent={{ text: 'My Portfolio', style: { color: "#fff", fontSize: 30, fontStyle: "italic" } }}
+                rightComponent={<Icon
+                  name='control-point'
+                  color="#fff"
+                  size={40}
+                  onPress={() => {this.setState({ modalVisible: true})}}
+                />}
+                outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
+              />
+            
+          </View>
+        }
+        {this.isViewMode && //view mode true = client user
+          <View style={styles.boxAround}>
+              <Header
+                leftComponent={<Icon
+                  name='arrow-back'
+                  color='#fff'
+                  size={40}
+                  onPress={this.backButton.bind(this)}
+                />}
+                centerComponent={{ text:"Chef's Portfolio", style: { color: "#fff", fontSize: 30, fontStyle: "italic" } }}
+                rightComponent={<Icon
+                  name='star'
+                  color={this.state.isChefFav ? '#000080' : '#fff'}
+                  size={40}
+                  onPress={this.favThisChef.bind(this)}
+                />}
+                outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
+              />
+              <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-around'},{backgroundColor: colors.alternatePurple}]}>
 
-            <Header
-              leftComponent={<Icon
-                name='arrow-back'
-                color='#fff'
-                size={40}
-                onPress={this.backButton.bind(this)}
-              />}
-              centerComponent={{ text:"Chef's Portfolio", style: { color: "#fff", fontSize: 30, fontStyle: "italic" } }}
-              rightComponent={<Icon
-                name='star'
-                color={this.state.isChefFav ? '#000080' : '#fff'}
-                size={40}
-                onPress={this.favThisChef.bind(this)}
-              />}
-              outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
-            />
-          }
-          {this.isViewMode &&  //view mode true = client user 
-            <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-around'},{backgroundColor: colors.alternatePurple}]}>
-
-              <View>
-                <TouchableOpacity
-                  style={[styles.myButton]}
-                  onPress={this.sendMessageRequest.bind(this)}>
-                  <Text style={{color: '#fff'}}> Message Chef </Text>
-                </TouchableOpacity>
-              </View>
-              {!this.state.chatRequestAlreadySend &&
                 <View>
                   <TouchableOpacity
                     style={[styles.myButton]}
-                    onPress={this.chatRequest.bind(this)}>
-                    <Text style={{color: '#fff'}}> Send Chat Request </Text>
+                    onPress={this.sendMessageRequest.bind(this)}>
+                    <Text style={{color: '#fff'}}> Message Chef </Text>
                   </TouchableOpacity>
                 </View>
-              }
-              <View>
-                <TouchableOpacity
-                  style={[styles.myButton]}
-                  onPress={this.viewReviews.bind(this)}>
-                  <Text style={{color: '#fff'}}> All Reviews </Text>
-                </TouchableOpacity>
-              </View>
-              
-            </View> 
+                {!this.state.chatRequestAlreadySend &&
+                  <View>
+                    <TouchableOpacity
+                      style={[styles.myButton]}
+                      onPress={this.chatRequest.bind(this)}>
+                      <Text style={{color: '#fff'}}> Send Chat Request </Text>
+                    </TouchableOpacity>
+                  </View>
+                }
+                <View>
+                  <TouchableOpacity
+                    style={[styles.myButton]}
+                    onPress={this.viewReviews.bind(this)}>
+                    <Text style={{color: '#fff'}}> All Reviews </Text>
+                  </TouchableOpacity>
+                </View>
+                
+              </View> 
+            </View>
           }
           {/* closing client view */}
-        </View>
+       
         {/* <View> */}
         {/* <Animated.View style={{ marginBottom: this.keyboardHeight }}> */}
         <KeyboardAvoidingView behavior="padding" style={styles.form} keyboardVerticalOffset={
