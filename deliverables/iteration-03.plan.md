@@ -41,10 +41,10 @@ Describe meetings (and other events) you are planning to have:
  * What's the **purpose** of each meeting?
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
  
- Frequent small "meeting" on Facebook where we disgussed about problems we faced during coding.
- In person meeting Mar 15 2018: Discuss what features should be implemented for this iteration as well as assigning tasks.
- In person meeting Mar 29 2018: Code review session.
- Skype meeting March 30 2018: Finalize all the features as well as solving coding or design problems.
+ * Frequent small "meeting" on Facebook where we disgussed about problems we faced during coding.
+ * In person meeting Mar 15 2018: Discuss what features should be implemented for this iteration as well as assigning tasks.
+ * In person meeting Mar 29 2018: Code review session.
+ * Skype meeting March 30 2018: Finalize all the features as well as solving coding or design problems.
 
 #### Artifacts
 
