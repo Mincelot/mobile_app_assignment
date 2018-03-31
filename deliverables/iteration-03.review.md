@@ -23,6 +23,8 @@ List process-related (i.e. team organization) decisions that, in retrospect, tur
  * Ordered from most to least important.
  * Explain why (i.e. give a supporting argument) you consider a decision to be successful.
  * Feel free to refer/link to process artifact(s).
+ 
+ ![Imgur](https://i.imgur.com/Ply4XaK.png)
 
 #### Decisions that did not turn out as well as we hoped
 
