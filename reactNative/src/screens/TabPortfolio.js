@@ -30,8 +30,11 @@ class TabPortfolio extends React.Component {
         .then((snapshot) => {
           let ordersTemp = [];
             snapshot.forEach((item) => {
-              // temp.getMonth()
-              let dateObj = new Date(item.val().date)
+              let dateObj = new Date(item.val().date);
+              // dateObj.setMonth(5);
+              let currDate = new Date();
+              let result = currDate >= dateObj;
+
               ordersTemp.push({
                 chefID: item.val().chef,
                 cuisineName: item.val().cuisine,
@@ -39,7 +42,7 @@ class TabPortfolio extends React.Component {
                 priceAmount: item.val().price,
                 guestNumber: item.val().guests,
                 reviewedFlag: item.val().reviewed,
-                isCompletedStatus: item.val().isCompletedStatus
+                isCompletedStatus: result
               });
             });
             this.setState({ pastOrdersArray: ordersTemp });
