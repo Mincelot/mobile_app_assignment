@@ -24,9 +24,9 @@ List the most significant changes you made to your process (if any).
 #### Roles & responsibilities
 
 The tasks/features assigned to each members are as follow:
-* Helen (Ke Lan): Review submission page
+* Helen (Ke Lan): Review/rating submission page
 * Vlad: Chat page
-* Mariko: Display page for the reviews
+* Mariko: Display page for the reviews/rating
 * Akanksha: Itinerary form
 * Emil: The video, map page
 * Mike (Yu Xuan): Favourite page
