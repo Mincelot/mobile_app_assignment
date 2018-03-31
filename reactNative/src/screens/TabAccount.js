@@ -250,10 +250,12 @@ class TabAccount extends React.Component {
   render() {
     return (
         <View style={styles.container}>
+        <View style={styles.boxAround}>
         <Header
         centerComponent={{ text: 'Account Setting', style: {color: '#fff', fontSize: 30, fontStyle: "italic" }}}
         outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
         />
+        </View>
         <ScrollView>
 		  <View style={styles.dividerView}>
             {/* <Text style={[defaultStyles.marginSidesIndent, styles.labelText]}>Account Setting</Text> */}
@@ -448,7 +450,13 @@ const styles = StyleSheet.create({
     borderWidth:2,
     borderColor:"#f3753f",
     borderRadius: 10
-  }
+  },
+     boxAround: {
+       margin: 10,
+       borderRadius: 4,
+       borderWidth: 0.5,
+       borderColor: '#d6d7da',
+     }
 
 
 });

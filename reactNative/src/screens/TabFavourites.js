@@ -139,10 +139,13 @@ class TabFavourites extends React.Component {
   render() {
     return (
         <View style={[styles.container, {backgroundColor: colors.backgroundSecondary}]}>
+        <View style={styles.boxAround}>
           <Header
             centerComponent={{ text: 'Favourites', style: {color: '#fff', fontSize: 30, fontStyle: "italic" }}}
             outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
           />
+        </View>
+          <View style={styles.boxAround}>
           <ScrollView>
           <FlatList
                 data={this.state.favsArray}
@@ -164,6 +167,7 @@ class TabFavourites extends React.Component {
                 }
               />
           </ScrollView>
+          </View>
         </View>
     );
   }
@@ -172,7 +176,13 @@ class TabFavourites extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  }
+  },
+     boxAround: {
+       margin: 10,
+       borderRadius: 4,
+       borderWidth: 0.5,
+       borderColor: '#d6d7da',
+     }
 
 });
 

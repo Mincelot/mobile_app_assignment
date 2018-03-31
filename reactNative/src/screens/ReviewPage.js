@@ -99,6 +99,7 @@ class ReviewPage extends React.Component {
   render() {
     return (
         <View style={styles.container}>
+        <View style={styles.boxAround}>
             <Header
                  leftComponent={<Icon
                    name='arrow-back'
@@ -109,6 +110,7 @@ class ReviewPage extends React.Component {
                  centerComponent={{ text: 'Reviews', style: { color: '#fff', fontSize: 30, fontStyle: "italic" } }}
                  outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
             />
+        </View>
            <ScrollView>
                <FlatList
                 data={this.state.reviews}
@@ -137,7 +139,13 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: colors.background,
       paddingBottom: 15
-    }
+    },
+          boxAround: {
+            margin: 10,
+            borderRadius: 4,
+            borderWidth: 0.5,
+            borderColor: '#d6d7da',
+          }
 });
 
 export default ReviewPage;
