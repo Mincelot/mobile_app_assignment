@@ -5,7 +5,10 @@ import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import firebase from 'firebase';
 import { NavigationActions } from "react-navigation";
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat, Actions } from 'react-native-gifted-chat';
+
+import ChatActions from '../components/ChatActions.js'
+import CustomView from '../components/CustomView.js'
 
 class Conversation extends React.Component {
     constructor(props) {
@@ -19,7 +22,42 @@ class Conversation extends React.Component {
             this.isMsgKeeper = this.props.navigation.state.params.isMsgKeeper == true;
         }
         this.user = {uid: ''};
+
+        this.renderChatActions = this.renderChatActions.bind(this);
+        this.renderCustomView = this.renderCustomView.bind(this);
+
     }
+
+    renderCustomView(props) {
+    return (
+      <CustomView
+        {...props}
+      /> 
+      );
+    }
+
+    renderChatActions(props) {
+    //if (Platform.OS === 'ios') {
+      return (
+        <ChatActions
+          {...props}
+        />
+      );
+    //}
+    // const options = {
+    //   'Action 1': (props) => {
+    //     alert('option 1');
+    //   },
+    //   'Cancel': () => {},
+    // };
+    // return (
+    //   <Actions
+    //     {...props}
+    //     options={options}
+    //   />
+    // );
+  }
+
     loadImages() {
         this.counter = 0;
           const rootRefStorage = firebase.storage().ref('Data');
@@ -138,6 +176,14 @@ class Conversation extends React.Component {
                                             name: this.state.contactName
                                         },
                                     };
+                                    if(item.val().isLocation == true){
+                                        let location = {
+                                            latitude : item.val().location.latitude,
+                                            longitude : item.val().location.longitude,
+                                        };
+                                        obj.location = location;
+                                        
+                                    }
                                     dataTemp.push(obj);
                                 } else if (item.val().author == this.user.uid) {
                                     let obj = {
@@ -149,6 +195,14 @@ class Conversation extends React.Component {
                                             name: this.state.currentUserName
                                         },
                                     };
+                                    if(item.val().isLocation){
+                                        let location = {
+                                            latitude : item.val().location.latitude,
+                                            longitude : item.val().location.longitude,
+                                        };
+                                        obj.location = location;
+                                        
+                                    }
                                     dataTemp.push(obj);
                                 }
                                 // })
@@ -213,11 +267,29 @@ class Conversation extends React.Component {
         const messages2 = specificUserMsg2.child("conversation3");
 
         let obj = {};
+        console.log("+++++++++++++++++++++");
+        console.log(messages[0]._id);
         obj._id = messages[0]._id;
         obj.author = messages[0].author;
         // obj.date = messages[0].date;
         obj.date = new Date().getTime();
-        obj.text = messages[0].text;
+        obj.text = messages[0].text ? messages[0].text : "";
+
+        if(messages[0].location){
+            console.log("This is a location");
+            obj.isLocation = true;
+            let location = {
+                latitude : messages[0].location.latitude,
+                longitude : messages[0].location.longitude,
+            };
+
+            console.log(location.latitude);
+            console.log(location.longitude);
+            obj.location = location;
+        }
+        else{
+            obj.isLocation = false;
+        }
 
         if (messages[0].user._id == 1) {
             obj.author = this.user.uid;
@@ -244,7 +316,7 @@ class Conversation extends React.Component {
                 leftComponent={<Icon
                     name='arrow-back'
                     color='#fff'
-                    size={40}
+                    size={30}
                     onPress={this.backButton.bind(this)}
                 />}
                 // this.state.contactName
@@ -280,6 +352,9 @@ class Conversation extends React.Component {
                             user={{
                                 _id: 1,
                             }}
+
+                            renderActions={this.renderChatActions}
+                            renderCustomView={this.renderCustomView}
                         />
                     </View>
             {/* </ScrollView> */}
