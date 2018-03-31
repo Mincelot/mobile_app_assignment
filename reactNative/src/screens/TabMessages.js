@@ -9,7 +9,7 @@ import { NavigationActions } from "react-navigation";
 class TabMessages extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { msgData: [], requestData: [], isViewType: 'chat', selectedIndex: 0 };
+    this.state = { msgData: [], requestData: [], isViewType: 'chat', selectedIndex: 0, isClient: true };
     this.dataBackup = [];
     this.dataBackupRequests = [];
   }
@@ -101,6 +101,19 @@ class TabMessages extends React.Component {
       if (user) {
         this.user = user;
 
+        const rootRef2 = firebase.database().ref().child("users");
+        const infoRef2 = rootRef2.child('info');
+        const userRef2 = infoRef2.child(user.uid);
+        const isAccountTypeRef2 = userRef2.child('isAccountTypeClient');
+        isAccountTypeRef2.once('value')
+        .then((snapshot) => {
+          if (!(snapshot.exists() && snapshot.val())) {
+            this.setState({ isClient: false });
+          }
+        })
+        .catch((error) => {
+        })
+
         const rootRef = firebase.database().ref().child("users");
         const infoRef = rootRef.child('info');
         const userRef = infoRef.child(user.uid);
@@ -177,7 +190,8 @@ class TabMessages extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ButtonGroup
+        {!this.state.isClient && 
+          <ButtonGroup
             onPress={this.onChangeView.bind(this)}
             selectedIndex={this.state.selectedIndex}
             buttons={['Chat', 'Requests', 'Jobs']}
@@ -186,6 +200,7 @@ class TabMessages extends React.Component {
             selectedButtonStyle={{ backgroundColor: colors.navyBlue }}
             selectedTextStyle={{ color: 'white' }}
             />
+        }
             <View style={styles.boxAround}>
               <ScrollView>
                 <View>

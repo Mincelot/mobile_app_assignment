@@ -143,11 +143,13 @@ class TabPortfolio extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+      <View style={styles.boxAround}>
         <Header
         centerComponent={{ text: 'Orders', style: {color: '#fff', fontSize: 30, fontStyle: "italic" }}}
         outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
         />
-
+      </View>
+      <View style={styles.boxAround}>
         <ScrollView>
           <View>
             <Modal
@@ -236,6 +238,7 @@ class TabPortfolio extends React.Component {
             />
           </View>
         </ScrollView>
+        </View>
       </View>
     ); 
   }
@@ -297,7 +300,13 @@ styles = StyleSheet.create({
   }, 
   containerBorder: {
     borderRadius: 10
-  }
+  },
+             boxAround: {
+               margin: 10,
+               borderRadius: 4,
+               borderWidth: 0.5,
+               borderColor: '#d6d7da',
+             }
 })
 
 export default TabPortfolio;
