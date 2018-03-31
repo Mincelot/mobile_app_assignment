@@ -107,8 +107,8 @@ class TabMessages extends React.Component {
         const isAccountTypeRef2 = userRef2.child('isAccountTypeClient');
         isAccountTypeRef2.once('value')
         .then((snapshot) => {
-          if (!snapshot.exists()) {
-            this.setState({isClient: false});
+          if (!(snapshot.exists() && snapshot.val())) {
+            this.setState({ isClient: false });
           }
         })
         .catch((error) => {
