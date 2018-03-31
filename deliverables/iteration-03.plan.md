@@ -36,31 +36,38 @@ The tasks/features assigned to each members are as follow:
 
 #### Events
  
- * Frequent small "meeting" on Facebook where we disgussed about problems we faced during coding.
+
+ * Frequent small "meeting" on Facebook where we discussed about problems we faced during coding.
  * In person meeting Mar 15 2018: Discuss what features should be implemented for this iteration as well as assigning tasks.
  * In person meeting Mar 29 2018: Code review session.
  * Skype meeting March 30 2018: Finalize all the features as well as solving coding or design problems.
 
+
 #### Artifacts
    
  * Again we will be using the task-board on Asana, we create a sub-board with the meeting date as the name and log any notes / tasks that needs to be done as the tab that falls under the board.
- * Notes from in person meeting that indicates the task assigned to each memeber.
+ * Notes from in person meeting that indicates the task assigned to each member.
+
 
 #### Git / GitHub workflow
 
-Our Github workflow did not changed from the last iteration. We use the basic git workflow for our project, that is, test code locally -> pull from master -> commit -> push to master. We chose this type of workflow due to the structure of our project: each functionality is separated into different files so we rarely run into conflicts if we work simultaneously. In addition, this gives us a faster workflow since we don't need to have one person that reviews every commits.
+* Our Github workflow did not changed from the last iteration. 
+* We use the basic git workflow for our project, that is, test code locally -> pull from master -> commit -> push to master. We chose this type of workflow due to the structure of our project: each functionality is separated into different files so we rarely run into conflicts if we work simultaneously. 
+* In addition, this gives us a faster workflow since we don't need to have one person that reviews every commits.
 
 
 ## Product
 
 #### Goals and tasks
  
+
  * The goal for this iteration is to finish all the features for our app that we planned to do from iteration-01, we specifically want to prioritize the functions that were supposed to be finished in iteration-02.
  * Task 1: Initial meeting to discuss the general direction for this phase of the project, resolve questions related to android studio.
  * Task 2: Get familiar with using android studio because we ejected from EXPO, which means to test our code, the procedure is more complicated and time consuming.
- * Task 3: Distribute the remaining features for the app to group memebers.
+ * Task 3: Distribute the remaining features for the app to group members.
  * Task 4: Make sure all of the features are done and tested.
  * Task 5: Minor tweaks to UI design if have time.
+
 
 #### Artifacts
    
