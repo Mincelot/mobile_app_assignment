@@ -6,7 +6,7 @@ import { Text } from 'react-native';
 
 import TabSearch from '../screens/TabSearch';
 import TabMessages from '../screens/TabMessages';
-import TabPortfolio from '../screens/TabPortfolio';
+import TabOrders from '../screens/TabOrders';
 import TabFavourites from '../screens/TabFavourites';
 import TabAccount from '../screens/TabAccount';
 
@@ -15,8 +15,8 @@ export const Root = TabNavigator(
         TabSearch: {
             screen: TabSearch
         },
-        TabPortfolio: {
-            screen: TabPortfolio
+        TabOrders: {
+            screen: TabOrders
         },
         TabMessages: {
             screen: TabMessages
@@ -35,7 +35,7 @@ export const Root = TabNavigator(
                 let type = 'font-awesome';
                 if (routeName === 'TabSearch') {
                     iconName = 'home';
-                } else if (routeName === 'TabPortfolio') {
+                } else if (routeName === 'TabOrders') {
                     iconName = 'layers';
                     type = '';
                 } else if (routeName === 'TabMessages') {
@@ -54,8 +54,8 @@ export const Root = TabNavigator(
                 let iconLabel;
                 if (routeName === 'TabSearch') {
                     iconLabel = 'Search';
-                } else if (routeName === 'TabPortfolio') {
-                    iconLabel = 'Portfolio';
+                } else if (routeName === 'TabOrders') {
+                    iconLabel = 'Orders';
                 } else if (routeName === 'TabMessages') {
                     iconLabel = 'Messages';
                  } else if (routeName === 'TabFavourites') {
