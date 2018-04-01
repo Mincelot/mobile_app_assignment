@@ -20,11 +20,102 @@ class MessageForm extends React.Component {
       this.loggedInClient = this.props.navigation.state.params.loggedInClient;
     }
     this.unsubscribe = null;
+    this.numOfRequests = 0;
+    this.formFilled = false;
+  }
+
+
+  componentWillMount() {
+  
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const userRef = infoRef.child(this.userUidPassedIn);
+
+    userRef.once('value')
+    .then((snapshot) => {
+      //if no jobReq exist, create the folder for this user.
+      if(!snapshot.hasChild('jobRequests')){
+        userRef.update({
+          jobRequests: this.numOfRequests
+        })
+        // userRef.set({jobRequests: this.numOfRequests});
+      }
+      else{ //otherwise check how many requests already exist
+        const jobRef = userRef.child('jobRequests');
+        jobRef.once('value')
+        .then((snapshot) => {
+          this.numOfRequests = snapshot.numChildren();
+        })
+        .catch((error) => {
+          this.setState({ status: error.message });
+        })
+      }
+    })
+
+    
   }
 
   backButton() {
     this.props.navigation.dispatch(NavigationActions.back());
   }
+
+  sendMessage(){
+    //alert('hello');
+    this.formFilled = true;
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const userRef = infoRef.child(this.userUidPassedIn); //user id of chef who gets the job request
+    const jobRef = userRef.child('jobRequests');
+
+    let jobNum = this.numOfRequests + 1; //increases the number of jobs
+    this.numOfRequests = this.numOfRequests + 1; //update number of requests.
+    let jobName = 'requestNum'+jobNum; //creates the name of the folder
+
+    jobRef.update({
+      jobName: null
+    })
+    //create the path to the next job.
+    const jobPath = jobRef.child(jobName);
+
+    //alert(jobPath);
+
+    if (this.formFilled){
+      
+      jobPath.set({
+        cuisine: this.state.cuisine, 
+        date: this.state.date,
+        partySize: this.state.partySize,
+        price: this.state.price
+        
+      })
+
+      .then((stuff) => {
+        Alert.alert(
+          'Notification',
+          'Job Request Sent!',
+          [
+            {text: 'OK', onPress: () => {}}
+          ]
+        )
+      })
+      .catch((error) => {
+        Alert.alert(
+          'Notification',
+          'Failed to send request.',
+          [
+            {text: 'OK', onPress: () => {}}
+          ]
+        )
+      })
+    }
+  }
+
+  // changeFormAndSend(){
+  //   //alert('sending..')
+  //   this.setState({ formFilled: true });
+  //   this.sendMessage.bind(this);
+  // }
+
 
   render() {
     return (
@@ -43,7 +134,7 @@ class MessageForm extends React.Component {
         </View>
         {/* <Text>hello</Text> */}
 
-
+              
         <View style={{width:'95%'}}>
           <FormLabel labelStyle={styles.textColor}>Date</FormLabel>
             <FormInput 
@@ -52,7 +143,7 @@ class MessageForm extends React.Component {
                 />
           <FormLabel labelStyle={styles.textColor}>Cuisine</FormLabel>
             <FormInput 
-              secureTextEntry={true}
+              //secureTextEntry={true}
               value={this.state.cuisine}
               onChangeText={cuisine => this.setState({ cuisine })}
               />
@@ -69,11 +160,17 @@ class MessageForm extends React.Component {
         </View>
 
         <View style={styles.buttonContainer}>
+          
           <View>
             <Button 
               buttonStyle={styles.buttonColor}
               title="Send"
-              onPress={this.backButton.bind(this)}
+              onPress={this.sendMessage.bind(this)}
+              // onPress={()=>{
+              //   //alert('press failed');
+              //    this.changeFormAndSend.bind(this)
+              //   
+              //   }}
               borderRadius={5}
             />
           </View>
