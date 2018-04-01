@@ -1,10 +1,18 @@
 [
     {
-        "merged": "D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
-        "source": "D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.52.0\\res\\xml\\preferences.xml"
+        "merged": "/Users/owl/Desktop/301/project-team-23/reactNative/android/app/build/intermediates/res/merged/debug/xml/preferences.xml",
+        "source": "/Users/owl/Desktop/301/project-team-23/reactNative/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.52.0/res/xml/preferences.xml"
     },
     {
-        "merged": "D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\provider_paths.xml",
-        "source": "D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\exploded-aar\\catorcity\\react-native-image-crop-picker\\unspecified\\res\\xml\\provider_paths.xml"
+        "merged": "/Users/owl/Desktop/301/project-team-23/reactNative/android/D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\provider_paths.xml",
+        "source": "/Users/owl/Desktop/301/project-team-23/reactNative/android/D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\exploded-aar\\catorcity\\react-native-image-crop-picker\\unspecified\\res\\xml\\provider_paths.xml"
+    },
+    {
+        "merged": "/Users/owl/Desktop/301/project-team-23/reactNative/android/D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
+        "source": "/Users/owl/Desktop/301/project-team-23/reactNative/android/D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.52.0\\res\\xml\\preferences.xml"
+    },
+    {
+        "merged": "/Users/owl/Desktop/301/project-team-23/reactNative/android/app/build/intermediates/res/merged/debug/xml/provider_paths.xml",
+        "source": "/Users/owl/Desktop/301/project-team-23/reactNative/android/app/build/intermediates/exploded-aar/catorcity/react-native-image-crop-picker/unspecified/res/xml/provider_paths.xml"
     }
 ]

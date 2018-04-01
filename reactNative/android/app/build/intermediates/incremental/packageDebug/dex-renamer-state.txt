@@ -1,4 +1,4 @@
-#Sat Mar 17 22:25:21 EDT 2018
-base.0=D\:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+#Sat Mar 31 20:44:24 EDT 2018
+base.0=/Users/owl/Desktop/301/project-team-23/reactNative/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
-file.0=D\:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
+file.0=/Users/owl/Desktop/301/project-team-23/reactNative/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

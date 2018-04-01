@@ -1,6 +1,10 @@
 [
     {
-        "merged": "D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
-        "source": "D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "/Users/owl/Desktop/301/project-team-23/reactNative/android/D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
+        "source": "/Users/owl/Desktop/301/project-team-23/reactNative/android/D:\\Locus\\chef55\\project-team-23\\reactNative\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "/Users/owl/Desktop/301/project-team-23/reactNative/android/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher.png",
+        "source": "/Users/owl/Desktop/301/project-team-23/reactNative/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
     }
 ]

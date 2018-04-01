@@ -9,6 +9,8 @@ import {
   Text,
 } from 'react-native';
 
+//import RNGooglePlacePicker from 'react-native-google-place-picker';
+
 //import CameraRollPicker from 'react-native-camera-roll-picker';
 //import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav';
 
@@ -16,9 +18,9 @@ export default class ChatActions extends React.Component {
   constructor(props) {
     super(props);
     //this._images = [];
-    //this.state = {
-      //modalVisible: false,
-    //};
+    // this.state = {
+    //   location: null,
+    // };
     this.onActionsPress = this.onActionsPress.bind(this);
     //this.selectImages = this.selectImages.bind(this);
   }
@@ -36,31 +38,31 @@ export default class ChatActions extends React.Component {
   //}
 
   onActionsPress() {
-    const options = ['Send Location', 'Cancel'];
-    const cancelButtonIndex = options.length - 1;
-    this.context.actionSheet().showActionSheetWithOptions({
-      options,
-      cancelButtonIndex,
-    },
-    (buttonIndex) => {
-      switch (buttonIndex) {
-        case 0:
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              this.props.onSend({
-                location: {
-                  latitude: position.coords.latitude,
-                  longitude: position.coords.longitude,
-                },
-              });
-            },
-            (error) => alert(error.message),
-            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-          );
-          break;
-        default:
-      }
-    });
+      const options = ['Send Location', 'Cancel'];
+      const cancelButtonIndex = options.length - 1;
+      this.context.actionSheet().showActionSheetWithOptions({
+        options,
+        cancelButtonIndex,
+      },
+      (buttonIndex) => {
+        switch (buttonIndex) {
+          case 0:
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                this.props.onSend({
+                  location: {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                  },
+                });
+              },
+              (error) => alert(error.message),
+              {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+            );
+            break;
+          default:
+        }
+      });
   }
 
   //selectImages(images) {

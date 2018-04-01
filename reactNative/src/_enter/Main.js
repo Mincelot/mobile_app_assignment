@@ -48,14 +48,14 @@ class Main extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // ...Platform.select({
-    //   ios: {
-    //     paddingTop: StatusBarIOS.currentHeight ? StatusBarIOS.currentHeight : 22,
-    //   },
-    //   android: {
-    //     paddingTop: StatusBar.currentHeight
-    //   },
-    // }),
+     ...Platform.select({
+       ios: {
+         paddingTop: StatusBarIOS.currentHeight ? StatusBarIOS.currentHeight : 20,
+       },
+       android: {
+         paddingTop: StatusBar.currentHeight
+       },
+     }),
   }
 });
 
