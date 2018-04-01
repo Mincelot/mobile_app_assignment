@@ -105,6 +105,14 @@ class TabPortfolio extends React.Component {
     })
   }
 
+  //remove modal and go to chef portfolio
+    viewChefPortfolio() {
+        // NavigatorService.navigate('ViewPortfolio');
+        this.setModalVisible(!this.state.modalVisible);
+        this.props.navigation.dispatch({ type: 'ViewPortfolio', selectedUserUid: this.state.chef,
+        loggedInClient: firebase.auth().currentUser });
+      }
+
   setModalVisible(visible, chefUID, cuisineInfo, dateInfo, priceInfo, guestAmount,flag) {
     this.setState({modalVisible: visible, chef: chefUID, cuisine: cuisineInfo, date: dateInfo, 
       price: priceInfo, guests: guestAmount, reviewedFlag:flag});
@@ -231,16 +239,25 @@ class TabPortfolio extends React.Component {
                   </View>
 
                 :null}
-                <View>
-                  <Button
-                    title="Back To Orders"
-                    onPress={()=>{
-                      this.toggleInput(false);
-                      this.setModalVisible(!this.state.modalVisible);
-                    }}
-                    borderRadius={5}
-                  />
-                </View>
+                <View style={[{display: 'flex'}, {flexDirection: 'row'}, {justifyContent: 'space-around'}]}>
+                                <View>
+                                  <Button
+                                    title="Back To Orders"
+                                    onPress={()=>{
+                                      if (this.reviewVisible){this.toggleInput(!this.reviewVisible);}
+                                      this.setModalVisible(!this.state.modalVisible);
+                                    }}
+                                    borderRadius={5}
+                                  />
+                                </View>
+                                <View>
+                                  <Button
+                                    title="Chef Portfolio"
+                                    onPress={this.viewChefPortfolio.bind(this)}
+                                    borderRadius={5}
+                                  />
+                                </View>
+                                </View>
                 </View>
                 
                   
