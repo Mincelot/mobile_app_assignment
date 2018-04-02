@@ -14,7 +14,7 @@ class MessageForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {cuisine: '', date: '', partySize: '', price: '', isDatePickerVisible: false, datePicked: ''}; 
+    this.state = {cuisine: '', date: '', dateShow: '', partySize: '', price: '', isDatePickerVisible: false, datePicked: ''}; 
     if (this.props && this.props.navigation && this.props.navigation.state && this.props.navigation.state.params) {
       this.userUidPassedIn = this.props.navigation.state.params.selectedUserUid;
       this.loggedInClient = this.props.navigation.state.params.loggedInClient;
@@ -70,7 +70,7 @@ class MessageForm extends React.Component {
   _hideDatePicker = () => this.setState({ isDatePickerVisible: false });
 
   _handleDatePicked = (date) => {
-    this.setState({date: date.getTime()});
+    this.setState({date: date.getTime(), dateShow: date.toDateString()});
     //alert(this.state.date);
     this._hideDatePicker();
   };
@@ -184,7 +184,7 @@ class MessageForm extends React.Component {
         <View><Text>{this.state.date}</Text></View> */}
         <View style={{width:'95%'}}>
           <FormLabel labelStyle={styles.textColor}>Date</FormLabel>
-          <View><Text style={styles.dateText}>{this.state.date}</Text></View>
+          <View><Text style={styles.dateText}>{this.state.dateShow}</Text></View>
             {/* <FormInput 
                 value={this.state.date.toString()}
                 //onChangeText={date => this.setState({ date })}
