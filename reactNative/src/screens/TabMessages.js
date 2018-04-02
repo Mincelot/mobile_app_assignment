@@ -239,7 +239,7 @@ class TabMessages extends React.Component {
           date: item.date.getTime(),
           price: item.price,
           guests: item.partySize,
-          reviewedFlag: false,
+          reviewed: false,
         };
         
         requestRef.push(ordersTemp)
