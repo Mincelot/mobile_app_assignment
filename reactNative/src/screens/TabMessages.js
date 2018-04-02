@@ -330,7 +330,7 @@ class TabMessages extends React.Component {
                           <ScrollView>
                           <View>
                             <FormLabel labelStyle={styles.textColor}>Date: {item.date.toDateString()}</FormLabel>
-                            <FormLabel labelStyle={styles.textColor}>Cusine: {item.cuisine}</FormLabel>
+                            <FormLabel labelStyle={styles.textColor}>Cuisine: {item.cuisine}</FormLabel>
                             <FormLabel labelStyle={styles.textColor}>Party Size {item.partySize}</FormLabel>
                             <FormLabel labelStyle={styles.textColor}>Price {item.price}</FormLabel>
                             <View style={styles.buttonContainer}>
