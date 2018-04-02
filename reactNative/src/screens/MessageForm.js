@@ -22,11 +22,17 @@ class MessageForm extends React.Component {
     this.unsubscribe = null;
     this.numOfRequests = 0;
     this.formFilled = false;
+    this.user = null;
   }
 
 
   componentWillMount() {
-  
+    this.unsubscribe = firebase.auth().onAuthStateChanged( user => {
+      if (user) {
+        this.user = user;
+      }
+
+    });
     const rootRef = firebase.database().ref().child("users");
     const infoRef = rootRef.child('info');
     const userRef = infoRef.child(this.userUidPassedIn);
@@ -64,7 +70,7 @@ class MessageForm extends React.Component {
   _hideDatePicker = () => this.setState({ isDatePickerVisible: false });
 
   _handleDatePicked = (date) => {
-    this.setState({date: date.toString()});
+    this.setState({date: date.getTime()});
     //alert(this.state.date);
     this._hideDatePicker();
   };
@@ -99,16 +105,16 @@ class MessageForm extends React.Component {
       jobName: null
     })
     //create the path to the next job.
-    const jobPath = jobRef.child(jobName);
+    // const jobPath = jobRef.child(jobName);
 
     if (this.formFilled){
       
-      jobPath.set({
+      jobRef.push({
         cuisine: this.state.cuisine, 
         date: this.state.date,
         partySize: this.state.partySize,
-        price: this.state.price
-        
+        price: this.state.price,
+        userPassedUid: this.user.uid
       })
 
       .then((stuff) => {

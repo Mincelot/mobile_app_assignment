@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, FlatList, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
-import { Button, ButtonGroup, ListItem, Avatar } from 'react-native-elements';
+import { Button, ButtonGroup, ListItem, Avatar, FormLabel } from 'react-native-elements';
 import defaultStyles from '../../src/styles/default';
 import colors from '../styles/color';
 import firebase from 'firebase';
@@ -9,7 +9,7 @@ import { NavigationActions } from "react-navigation";
 class TabMessages extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { msgData: [], requestData: [], isViewType: 'chat', selectedIndex: 0, isClient: true };
+    this.state = { msgData: [], requestData: [], itineraryData: [], isViewType: 'chat', selectedIndex: 0, isClient: true };
     this.dataBackup = [];
     this.dataBackupRequests = [];
   }
@@ -93,6 +93,34 @@ class TabMessages extends React.Component {
       });
     }
   }
+  loadJobRequests() {
+    const rootRef = firebase.database().ref().child("users");
+    const infoRef = rootRef.child('info');
+    const userRef = infoRef.child(this.user.uid);
+    const requestRef = userRef.child('jobRequests');
+    // const picRef = userRef.child('picFolder');
+
+    requestRef.on('value', (snapshot) => {
+    // .then((snapshot) => {
+      if (snapshot.val()) {
+        // this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
+        var dataTemp = [];
+        snapshot.forEach((item) => {
+          dataTemp.push({
+            cuisine: item.val().cuisine,
+            date: new Date(item.val().date),
+            partySize: item.val().partySize,
+            price: item.val().price,
+            userPassedUid: item.val().userPassedUid
+          });
+        });
+        this.setState({ itineraryData: dataTemp });
+        
+        // this.setState({ msgData: dataTemp });
+        // this.setState({ requestData: dataTemp });
+      }
+    })
+  }
   componentWillUnmount() {
     this.unsubscribe();
   }
@@ -109,6 +137,7 @@ class TabMessages extends React.Component {
         .then((snapshot) => {
           if (!(snapshot.exists() && snapshot.val())) {
             this.setState({ isClient: false });
+            this.loadJobRequests();
           }
         })
         .catch((error) => {
@@ -187,6 +216,47 @@ class TabMessages extends React.Component {
     this.props.navigation.dispatch({ type: 'ViewConversation',
      selectedUserUid: item.uid, isMsgKeeper: item.isMsgKeeper == true });
   }
+  // onCancel() {
+
+  // }
+  onAccept(item) {
+    // NavigatorService.navigate('ViewPortfolio');
+    var tempData = this.state.itineraryData;
+    for (let i = 0; i < tempData.length; i++) {
+      if (tempData[i].date == item.date) {
+        // selectedUserUid = tempData[i].uid;
+        // userPassedUid
+        
+        const rootRef = firebase.database().ref().child("users");
+        const infoRef = rootRef.child('info');
+        const uidRef = infoRef.child(item.userPassedUid);
+        const requestRef = uidRef.child('pastOrders');
+        // const requestUserRef = requestRef.child(item.uid);
+
+        let ordersTemp = {
+          chefID: this.user.uid,
+          cuisineName: item.cuisine,
+          date: item.date.getTime(),
+          priceAmount: item.price,
+          guestNumber: item.partySize,
+          reviewedFlag: false,
+        };
+        
+        requestRef.push(ordersTemp)
+        .then(() => {
+        })
+        .catch((error) => {
+        })
+
+        tempData.splice(i, 1);
+        this.setState({ itineraryData: tempData });
+
+      }
+    }
+    // this.props.navigation.state
+    // this.props.navigation.dispatch({ type: 'ViewPortfolio', selectedUserUid: selectedUserUid, 
+    // loggedInClient: this.loggedInClient });
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -253,22 +323,41 @@ class TabMessages extends React.Component {
                   {this.state.isViewType == 'jobs' &&
                     <View>
                         <FlatList
-                          data={this.state.requestData}
+                          data={this.state.itineraryData}
                           extraData={this.state}
                           keyExtractor={(item, index) => index}
                           renderItem={({item}) =>
-                          <TouchableHighlight onPress={this.acceptRequest.bind(this, item)}>
-                            <ListItem
+                          <ScrollView>
+                          <View>
+                            <FormLabel labelStyle={styles.textColor}>Date: {item.date.toDateString()}</FormLabel>
+                            <FormLabel labelStyle={styles.textColor}>Cusine: {item.cuisine}</FormLabel>
+                            <FormLabel labelStyle={styles.textColor}>Party Size {item.partySize}</FormLabel>
+                            <FormLabel labelStyle={styles.textColor}>Price {item.price}</FormLabel>
+                            <View style={styles.buttonContainer}>
+                              <View>
+                                <Button
+                                  buttonStyle={styles.buttonColor}
+                                  title="Accept"
+                                  onPress={this.onAccept.bind(this, item)}
+                                  borderRadius={5}
+                                  />
+                              </View>
+                              {/* <View> */}
+                                {/* <Button 
+                                  buttonStyle={styles.buttonColor}
+                                  title="Cancel"
+                                  onPress={this.onCancel.bind(this)}
+                                  borderRadius={5}
+                                  /> */}
+                              {/* </View> */}
+                            </View>
+                            {/* <ListItem
                               large
-                              roundAvatar
-                              avatar={item.portfolioUri != '' ?
-                                <Avatar rounded source={{uri: item.portfolioUri }} /> :
-                                <Avatar rounded title={item.nickname} />
-                              }
-                              title={item.name}
-                              subtitle={item.dateRequest}
-                            />
-                          </TouchableHighlight>
+                              title={item.date}
+                              subtitle={`Cusine: ${item.cuisine}  Party Size: ${item.partySize} Price: ${item.price}`}
+                            /> */}
+                          </View>
+                          </ScrollView>
                           }
                         />
                     </View>
@@ -290,7 +379,14 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: '#d6d7da',
-  }
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  buttonColor: {
+    backgroundColor: colors.alternatePurple
+  },
 
 });
 

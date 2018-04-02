@@ -76,7 +76,7 @@ class LogInPage extends React.Component {
   onPassServiceProvider() {
     firebase
     .auth()
-    .signInWithEmailAndPassword("Example1234@gmail.com", "Password1")
+    .signInWithEmailAndPassword("BartenderPro@gmail.com", "Password1")
     .then(user => {
       this.setState({ status: "Success. Welcome!", loading: false });
       ReadyForNavigation.readyForNavigation(user.uid, this.props.navigation);
