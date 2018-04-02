@@ -114,7 +114,8 @@ class MessageForm extends React.Component {
         date: this.state.date,
         partySize: this.state.partySize,
         price: this.state.price,
-        userPassedUid: this.user.uid
+        userPassedUid: this.user.uid,
+        isAccepted: false
       })
 
       .then((stuff) => {

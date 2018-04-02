@@ -107,11 +107,13 @@ class TabMessages extends React.Component {
         var dataTemp = [];
         snapshot.forEach((item) => {
           dataTemp.push({
+            uidFolder: item.key,
             cuisine: item.val().cuisine,
             date: new Date(item.val().date),
             partySize: item.val().partySize,
             price: item.val().price,
-            userPassedUid: item.val().userPassedUid
+            userPassedUid: item.val().userPassedUid,
+            isAccepted: item.val().isAccepted
           });
         });
         this.setState({ itineraryData: dataTemp });
@@ -248,8 +250,47 @@ class TabMessages extends React.Component {
         .catch((error) => {
         })
 
-        tempData.splice(i, 1);
+        // tempData.splice(i, 1);
+        tempData[i].isAccepted = true;
         this.setState({ itineraryData: tempData });
+
+
+        const rootRef2 = firebase.database().ref().child("users");
+        const infoRef2 = rootRef2.child('info');
+        const userRef2 = infoRef2.child(this.user.uid);
+        const requestRef2 = userRef2.child('jobRequests');
+        const specificRequestRef2 = requestRef2.child(item.uidFolder);
+        // const picRef = userRef.child('picFolder');
+
+        specificRequestRef2.update({
+          isAccepted: true
+        })
+        .then(() => {
+          // this.setState({ status: 'Status: Updated User Name!' });
+        })
+        .catch((error) => {
+          // this.setState({ status: error.message });
+        })
+        // requestRef.on('value', (snapshot) => {
+        // .then((snapshot) => {
+        //   if (snapshot.val()) {
+        //     // this.setState({ name: snapshot.val().name, tempName: snapshot.val().name });
+        //     var dataTemp = [];
+        //     snapshot.forEach((item) => {
+        //       dataTemp.push({
+        //         cuisine: item.val().cuisine,
+        //         date: new Date(item.val().date),
+        //         partySize: item.val().partySize,
+        //         price: item.val().price,
+        //         userPassedUid: item.val().userPassedUid
+        //       });
+        //     });
+        //     this.setState({ itineraryData: dataTemp });
+            
+        //     // this.setState({ msgData: dataTemp });
+        //     // this.setState({ requestData: dataTemp });
+        //   }
+        // })
 
       }
     }
@@ -333,29 +374,26 @@ class TabMessages extends React.Component {
                             <FormLabel labelStyle={styles.textColor}>Cuisine: {item.cuisine}</FormLabel>
                             <FormLabel labelStyle={styles.textColor}>Party Size {item.partySize}</FormLabel>
                             <FormLabel labelStyle={styles.textColor}>Price {item.price}</FormLabel>
-                            <View style={styles.buttonContainer}>
-                              <View>
-                                <Button
-                                  buttonStyle={styles.buttonColor}
-                                  title="Accept"
-                                  onPress={this.onAccept.bind(this, item)}
-                                  borderRadius={5}
-                                  />
+                            {item.isAccepted == false &&
+                              <View style={styles.buttonContainer}>
+                                <View>
+                                  <Button
+                                    buttonStyle={styles.buttonColor}
+                                    title="Accept"
+                                    onPress={this.onAccept.bind(this, item)}
+                                    borderRadius={5}
+                                    />
+                                </View>
+                                {/* <View> */}
+                                  {/* <Button 
+                                    buttonStyle={styles.buttonColor}
+                                    title="Cancel"
+                                    onPress={this.onCancel.bind(this)}
+                                    borderRadius={5}
+                                    /> */}
+                                {/* </View> */}
                               </View>
-                              {/* <View> */}
-                                {/* <Button 
-                                  buttonStyle={styles.buttonColor}
-                                  title="Cancel"
-                                  onPress={this.onCancel.bind(this)}
-                                  borderRadius={5}
-                                  /> */}
-                              {/* </View> */}
-                            </View>
-                            {/* <ListItem
-                              large
-                              title={item.date}
-                              subtitle={`Cusine: ${item.cuisine}  Party Size: ${item.partySize} Price: ${item.price}`}
-                            /> */}
+                            }
                           </View>
                           </ScrollView>
                           }
