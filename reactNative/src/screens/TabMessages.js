@@ -159,7 +159,7 @@ class TabMessages extends React.Component {
             snapshot.forEach((item) => {
               dataTemp.push({
                 uid: item.key,
-                dateRequest: item.val().requestDate,
+                dateRequest: new Date(item.val().requestDate),
                 name: '',
                 nickname: '',
                 approval: item.val().approval,
@@ -354,7 +354,7 @@ class TabMessages extends React.Component {
                                 <Avatar rounded title={item.nickname} />
                               }
                               title={item.name}
-                              subtitle={item.dateRequest}
+                              subtitle={item.dateRequest.toDateString()}
                             />
                           </TouchableHighlight>
                           }
@@ -376,28 +376,18 @@ class TabMessages extends React.Component {
                             <FormLabel labelStyle={styles.textColor}>Party Size {item.partySize}</FormLabel>
                             <FormLabel labelStyle={styles.textColor}>Price {item.price}</FormLabel>
                             {item.isAccepted == true &&
-                              <View style={styles.buttonContainer}>
+                              <View style={styles.acceptButton}>
                                 <FormLabel labelStyle={styles.textColor}>Job has been accepted.</FormLabel>
                               </View>
                             }
                             {item.isAccepted == false &&
-                              <View style={styles.buttonContainer}>
-                                <View>
+                              <View style={styles.acceptButton}>
                                   <Button
                                     buttonStyle={styles.buttonColor}
                                     title="Accept"
                                     onPress={this.onAccept.bind(this, item)}
                                     borderRadius={5}
                                     />
-                                </View>
-                                {/* <View> */}
-                                  {/* <Button 
-                                    buttonStyle={styles.buttonColor}
-                                    title="Cancel"
-                                    onPress={this.onCancel.bind(this)}
-                                    borderRadius={5}
-                                    /> */}
-                                {/* </View> */}
                               </View>
                             }
                           </View>
@@ -429,6 +419,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     flexDirection: 'row'
+  },
+  acceptButton: {
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   buttonColor: {
     backgroundColor: colors.alternatePurple
