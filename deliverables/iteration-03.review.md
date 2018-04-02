@@ -30,12 +30,12 @@
 #### Planned changes
  
  * Since this is the last iteration before submitting the final product, we barely have any time to make process-related changes and to perform these change decision.
+ * However we are satisfied with all decisions we made so far, thus we do not see any further need for new changes.
 
 
 ## Product - Review
 
 #### Goals and/or tasks that were met/completed:
-
  
  * Following is the list of tasks that are completed:
  * Task 1: Initial meeting to discuss the general direction for this phase of the project, resolve questions related to android studio.
@@ -49,7 +49,7 @@
 
 #### Goals and/or tasks that were planned but not met/completed:
  
- * We claim that all of the goals and tasks planned are completed.
+ * We claim that all of the goals and tasks planned are completed on time.
 
 ## Meeting Highlights
  
