@@ -234,11 +234,11 @@ class TabMessages extends React.Component {
         // const requestUserRef = requestRef.child(item.uid);
 
         let ordersTemp = {
-          chefID: this.user.uid,
+          chef: this.user.uid,
           cuisineName: item.cuisine,
           date: item.date.getTime(),
-          priceAmount: item.price,
-          guestNumber: item.partySize,
+          price: item.price,
+          guests: item.partySize,
           reviewedFlag: false,
         };
         
