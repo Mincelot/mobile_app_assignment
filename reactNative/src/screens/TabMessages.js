@@ -430,6 +430,7 @@ const styles = StyleSheet.create({
   },
   boxStyle: {
     margin: 10,
+    padding: 5,
     borderRadius: 4,
     borderWidth: 0.7,
     borderColor: '#d6d7da',
