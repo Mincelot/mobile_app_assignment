@@ -138,7 +138,9 @@ class MessageForm extends React.Component {
       })
     }
   }
-
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
   render() {
     return (
       <View style={styles.container}>
