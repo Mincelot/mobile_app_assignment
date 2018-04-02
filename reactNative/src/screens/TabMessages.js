@@ -363,12 +363,13 @@ class TabMessages extends React.Component {
                   }
                   {this.state.isViewType == 'jobs' &&
                     <View>
+                      {/* <ScrollView> */}
+                        {/* <View> */}
                         <FlatList
                           data={this.state.itineraryData}
                           extraData={this.state}
                           keyExtractor={(item, index) => index}
                           renderItem={({item}) =>
-                          <ScrollView>
                           <View style={styles.boxStyle}>
                             <FormLabel labelStyle={styles.textColor}>Date: {item.date.toDateString()}</FormLabel>
                             <FormLabel labelStyle={styles.textColor}>Cuisine: {item.cuisine}</FormLabel>
@@ -395,9 +396,10 @@ class TabMessages extends React.Component {
                               </View>
                             }
                           </View>
-                          </ScrollView>
                           }
                         />
+                        {/* </View> */}
+                        {/* </ScrollView> */}
                     </View>
                   }
                 </View>
@@ -414,6 +416,7 @@ const styles = StyleSheet.create({
   },
   boxAround: {
     margin: 10,
+    paddingBottom: 80
     // borderRadius: 4,
     // borderWidth: 0.5,
     // borderColor: '#d6d7da',
@@ -428,7 +431,7 @@ const styles = StyleSheet.create({
   boxStyle: {
     margin: 10,
     borderRadius: 4,
-    borderWidth: 0.5,
+    borderWidth: 0.7,
     borderColor: '#d6d7da',
   }
 
