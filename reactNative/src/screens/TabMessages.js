@@ -369,7 +369,7 @@ class TabMessages extends React.Component {
                           keyExtractor={(item, index) => index}
                           renderItem={({item}) =>
                           <ScrollView>
-                          <View>
+                          <View style={styles.boxStyle}>
                             <FormLabel labelStyle={styles.textColor}>Date: {item.date.toDateString()}</FormLabel>
                             <FormLabel labelStyle={styles.textColor}>Cuisine: {item.cuisine}</FormLabel>
                             <FormLabel labelStyle={styles.textColor}>Party Size {item.partySize}</FormLabel>
@@ -414,9 +414,9 @@ const styles = StyleSheet.create({
   },
   boxAround: {
     margin: 10,
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    // borderRadius: 4,
+    // borderWidth: 0.5,
+    // borderColor: '#d6d7da',
   },
   buttonContainer: {
     flex: 1,
@@ -425,6 +425,12 @@ const styles = StyleSheet.create({
   buttonColor: {
     backgroundColor: colors.alternatePurple
   },
+  boxStyle: {
+    margin: 10,
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
+  }
 
 });
 
