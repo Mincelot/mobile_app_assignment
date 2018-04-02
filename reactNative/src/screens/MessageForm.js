@@ -1,6 +1,6 @@
 import React from 'react';
 //import Header from '../components/Header';
-import { StyleSheet, View, Alert, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Alert, Text, TouchableOpacity,KeyboardAvoidingView, Platform } from 'react-native';
 import colors from '../styles/color';
 import defaultStyles from '../../src/styles/default';
 import { NavigationActions } from "react-navigation";
@@ -16,7 +16,6 @@ class MessageForm extends React.Component {
     super(props);
     this.state = {cuisine: '', date: '', partySize: '', price: '', isDatePickerVisible: false, datePicked: ''}; 
     if (this.props && this.props.navigation && this.props.navigation.state && this.props.navigation.state.params) {
-      // this.isViewMode = this.props.navigation.state.params.isView ? true : false;
       this.userUidPassedIn = this.props.navigation.state.params.selectedUserUid;
       this.loggedInClient = this.props.navigation.state.params.loggedInClient;
     }
@@ -65,15 +64,28 @@ class MessageForm extends React.Component {
   _hideDatePicker = () => this.setState({ isDatePickerVisible: false });
 
   _handleDatePicked = (date) => {
-    //alert(date);
-    this.setState({datePicked: date});
+    this.setState({date: date.toString()});
+    //alert(this.state.date);
     this._hideDatePicker();
   };
 
   //uploads to firebase 
   sendMessage(){
     //alert('hello');
-    this.formFilled = true;
+    //this.formFilled = true;
+
+    if(this.state.date == ''){     
+        Alert.alert(
+          'Missing date',
+          'Please provide a date.',
+          [
+            {text: 'OK', onPress: () => {}}
+          ]
+        )
+    }
+    else{
+      this.formFilled = true;
+    }
     const rootRef = firebase.database().ref().child("users");
     const infoRef = rootRef.child('info');
     const userRef = infoRef.child(this.userUidPassedIn); //user id of chef who gets the job request
@@ -89,8 +101,6 @@ class MessageForm extends React.Component {
     //create the path to the next job.
     const jobPath = jobRef.child(jobName);
 
-    //alert(jobPath);
-
     if (this.formFilled){
       
       jobPath.set({
@@ -103,7 +113,7 @@ class MessageForm extends React.Component {
 
       .then((stuff) => {
         Alert.alert(
-          'Notification',
+          'Success',
           'Job Request Sent!',
           [
             {text: 'OK', onPress: () => {this.backButton()}}
@@ -142,16 +152,11 @@ class MessageForm extends React.Component {
 
             {/* date picker */}
             <View>
-              {/* <TouchableOpacity 
-                style={styles.buttonColor}
-                onPress={this._showDatePicker}>
-                <Text style={{color: '#fff'}}> Pick Date and Time </Text>
-              </TouchableOpacity> */}
               <Button 
-              buttonStyle={styles.buttonColor}
-              title="Pick Date and Time"
-              onPress={this._showDatePicker}
-              borderRadius={5}
+                buttonStyle={styles.buttonColor}
+                title="Pick Date and Time"
+                onPress={this._showDatePicker}
+                borderRadius={5}
               />
 
               <DateTimePicker
@@ -163,13 +168,21 @@ class MessageForm extends React.Component {
             </View>
 
         </View>
-              
+        {/* <KeyboardAvoidingView behavior="padding" style={styles.form} keyboardVerticalOffset={
+              Platform.select({
+                  ios: () => 5,
+                  android: () => 7
+              })()
+          }> */}
+        {/* <View><Text>Date:</Text></View>
+        <View><Text>{this.state.date}</Text></View> */}
         <View style={{width:'95%'}}>
           <FormLabel labelStyle={styles.textColor}>Date</FormLabel>
-            <FormInput 
-                value={this.state.date}
-                onChangeText={date => this.setState({ date })}
-                />
+          <View><Text style={styles.dateText}>{this.state.date}</Text></View>
+            {/* <FormInput 
+                value={this.state.date.toString()}
+                //onChangeText={date => this.setState({ date })}
+                /> */}
           <FormLabel labelStyle={styles.textColor}>Cuisine</FormLabel>
             <FormInput 
               //secureTextEntry={true}
@@ -200,7 +213,7 @@ class MessageForm extends React.Component {
           </View>
         </View>
 
-
+      {/* </KeyboardAvoidingView> */}
       </View>
 
 
@@ -217,7 +230,17 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       backgroundColor: colors.background
     },
-
+    dateText : {
+      backgroundColor: colors.background,
+      fontSize: 12,
+      justifyContent: 'center',
+      //padding: 20,
+      color: colors.text,
+    },
+    form: {
+      flex: 1,
+      justifyContent: 'space-between',
+    },
     buttonColor: {
       backgroundColor: colors.alternatePurple
     },
