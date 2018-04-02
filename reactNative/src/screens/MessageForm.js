@@ -1,6 +1,6 @@
 import React from 'react';
 //import Header from '../components/Header';
-import { StyleSheet, View, Alert, Text } from 'react-native';
+import { StyleSheet, View, Alert, Text, TouchableOpacity } from 'react-native';
 import colors from '../styles/color';
 import defaultStyles from '../../src/styles/default';
 import { NavigationActions } from "react-navigation";
@@ -8,12 +8,13 @@ import { Header, Icon, Button, FormLabel, FormInput} from 'react-native-elements
 import firebase from 'firebase';
 import NavigatorService from '../services/navigator';
 import { connect } from 'react-redux';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 class MessageForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {cuisine: '', date: '', partySize: '', price: ''}; 
+    this.state = {cuisine: '', date: '', partySize: '', price: '', isDatePickerVisible: false, datePicked: ''}; 
     if (this.props && this.props.navigation && this.props.navigation.state && this.props.navigation.state.params) {
       // this.isViewMode = this.props.navigation.state.params.isView ? true : false;
       this.userUidPassedIn = this.props.navigation.state.params.selectedUserUid;
@@ -59,6 +60,17 @@ class MessageForm extends React.Component {
     this.props.navigation.dispatch(NavigationActions.back());
   }
 
+  _showDatePicker = () => this.setState({ isDatePickerVisible: true });
+
+  _hideDatePicker = () => this.setState({ isDatePickerVisible: false });
+
+  _handleDatePicked = (date) => {
+    //alert(date);
+    this.setState({datePicked: date});
+    this._hideDatePicker();
+  };
+
+  //uploads to firebase 
   sendMessage(){
     //alert('hello');
     this.formFilled = true;
@@ -94,7 +106,7 @@ class MessageForm extends React.Component {
           'Notification',
           'Job Request Sent!',
           [
-            {text: 'OK', onPress: () => {}}
+            {text: 'OK', onPress: () => {this.backButton()}}
           ]
         )
       })
@@ -110,16 +122,9 @@ class MessageForm extends React.Component {
     }
   }
 
-  // changeFormAndSend(){
-  //   //alert('sending..')
-  //   this.setState({ formFilled: true });
-  //   this.sendMessage.bind(this);
-  // }
-
-
   render() {
     return (
-        <View style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.boxAround}>
           <Header
             leftComponent={<Icon
@@ -132,8 +137,32 @@ class MessageForm extends React.Component {
             outerContainerStyles={{ backgroundColor: colors.tabNavBackground }}
          />
         </View>
-        {/* <Text>hello</Text> */}
 
+        <View style={styles.buttonContainer}>
+
+            {/* date picker */}
+            <View>
+              {/* <TouchableOpacity 
+                style={styles.buttonColor}
+                onPress={this._showDatePicker}>
+                <Text style={{color: '#fff'}}> Pick Date and Time </Text>
+              </TouchableOpacity> */}
+              <Button 
+              buttonStyle={styles.buttonColor}
+              title="Pick Date and Time"
+              onPress={this._showDatePicker}
+              borderRadius={5}
+              />
+
+              <DateTimePicker
+                isVisible={this.state.isDatePickerVisible}
+                mode='datetime'
+                onConfirm={this._handleDatePicked}
+                onCancel={this._hideDatePicker}
+              />
+            </View>
+
+        </View>
               
         <View style={{width:'95%'}}>
           <FormLabel labelStyle={styles.textColor}>Date</FormLabel>
@@ -166,11 +195,6 @@ class MessageForm extends React.Component {
               buttonStyle={styles.buttonColor}
               title="Send"
               onPress={this.sendMessage.bind(this)}
-              // onPress={()=>{
-              //   //alert('press failed');
-              //    this.changeFormAndSend.bind(this)
-              //   
-              //   }}
               borderRadius={5}
             />
           </View>
@@ -203,12 +227,12 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       flexDirection: 'row'
     },
-       boxAround: {
-         margin: 10,
-         borderRadius: 4,
-         borderWidth: 0.5,
-         borderColor: '#d6d7da',
-       }
+    boxAround: {
+      margin: 10,
+      borderRadius: 4,
+      borderWidth: 0.5,
+      borderColor: '#d6d7da',
+    }
 });
 
 export default MessageForm;
