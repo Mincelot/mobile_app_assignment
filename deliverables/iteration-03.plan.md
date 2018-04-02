@@ -8,16 +8,6 @@
 ## Process
 
 #### Changes from previous iteration
-
-List the most significant changes you made to your process (if any).
-
- * At most 3 items
- * Start with the most significant change
- * For each change, explain why you are making it and what you are hoping to achieve from it
- * Ideally, for each change, you will define a clear success metric (i.e. something you can measure at the end of the iteration to determine whether the change you made was successful)
-
- > *Note:* If you are not making any changes to your process, it means that you are happy with all of the decisions you made in the previous iterations.
- > In this case, list what you consider to be the most significant process decisions your team made. For each decision, explain why you consider it successful, and what success metric you are using (or could use) to assert that the decision is successful.
  
  * The most significant process decision our team made is that we exchanged two member's tasks in order to cope with upcoming deadlines.
  * This decision is successful because it ensures to avoid the situation where a member is assigned with a task but he/she could not complete it on time due to various reasons. 
