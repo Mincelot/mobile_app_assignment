@@ -235,7 +235,7 @@ class TabMessages extends React.Component {
 
         let ordersTemp = {
           chef: this.user.uid,
-          cuisineName: item.cuisine,
+          cuisine: item.cuisine,
           date: item.date.getTime(),
           price: item.price,
           guests: item.partySize,
