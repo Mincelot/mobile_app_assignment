@@ -375,6 +375,11 @@ class TabMessages extends React.Component {
                             <FormLabel labelStyle={styles.textColor}>Cuisine: {item.cuisine}</FormLabel>
                             <FormLabel labelStyle={styles.textColor}>Party Size {item.partySize}</FormLabel>
                             <FormLabel labelStyle={styles.textColor}>Price {item.price}</FormLabel>
+                            {item.isAccepted == true &&
+                              <View style={styles.buttonContainer}>
+                                <FormLabel labelStyle={styles.textColor}>Job has been accepted.</FormLabel>
+                              </View>
+                            }
                             {item.isAccepted == false &&
                               <View style={styles.buttonContainer}>
                                 <View>

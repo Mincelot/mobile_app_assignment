@@ -185,7 +185,7 @@ class MessageForm extends React.Component {
         <View><Text>{this.state.date}</Text></View> */}
         <View style={{width:'95%'}}>
           <FormLabel labelStyle={styles.textColor}>Date</FormLabel>
-          <View><Text style={styles.dateText}>{this.state.dateShow}</Text></View>
+          <View><FormLabel style={styles.dateText}>{this.state.dateShow}</FormLabel></View>
             {/* <FormInput 
                 value={this.state.date.toString()}
                 //onChangeText={date => this.setState({ date })}
